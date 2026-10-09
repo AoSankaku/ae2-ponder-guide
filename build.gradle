@@ -1,0 +1,128 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+group = 'dev.ae2guide'
+version = mod_version
+base.archivesName = 'ae2-ponder-guide'
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+sourceSets {
+    validation {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.createmod.net' }
+    maven { url = 'https://maven.neoforged.net/releases' }
+}
+
+neoForge {
+    version = neo_version
+    runs {
+        client { client() }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        validationClient {
+            client()
+            sourceSet = sourceSets.validation
+            gameDirectory = file('build/validation-run')
+            systemProperty 'ae2ponder.validate', 'true'
+            systemProperty 'ae2ponder.validationLessons', project.findProperty('validationLessons') ?: ''
+            programArguments.addAll '--width', '960', '--height', '640'
+        }
+    }
+    mods {
+        ae2ponder {
+            sourceSet(sourceSets.main)
+            if (project.hasProperty('validateGuide')) sourceSet(sourceSets.validation)
+        }
+    }
+}
+
+dependencies {
+    implementation "net.createmod.ponder:ponder-neoforge:${ponder_version}"
+    runtimeOnly "org.appliedenergistics:appliedenergistics2:${ae2_version}"
+    runtimeOnly 'org.appliedenergistics:guideme:21.1.19'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') { expand version: project.version }
+}
+
+tasks.named('wrapper', Wrapper).configure { gradleVersion = '8.14.3' }
+
+// Keep Ponder translation keys synchronized with the same data used by the catalogue.
+def guideResources = tasks.register('generateGuideResources') {
+    def lessonsFile = file('src/main/resources/assets/ae2ponder/guide/lessons.json')
+    inputs.file(lessonsFile)
+    inputs.dir('src/main/templates/lang')
+    def destination = layout.buildDirectory.dir('generated/guideResources')
+    outputs.dir(destination)
+    doLast {
+        def lessons = new groovy.json.JsonSlurper().parse(lessonsFile, 'UTF-8')
+        def allowedChapters = ['start', 'network', 'storage', 'automation', 'advanced', 'troubleshooting']
+        assert lessons.size() >= 36 : 'The guide must cover all major AE2 systems'
+        assert lessons*.id.toSet().size() == lessons.size() : 'Duplicate lesson ID'
+        assert lessons*.chapter.toSet() == allowedChapters.toSet() : 'Missing or invalid chapter'
+        lessons.each { lesson ->
+            assert lesson.id ==~ /[a-z0-9_]+/ : "Invalid lesson ID ${lesson.id}"
+            assert lesson.icon && lesson.components && lesson.nodes && lesson.steps.size() >= 4 : "Incomplete ${lesson.id}"
+            assert lesson.nodes*.id.toSet().size() == lesson.nodes.size() : "Duplicate node in ${lesson.id}"
+            assert lesson.nodes*.pos.toSet().size() == lesson.nodes.size() : "Overlapping blocks in ${lesson.id}"
+            def ids = lesson.nodes*.id.toSet()
+            def visible = [] as Set
+            def revealed = [] as Set
+            lesson.nodes.each { node ->
+                assert node.pos.size() == 3 && node.pos[0] in 0..8 && node.pos[1] in 1..4 && node.pos[2] in 0..8 : "Out of bounds ${lesson.id}/${node.id}"
+            }
+            lesson.steps.each { step ->
+                def refs = (step.show ?: []) + (step.focus ?: []) + (step.hide ?: []) + (step.nbt ?: [:]).keySet()
+                if (step.flow) refs += [step.flow.from, step.flow.to]
+                assert refs.every { it in ids } : "Unknown node reference in ${lesson.id}"
+                visible.removeAll(step.hide ?: [])
+                visible.addAll(step.show ?: [])
+                revealed.addAll(step.show ?: [])
+                assert (step.focus ?: []).every { it in visible } : "Focus on invisible node in ${lesson.id}"
+                if (step.flow) assert step.flow.from in visible && step.flow.to in visible : "Invisible flow in ${lesson.id}"
+            }
+            assert revealed == ids : "Unrevealed nodes in ${lesson.id}: ${ids - revealed}"
+        }
+        ['ja_jp': 'ja', 'en_us': 'en'].each { language, field ->
+            def translations = new groovy.json.JsonSlurper().parse(file("src/main/templates/lang/${language}.json"), 'UTF-8')
+            lessons.each { lesson ->
+                assert lesson.title[field] && lesson.summary[field] : "Missing ${field} translation in ${lesson.id}"
+                translations["ae2ponder.ponder.${lesson.id}.header".toString()] = lesson.title[field]
+                lesson.steps.eachWithIndex { step, index ->
+                    assert step.text[field] : "Missing ${field} subtitle in ${lesson.id}"
+                    translations["ae2ponder.ponder.shared.${lesson.id}_${index}".toString()] = step.text[field]
+                }
+            }
+            if (field == 'en') {
+                def names = ['Getting started', 'ME networks', 'Storage', 'Automation', 'Advanced systems', 'Troubleshooting']
+                allowedChapters.eachWithIndex { chapter, index ->
+                    translations["ae2ponder.ponder.tag.${chapter}".toString()] = names[index]
+                    translations["ae2ponder.ponder.tag.${chapter}.description".toString()] = names[index]
+                }
+            }
+            def target = destination.get().file("assets/ae2ponder/lang/${language}.json").asFile
+            target.parentFile.mkdirs()
+            target.setText(groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(translations)), 'UTF-8')
+        }
+        logger.lifecycle("Validated ${lessons.size()} lessons and generated Japanese/English Ponder translations")
+    }
+}
+sourceSets.main.resources.srcDir(guideResources)
+tasks.named('check').configure { dependsOn guideResources }

@@ -1,0 +1,20 @@
+{
+  "ae2ponder.title": "AE2 Visual Guide",
+  "ae2ponder.subtitle": "Learn ME networks, one build at a time",
+  "ae2ponder.key.open": "Open AE2 Guide",
+  "ae2ponder.key.category": "AE2 Visual Guide",
+  "ae2ponder.button.guide": "AE2 Guide",
+  "ae2ponder.button.catalogue": "Guide catalogue",
+  "ae2ponder.button.next": "Next lesson",
+  "ae2ponder.search": "Search: terminal, P2P, crafting...",
+  "ae2ponder.progress": "Completed %s / %s",
+  "ae2ponder.results": "%s lessons",
+  "ae2ponder.no_results": "No lessons found. Try a different search.",
+  "ae2ponder.chapter.all": "All / course order",
+  "ae2ponder.chapter.start": "1. Getting started",
+  "ae2ponder.chapter.network": "2. ME networks",
+  "ae2ponder.chapter.storage": "3. Storage",
+  "ae2ponder.chapter.automation": "4. Automation",
+  "ae2ponder.chapter.advanced": "5. Advanced systems",
+  "ae2ponder.chapter.troubleshooting": "6. Troubleshooting"
+}
