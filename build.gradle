@@ -37,6 +37,15 @@ neoForge {
             systemProperty 'ae2ponder.validationLessons', project.findProperty('validationLessons') ?: ''
             programArguments.addAll '--width', '960', '--height', '640'
         }
+        performanceClient {
+            client()
+            sourceSet = sourceSets.validation
+            gameDirectory = file('build/performance-run')
+            systemProperty 'ae2ponder.profile', 'true'
+            jvmArguments.addAll "-Xms${project.findProperty('profileMinHeap') ?: '1G'}",
+                    "-Xmx${project.findProperty('profileMaxHeap') ?: '4G'}"
+            programArguments.addAll '--width', '1280', '--height', '720'
+        }
     }
     mods {
         ae2ponder {

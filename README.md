@@ -57,6 +57,14 @@ Ponder用の翻訳ファイルを生成します。構造NBTを変更する場�
 Createなしで全場面のコンパイル・再生・巻き戻し・部品復元・描画と一覧からの選択を確認します。
 結果は `build/validation-run/validation-result.json`、画像は同ディレクトリの `screenshots` に保存します。
 
+通常ワールドの性能調査には `./gradlew -PvalidateGuide runPerformanceClient` を利用できます。
+調査対象のワールドの**コピー**を `build/performance-run/saves/profile-world` に配置し、
+対象の `options.txt` と必要な設定を `build/performance-run` にコピーしてから実行してください。
+ガイドを開かずに45秒間カメラを回転させ、最初の15秒を除いた描画間隔・描画時間・サーバー処理時間を
+`performance-result.json`、Java Flight Recorderの記録を `performance.jfr` に保存して自動終了します。
+描画解像度は1280×720です。メモリ割り当ては `-PprofileMinHeap=1G -PprofileMaxHeap=4G` で変更できます。
+この測定用コードも配布JARには含まれません。
+
 ## 設計
 
 - `src/main/resources/assets/ae2ponder/guide/lessons.json`: 章・場面・字幕・模型・演出
