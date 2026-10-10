@@ -12,6 +12,7 @@ import net.createmod.ponder.foundation.ui.PonderUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
 import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.client.gui.screens.options.OptionsScreen;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -78,10 +79,16 @@ public final class GuideValidation {
             if (!validating) {
                 validating = true;
                 validateScenes();
-                client.setScreen(new GuideScreen(null));
+                client.setScreen(new OptionsScreen(null, client.options));
                 frame = 0;
             }
             frame++;
+            if (frame == 6) screenshot("options-guide-button.png");
+            if (frame == 7) {
+                if (!(client.screen instanceof OptionsScreen)) throw new IllegalStateException("Options did not open");
+                client.screen.mouseClicked(18, client.screen.height - 18, 0);
+                if (!(client.screen instanceof GuideScreen)) throw new IllegalStateException("Options guide button did not open catalogue");
+            }
             if (frame == 8) screenshot("catalogue.png");
             if (frame == 10) {
                 // Exercise the actual catalogue row rather than bypassing its selection handler.
@@ -127,6 +134,10 @@ public final class GuideValidation {
         for (var lesson : lessons) {
             requireItem(lesson.icon());
             lesson.components().forEach(GuideValidation::requireItem);
+            for (var component : lesson.components()) {
+                if (!PonderIndex.getSceneAccess().doScenesExistForId(ResourceLocation.parse(component)))
+                    throw new IllegalStateException("Item has no tooltip Ponder entry: " + component);
+            }
             lesson.steps().stream().filter(step -> step.flow() != null).forEach(step -> requireItem(step.flow().item()));
             var scene = PonderIndex.getSceneAccess().compile(List.of(GuidePlugin.entry(lesson.id()))).getFirst();
             if (scene.getBounds().maxY() != 4 || scene.getBounds().maxX() != 8) throw new IllegalStateException("Incorrect stage bounds");

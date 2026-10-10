@@ -6,13 +6,13 @@ Minecraft 1.21.1 / NeoForge向けの、Applied Energistics 2を立体アニメ�
 
 ## 使い方
 
-1. ワールドに入って **Pキー** を押すと、ガイド一覧が開きます。キーは操作設定で変更できます。
-2. インベントリやポーズ画面の右上にある **AE2ガイド** ボタンでも開けます。
-3. 「すべて・学習順」で最初から学ぶか、章別・検索で必要な場面を選びます。
-4. Ponderの再生、一時停止、タイムライン、キーフレーム、ブロック識別を利用できます。
-5. 「次のレッスン」で学習を続け、「ガイド一覧へ」またはEscで一覧に戻れます。
+1. インベントリで対応するAE2アイテムにカーソルを合わせ、**Wキーを長押し**するとPonderが開きます。
+2. Ponderの再生、一時停止、タイムライン、キーフレーム、ブロック識別を利用できます。
+3. 全レッスンの一覧は、ワールド内の「設定…」画面左下にある小さなフルーシュクリスタルのボタンから開けます。
+4. 一覧では章別・検索・学習順で場面を選び、「次のレッスン」で学習を続けられます。
 
-対応するAE2アイテムのツールチップからも、Ponder標準の操作で関連場面を開けます。
+インベントリやポーズ画面への追加ボタン、専用のPキー割り当てはありません。
+タイトル画面から開いた設定では、ワールドに入るまで一覧ボタンは無効です。
 レッスンを最後まで再生すると学習済みになり、`config/ae2ponder-progress.json` に保存されます。
 
 ## 内容
@@ -35,7 +35,7 @@ Minecraft 1.21.1 / NeoForge向けの、Applied Energistics 2を立体アニメ�
 | GuideME | 21.1.19（AE2の必須依存） |
 | Ponder | 1.0.87+mc1.21.1 |
 | Flywheel | 1.0.4 |
-| AE2 Ponder Guide | 1.0.0 |
+| AE2 Ponder Guide | 1.0.1 |
 
 AE2が要求するGuideMEは必要ですが、今回のガイドはPonderから利用します。
 Createが既にPonder/Flywheelを同梱している環境では、同じMODを重複導入しないでください。
@@ -48,13 +48,13 @@ Java 21を使用します。
 .\gradlew.bat build
 ```
 
-出力は `build/libs/ae2-ponder-guide-1.0.0.jar` です。
+出力は `build/libs/ae2-ponder-guide-1.0.1.jar` です。
 `generateGuideResources` が全場面のノード参照・座標・表示順・多言語テキストを検証し、
 Ponder用の翻訳ファイルを生成します。構造NBTを変更する場合は `python tools/generate_structure.py` を使います。
 
 統合検証は `./gradlew -PvalidateGuide runValidationClient` で実行できます。
 検証用コードは配布JARに含まれません。別の開発ワールドを自動作成し、ウィンドウを隠して、
-Createなしで全場面のコンパイル・再生・巻き戻し・部品復元・描画と一覧からの選択を確認します。
+Createなしで全場面のコンパイル・再生・巻き戻し・部品復元・描画と設定の小ボタンから一覧への移動を確認します。
 結果は `build/validation-run/validation-result.json`、画像は同ディレクトリの `screenshots` に保存します。
 
 通常ワールドの性能調査には `./gradlew -PvalidateGuide runPerformanceClient` を利用できます。

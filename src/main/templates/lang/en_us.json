@@ -1,9 +1,8 @@
 {
   "ae2ponder.title": "AE2 Visual Guide",
   "ae2ponder.subtitle": "Learn ME networks, one build at a time",
-  "ae2ponder.key.open": "Open AE2 Guide",
-  "ae2ponder.key.category": "AE2 Visual Guide",
-  "ae2ponder.button.guide": "AE2 Guide",
+  "ae2ponder.button.guide": "AE2 Visual Guide",
+  "ae2ponder.button.requires_world": "Join a world to open the AE2 Visual Guide",
   "ae2ponder.button.catalogue": "Guide catalogue",
   "ae2ponder.button.next": "Next lesson",
   "ae2ponder.search": "Search: terminal, P2P, crafting...",
