@@ -9,6 +9,15 @@ in the same change. This includes subtitles, lesson titles and summaries, catalo
 chapters, Ponder/GuideME controls, and the ME Guide page. Do not ship English fallback for a supported
 language. Keep Hong Kong/Taiwan Chinese and Brazil/Portugal Portuguese distinct.
 
+Use Create/Ponder's tone in each language. Japanese explanatory sentences use polite
+です・ます style; instructions use forms such as してください. Titles and short controls
+may stay as natural nouns or short action labels. Follow the native address conventions
+in other languages (for example Czech polite plural and European Portuguese tu), rather
+than making every language formal. Keep meaning, conditions, numbers and terminology intact.
+Unsupported locales and missing runtime translations fall back to English (`en_us`),
+including the default ME Guide page. Complete the supported languages instead of relying
+on that fallback for them.
+
 - English/Japanese lesson text lives in `src/main/resources/assets/ae2ponder/guide/lessons.json`.
   Optional add-on lesson text lives in the adjacent `addons.json`; translate it in all 15 languages too.
 - English/Japanese UI, chapters, Ponder/GuideME controls and guide introduction live in `src/main/templates/lang`.

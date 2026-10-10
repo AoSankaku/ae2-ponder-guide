@@ -46,6 +46,8 @@ ME GuideのページがMinecraftで選択した言語に切り替わります。
 
 今後の追加・変更も全15言語を同時に更新します。欠落したキー、空欄、
 不正なプレースホルダ、原文が変わった後に未確認の翻訳がある場合はビルドが失敗します。
+日本語の説明はCreateと同じ「です・ます」調に揃え、ほかの言語もCreate/Ponderの呼びかけ方に合わせます。
+見出しや短い操作ラベルは自然な形を保ちます。対応する翻訳がない場合のフォールバックは英語です。
 原文の確認が済むまで翻訳ファイルの `_source_hash` を更新しないでください。
 日本語・英語にも `source-review.json` で確認を記録します。
 詳細は [AGENTS.md](AGENTS.md) を参照してください。
@@ -67,7 +69,7 @@ ME Guideのページは翻訳データから生成するため、ページごと
 | GuideME | 21.1.19（AE2の必須依存） |
 | Ponder | 1.0.87+mc1.21.1 |
 | Flywheel | 1.0.4 |
-| AE2 Ponder Guide | 1.0.5 |
+| AE2 Ponder Guide | 1.0.6 |
 
 AE2が要求するGuideMEは必要ですが、今回のガイドはPonderから利用します。
 Createが既にPonder/Flywheelを同梱している環境では、同じMODを重複導入しないでください。
@@ -98,7 +100,7 @@ Java 21を使用します。
 .\gradlew.bat build
 ```
 
-出力は `build/libs/ae2-ponder-guide-1.0.5.jar` です。
+出力は `build/libs/ae2-ponder-guide-1.0.6.jar` です。
 `generateGuideResources` が全場面のノード参照・座標・表示順・吹き出し・多言語テキストを検証し、
 Ponder用の翻訳ファイルを生成します。構造NBTを変更する場合は `python tools/generate_structure.py` を使います。
 

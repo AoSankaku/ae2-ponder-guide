@@ -10,14 +10,14 @@
       "en": "Making OMNI processors"
     },
     "summary": {
-      "ja": "エンダースチールからプレス・回路・プロセッサーへ進む。",
+      "ja": "エンダースチールからプレス・回路・プロセッサーへ進みます。",
       "en": "Make Ender Steel, presses, circuits, and processors."
     },
     "icon": "ae2omnicells:omni_link_processor",
     "steps": [
       {
         "text": {
-          "ja": "インスクライバーの中央に鉄インゴット、上にエンダーダスト、下にケルタスクォーツダストを入れ、エンダースチールを作る。",
+          "ja": "インスクライバーの中央に鉄インゴット、上にエンダーダスト、下にケルタスクォーツダストを入れ、エンダースチールを作ります。",
           "en": "In an inscriber, press an iron ingot with ender dust above and certus quartz dust below to make Ender Steel."
         },
         "show": [
@@ -48,7 +48,7 @@
       },
       {
         "text": {
-          "ja": "エンダースチールをAE2の充電器で帯電させる。",
+          "ja": "エンダースチールをAE2の充電器で帯電させます。",
           "en": "Charge Ender Steel in an AE2 charger to make Charged Ender Steel."
         },
         "show": [
@@ -75,7 +75,7 @@
       },
       {
         "text": {
-          "ja": "AE2の4枚のプレスと指定の材料で、全能リンク・複合リンク・多次元展開のプレスを作る。",
+          "ja": "AE2の4枚のプレスと指定の材料で、全能リンク・複合リンク・多次元展開のプレスを作ります。",
           "en": "Craft the Omni Link, Complex Link, and Multidimensional Expansion presses using the four AE2 presses and their required materials."
         },
         "show": [
@@ -101,7 +101,7 @@
       },
       {
         "text": {
-          "ja": "対応するプレスで、エンダースチール・ネザライトの欠片・特異点から、それぞれの回路を印刷する。",
+          "ja": "対応するプレスで、エンダースチール・ネザライトの欠片・特異点から、それぞれの回路を印刷します。",
           "en": "Use the matching press with Ender Steel, netherite scrap, or a singularity to print the corresponding circuit."
         },
         "show": [],
@@ -126,7 +126,7 @@
       },
       {
         "text": {
-          "ja": "印刷した回路・レッドストーン・印刷済みシリコンを圧印し、プロセッサーを完成させる。OMNIの部品や筐体の材料になる。",
+          "ja": "印刷した回路・レッドストーン・印刷済みシリコンを圧印し、プロセッサーを完成させます。OMNIの部品や筐体の材料になります。",
           "en": "Press each printed circuit with redstone and printed silicon to finish its processor. These processors are used in OMNI components and housings."
         },
         "show": [],
@@ -276,14 +276,14 @@
       "en": "Mixed storage with OMNI cells"
     },
     "summary": {
-      "ja": "3系統の種類上限・容量・電力を比べる。",
+      "ja": "3系統の種類上限・容量・電力を比べます。",
       "en": "Compare three series, type limits, capacity, and power."
     },
     "icon": "ae2omnicells:omni_cell_1k",
     "steps": [
       {
         "text": {
-          "ja": "OMNIセルをMEドライブへ入れる。通常AE2の別々のセルとは違い、1枚にアイテムと液体を保存できる。",
+          "ja": "OMNIセルをMEドライブへ入れます。通常AE2の別々のセルとは違い、1枚にアイテムと液体を保存できます。",
           "en": "Insert an OMNI cell into an ME drive. One cell can hold both items and fluids, unlike separate normal AE2 cells."
         },
         "show": [
@@ -316,7 +316,7 @@
       },
       {
         "text": {
-          "ja": "OMNIは63種類。Complexは1kから256mで12〜6400種類。Quantumは種類上限がないが、バイト容量は有限。",
+          "ja": "OMNIは63種類です。Complexは1kから256mで12〜6400種類です。Quantumは種類上限がありませんが、バイト容量は有限です。",
           "en": "OMNI allows 63 types. Complex scales from 12 to 6400 across 1k to 256m. Quantum has no type limit, but its bytes are finite."
         },
         "show": [],
@@ -340,7 +340,7 @@
       },
       {
         "text": {
-          "ja": "種類ごとの追加バイト費用はない。アイテム8個、液体8000 mBでそれぞれ1バイトを使い、同じセル容量を共有する。",
+          "ja": "種類ごとの追加のバイト消費はありません。アイテム8個、液体8000 mBでそれぞれ1バイトを使い、同じセル容量を共有します。",
           "en": "There is no per-type byte overhead. Items use one byte per eight items; fluids use one byte per 8000 mB. Both share the cell capacity."
         },
         "show": [
@@ -369,7 +369,7 @@
       },
       {
         "text": {
-          "ja": "Quantumセルは待機電力が大きい。256mは59049 AE/tを使うため、大容量を選ぶ前に電源を確保しよう。",
+          "ja": "Quantumセルは待機電力が大きいです。256mは59049 AE/tを使うため、大容量を選ぶ前に電源を確保してください。",
           "en": "Quantum cells have much higher idle power. A 256m Quantum cell uses 59049 AE/t, so provide enough power before choosing large tiers."
         },
         "show": [],
@@ -388,7 +388,7 @@
       },
       {
         "text": {
-          "ja": "標準設定では、使用済み核廃棄物には専用セルとApplied Mekanisticsが必要。通常のOMNIセルには入らない。",
+          "ja": "標準設定では、使用済み核廃棄物には専用セルとApplied Mekanisticsが必要です。通常のOMNIセルには入りません。",
           "en": "By default, spent nuclear waste needs a dedicated spent-waste cell and Applied Mekanistics. Normal OMNI cells do not accept it."
         },
         "show": [],
@@ -586,14 +586,14 @@
       "en": "Carrying an OMNI cell"
     },
     "summary": {
-      "ja": "携帯ストレージを充電し、空にしてから分解する。",
+      "ja": "携帯ストレージを充電し、空にしてから分解します。",
       "en": "Charge portable storage and disassemble only empty cells."
     },
     "icon": "ae2omnicells:portable_omni_cell_1k",
     "steps": [
       {
         "text": {
-          "ja": "OMNI・Complex・Quantumの全段階に携帯版がある。基地に遠隔接続するのではなく、混合ストレージを持ち運ぶ。",
+          "ja": "OMNI・Complex・Quantumの全段階に携帯版があります。基地に遠隔接続するのではなく、混合ストレージを持ち運びます。",
           "en": "Every OMNI, Complex, and Quantum tier has a portable version. It carries its own mixed storage, rather than accessing your base remotely."
         },
         "show": [
@@ -627,7 +627,7 @@
       },
       {
         "text": {
-          "ja": "携帯セルをAE2の充電器で充電し、手に持って右クリックして収納を開く。",
+          "ja": "携帯セルをAE2の充電器で充電し、手に持って右クリックして収納を開きます。",
           "en": "Charge the portable cell in an AE2 charger, then right-click with it to open its inventory."
         },
         "show": [
@@ -645,7 +645,7 @@
       },
       {
         "text": {
-          "ja": "エネルギーカードは携帯セルの電池容量を増やす。保存バイト数や種類上限は増えない。",
+          "ja": "エネルギーカードは携帯セルの電池容量を増やします。保存バイト数や種類上限は増えません。",
           "en": "Energy cards increase the portable battery capacity. They do not increase its storage bytes or type limit."
         },
         "show": [],
@@ -661,7 +661,7 @@
       },
       {
         "text": {
-          "ja": "分解前にすべての中身を別の収納へ移す。空のセルを手に持ってスニーク右クリックすると、材料とカードが戻る。",
+          "ja": "分解前にすべての中身を別の収納へ移します。空のセルを手に持ってスニーク右クリックすると、材料とカードが戻ります。",
           "en": "Move all contents to other storage before disassembly. Sneak-right-click an empty cell in your hand to recover its recipe parts and upgrades."
         },
         "show": [
@@ -694,7 +694,7 @@
       },
       {
         "text": {
-          "ja": "OMNIの中身はワールドデータに保存され、セルは識別子を持つ。セルだけではなくワールド全体をバックアップしよう。",
+          "ja": "OMNIの中身はワールドデータに保存され、セルは識別子を持ちます。セルだけではなくワールド全体をバックアップしてください。",
           "en": "OMNI contents are stored in world data; the cell carries an identifier. Back up the whole world, not just the cell item."
         },
         "show": [],
@@ -905,14 +905,14 @@
       "en": "Filtering whole resource types"
     },
     "summary": {
-      "ja": "セルワークベンチでタイプファジーと反転カードを使う。",
+      "ja": "セルワークベンチでタイプファジーと反転カードを使います。",
       "en": "Use Type Fuzzy and Inverter cards in the cell workbench."
     },
     "icon": "ae2omnicells:type_fuzzy_card",
     "steps": [
       {
         "text": {
-          "ja": "OMNIセルをセルワークベンチへ入れる。タイプファジーがない場合、分割設定は個別の資源を指定する。",
+          "ja": "OMNIセルをセルワークベンチへ入れます。タイプファジーがない場合、分割設定は個別の資源を指定します。",
           "en": "Put an OMNI cell in the cell workbench. Without Type Fuzzy, its partition lists specific resources."
         },
         "show": [
@@ -938,7 +938,7 @@
       },
       {
         "text": {
-          "ja": "タイプファジーカードを装着して、任意のアイテムを登録する。その品物だけでなく、アイテムという資源型全体を許可する。",
+          "ja": "タイプファジーカードを装着して、任意のアイテムを登録します。その品物だけでなく、アイテムという資源型全体を許可します。",
           "en": "Install a Type Fuzzy Card and mark any item. That sample now allows the entire item resource type, not just that item."
         },
         "show": [],
@@ -958,7 +958,7 @@
       },
       {
         "text": {
-          "ja": "液体を登録すると液体という資源型を許可する。液体入りバケツでフィルタ枠を右クリックし、中の液体を選ぼう。",
+          "ja": "液体を登録すると液体という資源型を許可します。液体入りバケツでフィルタ枠を右クリックし、中の液体を選んでください。",
           "en": "Mark a fluid to allow the fluid resource type. Right-click a filter slot with a filled bucket to select its fluid."
         },
         "show": [],
@@ -974,7 +974,7 @@
       },
       {
         "text": {
-          "ja": "反転カードを加えると、登録した資源型を除外する設定になる。複数の資源型もまとめて指定できる。",
+          "ja": "反転カードを加えると、登録した資源型を除外する設定になります。複数の資源型もまとめて指定できます。",
           "en": "Add an Inverter Card to reject the marked resource types instead. Multiple sample types can be combined."
         },
         "show": [],
@@ -994,7 +994,7 @@
       },
       {
         "text": {
-          "ja": "登録が空なら追加の制限はない。タイプファジーはOMNIセル用で、AE2の通常のファジーカードとは機能が違う。",
+          "ja": "登録が空なら追加の制限はありません。タイプファジーはOMNIセル用で、AE2の通常のファジーカードとは機能が違います。",
           "en": "An empty partition adds no restriction. Type Fuzzy works on OMNI cells and differs from AE2's ordinary Fuzzy Card."
         },
         "show": [],
@@ -1156,14 +1156,14 @@
       "en": "OMNI crafting storage and co-processors"
     },
     "summary": {
-      "ja": "ストレージと並列発送能力を持つCPUを組む。",
+      "ja": "ストレージと並列発送能力を持つCPUを組みます。",
       "en": "Build a CPU with storage and built-in dispatch capacity."
     },
     "icon": "ae2omnicells:omni_crafting_storage_1k_block",
     "steps": [
       {
         "text": {
-          "ja": "最低1個のOMNIクラフトストレージを含む、詰まった直方体のCPUを組む。パターンプロバイダと組立機のネットワークへつなぐ。",
+          "ja": "最低1個のOMNIクラフトストレージを含む、詰まった直方体のCPUを組みます。パターンプロバイダと組立機のネットワークへつなぎます。",
           "en": "Build a filled rectangular CPU with at least one OMNI crafting storage block. Connect it to the pattern provider and assembler network."
         },
         "show": [
@@ -1203,7 +1203,7 @@
       },
       {
         "text": {
-          "ja": "標準ではOMNIの1k〜256kは各4、1m〜256mは各8の並列処理能力を持つ。クラフト容量はドライブの保存容量とは別。",
+          "ja": "標準ではOMNIの1k〜256kは各4、1m〜256mは各8の並列処理能力を持ちます。クラフト容量はドライブの保存容量とは別です。",
           "en": "Each OMNI 1k through 256k storage provides four co-processors by default; 1m through 256m provides eight. Crafting bytes are separate from drive-cell storage."
         },
         "show": [],
@@ -1225,7 +1225,7 @@
       },
       {
         "text": {
-          "ja": "Complexの標準値は0〜256、Quantumは512〜8192。増えるのは材料の発送能力で、独立したジョブの数ではない。",
+          "ja": "Complexの標準値は0〜256、Quantumは512〜8192です。増えるのは材料の発送能力で、独立したジョブの数ではありません。",
           "en": "Complex defaults scale from zero to 256 co-processors. Quantum defaults range from 512 to 8192. These increase ingredient dispatch, not the number of independent jobs."
         },
         "show": [],
@@ -1245,7 +1245,7 @@
       },
       {
         "text": {
-          "ja": "並列処理の値はOMNIの設定で変更でき、反映には再起動が必要。CPUを比べる前に設定値を確認しよう。",
+          "ja": "並列処理の値はOMNIの設定で変更でき、反映には再起動が必要です。CPUを比べる前に設定値を確認してください。",
           "en": "Co-processor values can change in the OMNI configuration and require a restart. Check the configured values before comparing CPUs."
         },
         "show": [],
@@ -1258,7 +1258,7 @@
       },
       {
         "text": {
-          "ja": "1CPUは同時に1ジョブ。別の依頼を同時に進めるなら、独立したCPUを追加する。",
+          "ja": "1CPUは同時に1ジョブです。別の依頼を同時に進めるなら、独立したCPUを追加します。",
           "en": "One CPU runs one job at a time. Add another separate CPU to run an independent request simultaneously."
         },
         "show": [
@@ -1479,14 +1479,14 @@
       "en": "Bigger AE2 quantum item storage"
     },
     "summary": {
-      "ja": "1種類のアイテムを、大きくても有限のセルに保存する。",
+      "ja": "1種類のアイテムを、大きくても有限のセルに保存します。",
       "en": "Store one item type in a large but finite cell."
     },
     "icon": "bigger_ae2:quantum_item_storage_cell",
     "steps": [
       {
         "text": {
-          "ja": "量子セル部品と高度なアイテムセル筐体を組み合わせ、量子アイテムセルをMEドライブへ入れる。",
+          "ja": "量子セル部品と高度なアイテムセル筐体を組み合わせ、量子アイテムセルをMEドライブへ入れます。",
           "en": "Combine a Quantum Cell Component with an Advanced Item Cell Housing, then put the quantum item cell in an ME drive."
         },
         "show": [
@@ -1521,7 +1521,7 @@
       },
       {
         "text": {
-          "ja": "このセルは1種類専用。アイテムのデータが異なると別の種類になるため、大量品の専用倉庫に向いている。",
+          "ja": "このセルは1種類専用です。アイテムのデータが異なると別の種類になるため、大量品の専用倉庫に向いています。",
           "en": "This cell holds one item type. Different item data can make separate types, so it is dedicated bulk storage."
         },
         "show": [],
@@ -1537,7 +1537,7 @@
       },
       {
         "text": {
-          "ja": "容量は128 MiBで、種類用に65536バイトを使う。通常アイテムセルと同じ容量計算なので、数量には上限がある。",
+          "ja": "容量は128 MiBで、種類用に65536バイトを使います。通常アイテムセルと同じ容量計算なので、数量には上限があります。",
           "en": "Its capacity is 128 MiB, with 65536 bytes of type overhead. It follows normal item-cell byte accounting, so capacity is finite."
         },
         "show": [],
@@ -1554,7 +1554,7 @@
       },
       {
         "text": {
-          "ja": "待機時に20 AE/tを使い、ドライブのチャネルも必要。容量を増やしても電力やチャネル不足は解決しない。",
+          "ja": "待機時に20 AE/tを使い、ドライブのチャネルも必要です。容量を増やしても電力やチャネル不足は解決しません。",
           "en": "It uses 20 AE/t at idle and still needs an available drive channel. More capacity does not fix missing power or channels."
         },
         "show": [],
@@ -1568,7 +1568,7 @@
       },
       {
         "text": {
-          "ja": "再利用前に中身を別の収納へ移す。空のセルをスニーク右クリックすると、部品と筐体に戻せる。",
+          "ja": "再利用前に中身を別の収納へ移します。空のセルをスニーク右クリックすると、部品と筐体に戻せます。",
           "en": "Empty it into other storage before reuse. Sneak-right-click the empty cell to recover the component and housing."
         },
         "show": [
@@ -1720,14 +1720,14 @@
       "en": "Bigger AE2 quantum fluid storage"
     },
     "summary": {
-      "ja": "液体用筐体で、1種類の液体を大量保存する。",
+      "ja": "液体用筐体で、1種類の液体を大量保存します。",
       "en": "Use the fluid housing for one bulk fluid."
     },
     "icon": "bigger_ae2:quantum_fluid_storage_cell",
     "steps": [
       {
         "text": {
-          "ja": "量子セル部品と高度な液体セル筐体を組み合わせ、液体版のセルを作る。",
+          "ja": "量子セル部品と高度な液体セル筐体を組み合わせ、液体版のセルを作ります。",
           "en": "Combine a Quantum Cell Component with an Advanced Fluid Cell Housing to make the fluid version."
         },
         "show": [
@@ -1760,7 +1760,7 @@
       },
       {
         "text": {
-          "ja": "量子液体セルは1種類専用。水と溶岩には別のセルが必要で、液体入りバケツという品物は保存液体とは別。",
+          "ja": "量子液体セルは1種類専用です。水と溶岩には別のセルが必要で、液体入りバケツという品物は保存液体とは別です。",
           "en": "The quantum fluid cell accepts one fluid type. Water and lava require separate cells; a filled bucket item is not stored fluid."
         },
         "show": [],
@@ -1781,7 +1781,7 @@
       },
       {
         "text": {
-          "ja": "容量は128 MiBで、種類用に65536バイトを使う。液体の容量計算はアイテム個数とは異なるが、総容量は有限。",
+          "ja": "容量は128 MiBで、種類用に65536バイトを使います。液体の容量計算はアイテム個数とは異なりますが、総容量は有限です。",
           "en": "It has 128 MiB with 65536 bytes of type overhead. Fluid byte accounting differs from item counts, but total capacity remains finite."
         },
         "show": [],
@@ -1798,7 +1798,7 @@
       },
       {
         "text": {
-          "ja": "通常のAE2入出力バスや収納バスで液体を移す。容器でフィルタ枠を右クリックして中の液体を選ぼう。",
+          "ja": "通常のAE2入出力バスや収納バスで液体を移します。容器でフィルタ枠を右クリックして中の液体を選んでください。",
           "en": "Use normal AE2 import, export, or storage buses for fluid transfer. Select the fluid by right-clicking a filter slot with its container."
         },
         "show": [
@@ -1826,7 +1826,7 @@
       },
       {
         "text": {
-          "ja": "ドライブの電源と移動先の空きを確保し、IOポートで空にする。分解できるのは空のセルだけ。",
+          "ja": "ドライブの電源と移動先の空きを確保し、IOポートで空にします。分解できるのは空のセルだけです。",
           "en": "Keep the drive powered and prepare enough destination space before emptying it through an IO port. Only empty cells can be disassembled."
         },
         "show": [
@@ -1984,14 +1984,14 @@
       "en": "One resource in a digital singularity"
     },
     "summary": {
-      "ja": "数量の上限なしと、1種類という制限を分けて考える。",
+      "ja": "数量の上限なしと、1種類という制限を分けて考えます。",
       "en": "Separate unlimited quantity from a one-type restriction."
     },
     "icon": "bigger_ae2:digital_singularity_item_storage_cell",
     "steps": [
       {
         "text": {
-          "ja": "デジタル特異点セル部品をアイテム用か液体用の筐体と組み合わせる。アイテム版と液体版は別。",
+          "ja": "デジタル特異点セル部品をアイテム用か液体用の筐体と組み合わせます。アイテム版と液体版は別です。",
           "en": "Combine a Digital Singularity Cell Component with the item or fluid housing. Item and fluid variants are separate."
         },
         "show": [
@@ -2026,7 +2026,7 @@
       },
       {
         "text": {
-          "ja": "セルワークベンチで1資源を指定するか、最初の投入で種類を決める。別の資源は同じセルに入らない。",
+          "ja": "セルワークベンチで1資源を指定するか、最初の投入で種類を決めます。別の資源は同じセルに入りません。",
           "en": "Set one resource in the cell workbench, or let the first insertion select it. A different resource cannot share the cell."
         },
         "show": [],
@@ -2043,7 +2043,7 @@
       },
       {
         "text": {
-          "ja": "数量はBigIntegerで保存され、固定の数量上限はない。1種類という制限までなくなるわけではない。",
+          "ja": "数量はBigIntegerで保存され、固定の数量上限はありません。1種類という制限までなくなるわけではありません。",
           "en": "Quantity is stored as a BigInteger with no fixed quantity cap. This does not remove the one-resource restriction."
         },
         "show": [],
@@ -2060,7 +2060,7 @@
       },
       {
         "text": {
-          "ja": "セルにさらに保存できても、ネットワークの表示量はlong整数の上限で止まることがある。大きな数量はセルのツールチップで確認しよう。",
+          "ja": "セルにさらに保存できても、ネットワークの表示量はlong整数の上限で止まることがあります。大きな数量はセルのツールチップで確認してください。",
           "en": "The network's displayed total can stop at the long-number limit while the cell holds more. Check the cell tooltip for its larger quantity."
         },
         "show": [],
@@ -2073,7 +2073,7 @@
       },
       {
         "text": {
-          "ja": "電力を保ち、種類変更や分解の前に中身をすべて取り出す。空のセルは部品と筐体に戻せる。",
+          "ja": "電力を保ち、種類変更や分解の前に中身をすべて取り出します。空のセルは部品と筐体に戻せます。",
           "en": "Keep it powered, and remove all contents before changing its resource or disassembling it. The empty cell returns its component and housing."
         },
         "show": [
@@ -2233,14 +2233,14 @@
       "en": "Compact multi-core crafting accelerators"
     },
     "summary": {
-      "ja": "クラフト容量を増やさず、材料の発送能力を増やす。",
+      "ja": "クラフト容量を増やさず、材料の発送能力を増やします。",
       "en": "Add dispatch capacity without adding crafting bytes."
     },
     "icon": "bigger_ae2:4_core_crafting_accelerator",
     "steps": [
       {
         "text": {
-          "ja": "Bigger AE2の並列処理ユニットとAE2のクラフトストレージを、詰まった直方体のCPUにまとめる。",
+          "ja": "Bigger AE2の並列処理ユニットとAE2のクラフトストレージを、詰まった直方体のCPUにまとめます。",
           "en": "Place a Bigger AE2 accelerator beside AE2 crafting storage in a filled rectangular CPU."
         },
         "show": [
@@ -2276,7 +2276,7 @@
       },
       {
         "text": {
-          "ja": "並列処理ブロックには4・16・64・256・1024コアの段階がある。",
+          "ja": "並列処理ブロックには4・16・64・256・1024コアの段階があります。",
           "en": "The available accelerator blocks provide 4, 16, 64, 256, or 1024 co-processor threads."
         },
         "show": [],
@@ -2300,7 +2300,7 @@
       },
       {
         "text": {
-          "ja": "これらのブロックはクラフト用バイト容量を持たない。CPUには最低1個のクラフトストレージを残そう。",
+          "ja": "これらのブロックはクラフト用バイト容量を持ちません。CPUには最低1個のクラフトストレージを残してください。",
           "en": "These blocks provide no crafting storage bytes. Keep at least one crafting storage block in the CPU."
         },
         "show": [],
@@ -2318,7 +2318,7 @@
       },
       {
         "text": {
-          "ja": "コアが増えると材料を多く発送できるが、機械やプロバイダの処理能力も必要。コアを増やしても独立ジョブは増えない。",
+          "ja": "コアが増えると材料を多く発送できますが、機械やプロバイダの処理能力も必要です。コアを増やしても独立ジョブは増えません。",
           "en": "More threads dispatch more ingredients, but machines and providers must keep up. Extra threads do not create independent jobs."
         },
         "show": [],
@@ -2339,7 +2339,7 @@
       },
       {
         "text": {
-          "ja": "1CPUは引き続き同時に1ジョブ。別の依頼を同時に進めるには、独立したCPUを組む。",
+          "ja": "1CPUは引き続き同時に1ジョブです。別の依頼を同時に進めるには、独立したCPUを組みます。",
           "en": "One CPU still runs one job. Build a separate CPU for simultaneous independent requests."
         },
         "show": [
@@ -2535,14 +2535,14 @@
       "en": "DISKs without an item-type limit"
     },
     "summary": {
-      "ja": "DISKを作り、保存できる総個数を理解する。",
+      "ja": "DISKを作り、保存できる総個数を理解します。",
       "en": "Craft a DISK and understand its item-count capacity."
     },
     "icon": "ae2things:disk_drive_1k",
     "steps": [
       {
         "text": {
-          "ja": "クォーツガラス・レッドストーン・ネザライトインゴット・アメジストでDISK筐体を作る。",
+          "ja": "クォーツガラス・レッドストーン・ネザライトインゴット・アメジストでDISK筐体を作ります。",
           "en": "Craft a DISK housing using quartz glass, redstone, netherite ingots, and amethyst."
         },
         "show": [
@@ -2577,7 +2577,7 @@
       },
       {
         "text": {
-          "ja": "筐体と同じ段階のAE2ストレージ部品を組み合わせ、DISKをMEドライブへ入れる。",
+          "ja": "筐体と同じ段階のAE2ストレージ部品を組み合わせ、DISKをMEドライブへ入れます。",
           "en": "Combine the housing with an AE2 storage component of the matching tier, then insert the DISK into an ME drive."
         },
         "show": [],
@@ -2602,7 +2602,7 @@
       },
       {
         "text": {
-          "ja": "DISKは固定の種類上限なしでアイテムを保存する。液体は入らず、保存できる総個数は有限。",
+          "ja": "DISKは固定の種類上限なしでアイテムを保存します。液体は入らず、保存できる総個数は有限です。",
           "en": "DISKs store items without a fixed type limit. They do not accept fluids and still have a finite total capacity."
         },
         "show": [],
@@ -2620,7 +2620,7 @@
       },
       {
         "text": {
-          "ja": "1アイテムが1バイトを使う。1kは1000個、4kは4000個、16kは16000個、64kは64000個、256kは256000個。",
+          "ja": "1アイテムが1バイトを使います。1kは1000個、4kは4000個、16kは16000個、64kは64000個、256kは256000個です。",
           "en": "One item uses one byte: 1k holds 1000 items, 4k holds 4000, 16k holds 16000, 64k holds 64000, and 256k holds 256000."
         },
         "show": [],
@@ -2644,7 +2644,7 @@
       },
       {
         "text": {
-          "ja": "多種類の品物にDISKを使おう。同じ品物の大量保管では、通常AE2セルと容量を比べて選ぶ。",
+          "ja": "多種類の品物にはDISKを使います。同じ品物の大量保管では、通常AE2セルと容量を比べて選びます。",
           "en": "Use DISKs for many item types. For a single bulk item, compare capacity with normal AE2 cells before choosing."
         },
         "show": [],
@@ -2796,14 +2796,14 @@
       "en": "Partitioning and filtering a DISK"
     },
     "summary": {
-      "ja": "ファジーと反転カードで受け入れる品物を選ぶ。",
+      "ja": "ファジーと反転カードで受け入れる品物を選びます。",
       "en": "Choose accepted items with Fuzzy and Inverter cards."
     },
     "icon": "ae2things:disk_drive_4k",
     "steps": [
       {
         "text": {
-          "ja": "DISKをAE2のセルワークベンチへ入れ、分割設定やカードを編集する。",
+          "ja": "DISKをAE2のセルワークベンチへ入れ、分割設定やカードを編集します。",
           "en": "Insert a DISK into the AE2 cell workbench to edit its partition and upgrades."
         },
         "show": [
@@ -2829,7 +2829,7 @@
       },
       {
         "text": {
-          "ja": "品物を登録して許可リストを作る。一致する品物だけを投入できる。",
+          "ja": "品物を登録して許可リストを作ります。一致する品物だけを投入できます。",
           "en": "Register item samples to make a whitelist. Only matching items can be inserted."
         },
         "show": [],
@@ -2845,7 +2845,7 @@
       },
       {
         "text": {
-          "ja": "ファジーカードを入れると、完全一致の代わりに選んだあいまい比較モードを使える。",
+          "ja": "ファジーカードを入れると、完全一致の代わりに選んだあいまい比較モードを使えます。",
           "en": "Install a Fuzzy Card to use the chosen fuzzy matching mode instead of exact matching."
         },
         "show": [],
@@ -2861,7 +2861,7 @@
       },
       {
         "text": {
-          "ja": "反転カードは登録リストを除外リストに変え、一致する品物を拒否する。",
+          "ja": "反転カードは登録リストを除外リストに変え、一致する品物を拒否します。",
           "en": "An Inverter Card changes the configured list into a blacklist, rejecting matching items."
         },
         "show": [],
@@ -2877,7 +2877,7 @@
       },
       {
         "text": {
-          "ja": "DISKの2枠にはファジーと反転カードを各1枚装着できる。フィルタで容量が増えたり、既存の中身が消えたりはしない。",
+          "ja": "DISKの2枠にはファジーと反転カードを各1枚装着できます。フィルタで容量が増えたり、既存の中身が消えたりはしません。",
           "en": "A DISK supports one Fuzzy Card and one Inverter Card in its two slots. Filtering does not add bytes or remove existing contents."
         },
         "show": [],
@@ -3017,14 +3017,14 @@
       "en": "Moving and reusing a DISK"
     },
     "summary": {
-      "ja": "DISKを空にして材料へ戻し、ワールドデータを保つ。",
+      "ja": "DISKを空にして材料へ戻し、ワールドデータを保ちます。",
       "en": "Empty the DISK, recover its parts, and preserve world data."
     },
     "icon": "ae2things:disk_housing",
     "steps": [
       {
         "text": {
-          "ja": "ドライブからDISKを抜いても、同じワールドの中身は残る。アイテムは保存データを指す識別子を持つ。",
+          "ja": "ドライブからDISKを抜いても、同じワールドの中身は残ります。アイテムは保存データを指す識別子を持ちます。",
           "en": "Removing a DISK from its drive keeps its contents in the same world. The item carries the identifier for that stored data."
         },
         "show": [
@@ -3050,7 +3050,7 @@
       },
       {
         "text": {
-          "ja": "IOポートを接続し、DISKからネットワーク収納へ移す方向を選ぶ。",
+          "ja": "IOポートを接続し、DISKからネットワーク収納へ移す方向を選びます。",
           "en": "Connect an IO port and choose transfer from the DISK into network storage."
         },
         "show": [
@@ -3068,7 +3068,7 @@
       },
       {
         "text": {
-          "ja": "移動先に十分な空きを用意し、すべての品物がなくなるまで待つ。フィルタで隠しても、満たされたDISKは空にならない。",
+          "ja": "移動先に十分な空きを用意し、すべての品物がなくなるまで待ちます。フィルタで隠しても、満たされたDISKは空になりません。",
           "en": "Provide enough destination space and wait until every stored item is gone. A restrictive filter does not make a filled DISK empty."
         },
         "show": [],
@@ -3091,7 +3091,7 @@
       },
       {
         "text": {
-          "ja": "空のDISKを手に持ち、スニーク右クリックする。AE2部品・DISK筐体・装着カードが戻る。",
+          "ja": "空のDISKを手に持ち、スニーク右クリックします。AE2部品・DISK筐体・装着カードが戻ります。",
           "en": "Sneak-right-click the empty DISK in your hand. Its AE2 component, DISK housing, and installed cards are returned."
         },
         "show": [],
@@ -3116,7 +3116,7 @@
       },
       {
         "text": {
-          "ja": "DISKの中身はアイテムだけでなくワールドデータに保存される。バックアップはワールド全体で行い、アイテム単体のコピーで代用しない。",
+          "ja": "DISKの中身はアイテムだけでなくワールドデータに保存されます。バックアップはワールド全体で行い、アイテム単体のコピーで代用しないでください。",
           "en": "DISK contents are saved in world data rather than fully inside the item. Back up the whole world; copying the item alone is not a content backup."
         },
         "show": [],
@@ -3263,14 +3263,14 @@
       "en": "MEGA item DISKs"
     },
     "summary": {
-      "ja": "種類上限のないアイテムDISKを1M〜256Mへ広げる。",
+      "ja": "種類上限のないアイテムDISKを1M〜256Mへ広げます。",
       "en": "Extend type-unlimited item DISKs from 1M to 256M."
     },
     "icon": "ae2_mega_things:item_disk_drive_1m",
     "steps": [
       {
         "text": {
-          "ja": "AE2 MEGA ThingsはアイテムDISKに1M・4M・16M・64M・256Mの段階を追加する。",
+          "ja": "AE2 MEGA ThingsはアイテムDISKに1M・4M・16M・64M・256Mの段階を追加します。",
           "en": "AE2 MEGA Things extends item DISKs to 1M, 4M, 16M, 64M, and 256M tiers."
         },
         "show": [
@@ -3304,7 +3304,7 @@
       },
       {
         "text": {
-          "ja": "対応するMEGA Cellsの部品とMEGAアイテムDISK筐体を組み合わせてセルを作る。",
+          "ja": "対応するMEGA Cellsの部品とMEGAアイテムDISK筐体を組み合わせてセルを作ります。",
           "en": "Combine a matching MEGA Cells component with a MEGA Item DISK Housing to craft the cell."
         },
         "show": [],
@@ -3329,7 +3329,7 @@
       },
       {
         "text": {
-          "ja": "通常のMEドライブへ入れる。アイテムの固定種類上限はなく、液体には別のDISKが必要。",
+          "ja": "通常のMEドライブへ入れます。アイテムの固定種類上限はなく、液体には別のDISKが必要です。",
           "en": "Insert it into a normal ME drive. It stores items without a fixed type limit; fluids need their own DISK."
         },
         "show": [],
@@ -3346,7 +3346,7 @@
       },
       {
         "text": {
-          "ja": "1アイテムが1バイトを使う。1Mは1000000個、256Mは256000000個を保存できる。",
+          "ja": "1アイテムが1バイトを使います。1Mは1000000個、256Mは256000000個を保存できます。",
           "en": "One item uses one byte. A 1M item DISK holds 1000000 items; a 256M item DISK holds 256000000."
         },
         "show": [],
@@ -3366,7 +3366,7 @@
       },
       {
         "text": {
-          "ja": "これらの容量は有限。投入が止まったら、残り容量・ドライブの電力・チャネルを確認しよう。",
+          "ja": "これらの容量は有限です。投入が止まったら、残り容量・ドライブの電力・チャネルを確認してください。",
           "en": "These are finite capacities. Check remaining space, drive power, and channels when insertion stops."
         },
         "show": [],
@@ -3504,14 +3504,14 @@
       "en": "Fluid DISKs without a type limit"
     },
     "summary": {
-      "ja": "1k〜256Mの液体DISKを選ぶ。",
+      "ja": "1k〜256Mの液体DISKを選びます。",
       "en": "Choose fluid DISKs from 1k through 256M."
     },
     "icon": "ae2_mega_things:fluid_disk_drive_1k",
     "steps": [
       {
         "text": {
-          "ja": "液体DISKは1k・4k・16k・64k・256kと、1M〜256Mの5段階がある。",
+          "ja": "液体DISKは1k・4k・16k・64k・256kと、1M〜256Mの5段階があります。",
           "en": "Fluid DISKs come in 1k, 4k, 16k, 64k, and 256k, plus the five MEGA tiers from 1M to 256M."
         },
         "show": [
@@ -3545,7 +3545,7 @@
       },
       {
         "text": {
-          "ja": "k段階はAE2部品と液体DISK筐体、M段階はMEGA Cells部品とMEGA液体DISK筐体で作る。",
+          "ja": "k段階はAE2部品と液体DISK筐体、M段階はMEGA Cells部品とMEGA液体DISK筐体で作ります。",
           "en": "Use an AE2 component and Fluid DISK Housing for k tiers; use a MEGA Cells component and MEGA Fluid DISK Housing for M tiers."
         },
         "show": [],
@@ -3570,7 +3570,7 @@
       },
       {
         "text": {
-          "ja": "1枚に多種類の液体を保存できる。通常のAE2バスで液体を移し、液体入りバケツという品物とは区別しよう。",
+          "ja": "1枚に多種類の液体を保存できます。通常のAE2バスで液体を移し、液体入りバケツという品物とは区別してください。",
           "en": "One fluid DISK can hold many fluid types. Use ordinary AE2 buses to transfer fluids, not filled bucket items."
         },
         "show": [
@@ -3599,7 +3599,7 @@
       },
       {
         "text": {
-          "ja": "液体1000 mBが1バイトを使う。1kは合計1000バケツ分で、液体の種類数に固定上限はない。",
+          "ja": "液体1000 mBが1バイトを使います。1kは合計1000バケツ分で、液体の種類数に固定上限はありません。",
           "en": "Every 1000 mB uses one byte. A 1k fluid DISK holds 1000 buckets in total; the number of fluid types has no fixed limit."
         },
         "show": [],
@@ -3619,7 +3619,7 @@
       },
       {
         "text": {
-          "ja": "セルワークベンチで分割設定を行う。反転カードで除外リストにできるが、液体DISKにファジーカードは使わない。",
+          "ja": "セルワークベンチで分割設定を行います。反転カードで除外リストにできますが、液体DISKにファジーカードは使いません。",
           "en": "Partition it in the cell workbench. The Inverter Card enables a blacklist; fluid DISKs do not use Fuzzy Cards."
         },
         "show": [],
@@ -3795,14 +3795,14 @@
       "en": "Reusing MEGA DISK parts safely"
     },
     "summary": {
-      "ja": "アイテム・液体DISKを空にしてから材料へ戻す。",
+      "ja": "アイテム・液体DISKを空にしてから材料へ戻します。",
       "en": "Empty item or fluid DISKs before recovering their parts."
     },
     "icon": "ae2_mega_things:mega_item_disk_housing",
     "steps": [
       {
         "text": {
-          "ja": "MEGA DISKはAE2 Thingsのワールド保存を使う。ドライブから抜いても中身は空にならない。",
+          "ja": "MEGA DISKはAE2 Thingsのワールド保存を使います。ドライブから抜いても中身は空になりません。",
           "en": "MEGA DISKs use AE2 Things world storage. Removing a cell from the drive does not empty it."
         },
         "show": [
@@ -3832,7 +3832,7 @@
       },
       {
         "text": {
-          "ja": "IOポートで他のネットワーク収納へ中身を移す。同じ資源型を受け入れる移動先を選ぼう。",
+          "ja": "IOポートで他のネットワーク収納へ中身を移します。同じ資源型を受け入れる移動先を選んでください。",
           "en": "Use an IO port to move contents into other network storage. Choose a destination that accepts the same resource type."
         },
         "show": [
@@ -3855,7 +3855,7 @@
       },
       {
         "text": {
-          "ja": "中身と移動先の空きを確認する。分割設定や除外リストは、保存済みのアイテムや液体を消さない。",
+          "ja": "中身と移動先の空きを確認します。分割設定や除外リストは、保存済みのアイテムや液体を消しません。",
           "en": "Check all contents and destination space. A partition or blacklist does not erase already stored items or fluids."
         },
         "show": [],
@@ -3873,7 +3873,7 @@
       },
       {
         "text": {
-          "ja": "空のDISKを手に持ってスニーク右クリックすると、対応する部品・DISK筐体・装着カードが戻る。",
+          "ja": "空のDISKを手に持ってスニーク右クリックすると、対応する部品・DISK筐体・装着カードが戻ります。",
           "en": "Sneak-right-click an empty DISK in your hand to recover its matching component, DISK housing, and installed cards."
         },
         "show": [],
@@ -3898,7 +3898,7 @@
       },
       {
         "text": {
-          "ja": "DISKの移行やバックアップではワールド全体を保つ。識別子だけでは保存内容は含まれない。",
+          "ja": "DISKの移行やバックアップではワールド全体を保ってください。識別子だけでは保存内容は含まれません。",
           "en": "Keep the complete world save when moving or backing up DISKs. Their identifiers alone do not include the stored contents."
         },
         "show": [],

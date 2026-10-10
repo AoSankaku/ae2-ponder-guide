@@ -3,11 +3,11 @@
     "id": "meteorite",
     "chapter": "start",
     "title": {
-      "ja": "隕石からはじめよう",
+      "ja": "隕石からの準備",
       "en": "Start at a meteorite"
     },
     "summary": {
-      "ja": "必要な結晶と4枚のプレスを集める。",
+      "ja": "必要な結晶と4枚のプレスを集めます。",
       "en": "Collect quartz and all four presses."
     },
     "icon": "ae2:meteorite_compass",
@@ -149,7 +149,7 @@
     "steps": [
       {
         "text": {
-          "ja": "隕石コンパスは近くの「謎のキューブ」を指す。隕石の中心を探そう。",
+          "ja": "隕石コンパスは近くの「謎のキューブ」を指します。隕石の中心を探してください。",
           "en": "A meteorite compass points to a nearby Mysterious Cube. Look in the meteorite center."
         },
         "show": [
@@ -175,7 +175,7 @@
       },
       {
         "text": {
-          "ja": "中心には結晶、芽生えたクォーツ、謎のキューブがある。",
+          "ja": "中心には結晶、芽生えたクォーツ、謎のキューブがあります。",
           "en": "Inside are quartz, budding blocks, and a Mysterious Cube."
         },
         "show": [
@@ -197,7 +197,7 @@
       },
       {
         "text": {
-          "ja": "謎のキューブを壊すと、回路用3枚とシリコン用1枚のプレスが手に入る。",
+          "ja": "謎のキューブを壊すと、回路用3枚とシリコン用1枚のプレスが手に入ります。",
           "en": "Breaking the cube gives three circuit presses and one silicon press."
         },
         "show": [],
@@ -226,7 +226,7 @@
       },
       {
         "text": {
-          "ja": "完全な芽生えたクォーツは壊さず残そう。シルクタッチでも品質が下がる。",
+          "ja": "完全な芽生えたクォーツは壊さずに残してください。シルクタッチでも品質が下がります。",
           "en": "Keep flawless budding quartz intact. Even Silk Touch downgrades it."
         },
         "show": [],
@@ -238,7 +238,7 @@
       },
       {
         "text": {
-          "ja": "育ちきった結晶を採掘して、充電器と成長加速器へ進もう。",
+          "ja": "育ちきった結晶を採掘して、充電器と成長加速器へ進みます。",
           "en": "Harvest fully grown clusters, then build a charger and growth accelerators."
         },
         "show": [],
@@ -262,7 +262,7 @@
       "en": "Growing and repairing quartz"
     },
     "summary": {
-      "ja": "芽・結晶・品質の違いを見分ける。",
+      "ja": "芽・結晶・品質の違いを見分けます。",
       "en": "Understand growth stages and budding quality."
     },
     "icon": "ae2:certus_quartz_crystal",
@@ -375,7 +375,7 @@
     "steps": [
       {
         "text": {
-          "ja": "芽は小→中→大→結晶と育つ。アメジストに似た仕組みだ。",
+          "ja": "芽は小→中→大→結晶と育ちます。アメジストに似た仕組みです。",
           "en": "Buds grow through small, medium, large, and cluster stages, like amethyst."
         },
         "show": [
@@ -398,7 +398,7 @@
       },
       {
         "text": {
-          "ja": "途中で壊すと粉1個。育ちきった結晶は通常4個で、幸運が有効。",
+          "ja": "途中で壊すと粉1個になります。育ちきった結晶は通常4個で、幸運が有効です。",
           "en": "An immature bud drops one dust. A full cluster drops four crystals, increased by Fortune."
         },
         "show": [],
@@ -419,7 +419,7 @@
       },
       {
         "text": {
-          "ja": "完全以外の芽生えたブロックは、成長時に劣化することがある。",
+          "ja": "完全以外の芽生えたブロックは、成長時に劣化することがあります。",
           "en": "Non-flawless budding blocks can degrade as buds grow."
         },
         "show": [],
@@ -432,7 +432,7 @@
       },
       {
         "text": {
-          "ja": "水にクォーツブロックと帯電した結晶を投げ込むと、芽生えた状態を作成・修復できる。",
+          "ja": "水にクォーツブロックと帯電した結晶を投げ込むと、芽生えた状態を作成・修復できます。",
           "en": "Throw quartz blocks or worn budding blocks into water with charged quartz to create or repair budding blocks."
         },
         "show": [
@@ -459,7 +459,7 @@
       },
       {
         "text": {
-          "ja": "修復で完全には戻せない。完全なブロックは無限に育つので、移動には空間収納を使おう。",
+          "ja": "修復で完全には戻せません。完全なブロックは無限に育つので、移動には空間収納を使ってください。",
           "en": "Repair cannot restore flawless quality. Flawless blocks grow forever; move them using Spatial IO."
         },
         "show": [],
@@ -484,7 +484,7 @@
       "en": "Powering growth accelerators"
     },
     "summary": {
-      "ja": "加速器は芽生えたブロックに隣接させる。",
+      "ja": "加速器は芽生えたブロックに隣接させます。",
       "en": "Place accelerators next to budding blocks."
     },
     "icon": "ae2:growth_accelerator",
@@ -623,7 +623,7 @@
     "steps": [
       {
         "text": {
-          "ja": "芽生えたクォーツの隣に成長加速器を置く。結晶そのものではなく親ブロックに隣接させよう。",
+          "ja": "芽生えたクォーツの隣に成長加速器を置きます。結晶そのものではなく、親ブロックに隣接させてください。",
           "en": "Put an accelerator beside the budding block, not just beside its crystal."
         },
         "show": [
@@ -639,7 +639,7 @@
       },
       {
         "text": {
-          "ja": "序盤は木製クランクでも動かせる。加速器に取り付けて回そう。",
+          "ja": "序盤は木製クランクでも動かせます。加速器に取り付けて回してください。",
           "en": "A wooden crank works early on. Attach it to the accelerator and turn it."
         },
         "show": [
@@ -657,7 +657,7 @@
       },
       {
         "text": {
-          "ja": "継続運転にはエネルギー受容器からケーブルで電力を送る。",
+          "ja": "継続運転にはエネルギー受容器からケーブルで電力を送ります。",
           "en": "For continuous operation, feed power through an energy acceptor and cables."
         },
         "show": [
@@ -683,7 +683,7 @@
       },
       {
         "text": {
-          "ja": "周りを加速器で埋めすぎると、芽が育つ空き面が減る。採掘用の面も残しておこう。",
+          "ja": "周りを加速器で埋めすぎると、芽が育つ空き面が減ります。採掘用の面も残してください。",
           "en": "Too many covered faces leave fewer places for buds. Leave growth and harvesting space."
         },
         "show": [],
@@ -695,7 +695,7 @@
       },
       {
         "text": {
-          "ja": "完全な芽生えたブロックなら、後半の自動収穫と組み合わせて長く使える。",
+          "ja": "完全な芽生えたブロックなら、後半の自動収穫と組み合わせて長く使えます。",
           "en": "Flawless budding blocks can support a lasting automatic farm."
         },
         "show": [],
@@ -715,7 +715,7 @@
       "en": "Charged quartz and fluix"
     },
     "summary": {
-      "ja": "充電器と水中反応で基本素材を用意する。",
+      "ja": "充電器と水中反応で基本素材を用意します。",
       "en": "Use a charger and water transformation."
     },
     "icon": "ae2:fluix_crystal",
@@ -838,7 +838,7 @@
     "steps": [
       {
         "text": {
-          "ja": "充電器を電源につなぎ、ケルタスクォーツの結晶を入れよう。",
+          "ja": "充電器を電源につなぎ、ケルタスクォーツの結晶を入れます。",
           "en": "Power a charger and insert a certus quartz crystal."
         },
         "show": [
@@ -869,7 +869,7 @@
       },
       {
         "text": {
-          "ja": "充電後の帯電した結晶を取り出す。これはフルーシュと芽生えたブロックの材料になる。",
+          "ja": "充電後の帯電した結晶を取り出します。これはフルーシュと芽生えたブロックの材料になります。",
           "en": "Take out charged quartz. It is used for fluix and budding blocks."
         },
         "show": [],
@@ -890,7 +890,7 @@
       },
       {
         "text": {
-          "ja": "水に「帯電ケルタス・ネザークォーツ・レッドストーン」を投げ込む。",
+          "ja": "水に「帯電ケルタス・ネザークォーツ・レッドストーン」を投げ込みます。",
           "en": "Throw charged certus, nether quartz, and redstone into water."
         },
         "show": [
@@ -921,7 +921,7 @@
       },
       {
         "text": {
-          "ja": "材料がそろうとフルーシュ結晶になる。普通のケルタスでは反応しない。",
+          "ja": "材料がそろうとフルーシュ結晶になります。普通のケルタスでは反応しません。",
           "en": "The materials turn into fluix. Ordinary uncharged certus will not work."
         },
         "show": [],
@@ -942,7 +942,7 @@
       },
       {
         "text": {
-          "ja": "1.21.1の結晶育成は芽生えたブロック方式。昔の種・純粋結晶の手順と混同しないようにしよう。",
+          "ja": "1.21.1の結晶育成は芽生えたブロック方式です。昔の種・純粋結晶の手順と混同しないようにしてください。",
           "en": "In 1.21.1, quartz grows from budding blocks. Older seed and pure-crystal guides use a different system."
         },
         "show": [],
@@ -962,7 +962,7 @@
       "en": "Making the three processors"
     },
     "summary": {
-      "ja": "回路とシリコンを印刷してから組み立てる。",
+      "ja": "回路とシリコンを印刷してから組み立てます。",
       "en": "Print circuits and silicon, then combine them."
     },
     "icon": "ae2:logic_processor",
@@ -1116,7 +1116,7 @@
     "steps": [
       {
         "text": {
-          "ja": "インスクライバーはAEかFEで動く。最初に電力を用意しよう。",
+          "ja": "インスクライバーはAEかFEで動きます。最初に電力を用意してください。",
           "en": "An inscriber accepts AE or FE power. Supply power first."
         },
         "show": [
@@ -1140,7 +1140,7 @@
       },
       {
         "text": {
-          "ja": "論理プレス＋金、演算プレス＋ケルタス、エンジニアリングプレス＋ダイヤで各回路を印刷する。",
+          "ja": "論理プレス＋金、演算プレス＋ケルタス、エンジニアリングプレス＋ダイヤで各回路を印刷します。",
           "en": "Print circuits with logic press + gold, calculation press + certus, or engineering press + diamond."
         },
         "show": [],
@@ -1171,7 +1171,7 @@
       },
       {
         "text": {
-          "ja": "シリコンプレス＋シリコンで、プリントシリコンも作る。プレスは消費されない。",
+          "ja": "シリコンプレス＋シリコンで、プリントシリコンも作ります。プレスは消費されません。",
           "en": "Use the silicon press and silicon to print silicon. Presses are reusable."
         },
         "show": [],
@@ -1200,7 +1200,7 @@
       },
       {
         "text": {
-          "ja": "印刷した回路・レッドストーン・プリントシリコンを合わせて、プロセッサを完成させる。",
+          "ja": "印刷した回路・レッドストーン・プリントシリコンを合わせて、プロセッサを完成させます。",
           "en": "Combine a printed circuit, redstone, and printed silicon to finish a processor."
         },
         "show": [],
@@ -1229,7 +1229,7 @@
       },
       {
         "text": {
-          "ja": "回路の印刷と最後の組立は別工程。できた3種類を次の装置の材料にしよう。",
+          "ja": "回路の印刷と最後の組立は別工程です。できた3種類を次の装置の材料にします。",
           "en": "Circuit printing and final assembly are separate steps. Keep all three processor types for machines."
         },
         "show": [],
@@ -1267,7 +1267,7 @@
       "en": "Automating an inscriber"
     },
     "summary": {
-      "ja": "投入面と自動搬出の設定を理解する。",
+      "ja": "投入面と自動搬出の設定を理解します。",
       "en": "Choose sided inputs and output settings."
     },
     "icon": "ae2:inscriber",
@@ -1423,7 +1423,7 @@
     "steps": [
       {
         "text": {
-          "ja": "インスクライバーの設定で、面を区別するかを選べる。",
+          "ja": "インスクライバーの設定で、面を区別するかを選べます。",
           "en": "Choose whether the inscriber uses sided inputs."
         },
         "show": [
@@ -1444,7 +1444,7 @@
       },
       {
         "text": {
-          "ja": "面を区別する場合、上は上段、下は下段、横は中央へ入る。レンチで装置を回転できる。",
+          "ja": "面を区別する場合、上は上段、下は下段、横は中央へ入ります。レンチで装置を回転できます。",
           "en": "In sided mode, top feeds the top slot, bottom feeds the bottom slot, and sides feed the center. A wrench rotates it."
         },
         "show": [
@@ -1464,7 +1464,7 @@
       },
       {
         "text": {
-          "ja": "完成品は横から取り出す。自動搬出を有効にすれば、隣の収納へ押し出せる。",
+          "ja": "完成品は横から取り出します。自動搬出を有効にすれば、隣の収納へ押し出せます。",
           "en": "Extract finished items from a side, or enable automatic output into an adjacent inventory."
         },
         "show": [
@@ -1489,7 +1489,7 @@
       },
       {
         "text": {
-          "ja": "面を区別しない設定なら、内部フィルタが材料を正しい場所へ分ける。",
+          "ja": "面を区別しない設定なら、内部フィルタが材料を正しい場所へ分けます。",
           "en": "In unsided mode, internal filtering routes ingredients to the correct slots."
         },
         "show": [],
@@ -1509,7 +1509,7 @@
       },
       {
         "text": {
-          "ja": "複数台で分担するときは入力バッファを小さくする。加速カードだけでは材料の偏りは解決しない。",
+          "ja": "複数台で分担するときは入力バッファを小さくします。加速カードだけでは材料の偏りは解決しません。",
           "en": "Use a small input buffer for parallel machines. Acceleration cards alone do not balance ingredients."
         },
         "show": [],
@@ -1534,7 +1534,7 @@
       "en": "Your first ME storage"
     },
     "summary": {
-      "ja": "電力・ドライブ・セル・端末をひとつにつなぐ。",
+      "ja": "電力・ドライブ・セル・端末をひとつにつなぎます。",
       "en": "Connect power, a drive, cells, and a terminal."
     },
     "icon": "ae2:crafting_terminal",
@@ -1633,7 +1633,7 @@
     "steps": [
       {
         "text": {
-          "ja": "ドライブにストレージセルを入れる。品物はドライブ本体ではなくセルに保存される。",
+          "ja": "ドライブにストレージセルを入れます。品物はドライブ本体ではなく、セルに保存されます。",
           "en": "Put storage cells in a drive. Items are saved in the cells, not in the drive itself."
         },
         "show": [
@@ -1651,7 +1651,7 @@
       },
       {
         "text": {
-          "ja": "エネルギー受容器にFEを供給する。振動チャンバーなら燃料からAEを作れる。",
+          "ja": "エネルギー受容器にFEを供給します。振動チャンバーなら燃料からAEを作れます。",
           "en": "Supply FE to an energy acceptor. A vibration chamber can instead generate AE from fuel."
         },
         "show": [
@@ -1665,7 +1665,7 @@
       },
       {
         "text": {
-          "ja": "通常ケーブルでつなぎ、端末をケーブルの面に取り付ける。",
+          "ja": "通常ケーブルでつなぎ、端末をケーブルの面に取り付けます。",
           "en": "Connect normal cables and attach a terminal to a cable face."
         },
         "show": [
@@ -1691,7 +1691,7 @@
       },
       {
         "text": {
-          "ja": "端末を開けば、同じネットワークの倉庫を検索・出し入れできる。",
+          "ja": "端末を開けば、同じネットワークの倉庫を検索・出し入れできます。",
           "en": "Open the terminal to search, insert, and extract network contents."
         },
         "show": [],
@@ -1713,7 +1713,7 @@
       },
       {
         "text": {
-          "ja": "この規模ではコントローラは不要。まずは電力とセルの空きを確かめよう。",
+          "ja": "この規模ではコントローラは不要です。まずは電力とセルの空きを確かめてください。",
           "en": "No controller is needed at this size. Check power and free cell space first."
         },
         "show": [],
@@ -1733,7 +1733,7 @@
       "en": "Power and burst capacity"
     },
     "summary": {
-      "ja": "発電量だけでなく蓄電量も確保する。",
+      "ja": "発電量だけでなく蓄電量も確保します。",
       "en": "Provide both energy generation and storage."
     },
     "icon": "ae2:energy_cell",
@@ -1853,7 +1853,7 @@
     "steps": [
       {
         "text": {
-          "ja": "MEネットワーク内はAEで動く。NeoForgeでは通常2 FEが1 AEに変わる。",
+          "ja": "MEネットワーク内はAEで動きます。NeoForgeでは通常2 FEが1 AEに変わります。",
           "en": "ME networks use AE internally. On NeoForge, the normal conversion is 2 FE to 1 AE."
         },
         "show": [
@@ -1873,7 +1873,7 @@
       },
       {
         "text": {
-          "ja": "燃料を使う振動チャンバーでも発電できる。供給量はネットワークツールで確認しよう。",
+          "ja": "燃料を使う振動チャンバーでも発電できます。供給量はネットワークツールで確認してください。",
           "en": "A vibration chamber also generates power from fuel. Check supply with a network tool."
         },
         "show": [
@@ -1895,7 +1895,7 @@
       },
       {
         "text": {
-          "ja": "大量投入は一瞬で電力を使う。蓄電量が小さいと、発電が足りていても再起動する。",
+          "ja": "大量投入は一瞬で電力を使います。蓄電量が小さいと、発電が足りていても再起動します。",
           "en": "Bulk insertion needs a burst of energy. A small buffer can reboot a network even with sufficient generation."
         },
         "show": [],
@@ -1908,7 +1908,7 @@
       },
       {
         "text": {
-          "ja": "通常のエネルギーセルは200,000 AE。まず1台をネットワークにつなごう。",
+          "ja": "通常のエネルギーセルは200,000 AEを蓄えます。まず1台をネットワークにつないでください。",
           "en": "A normal energy cell stores 200,000 AE. Add one to the network first."
         },
         "show": [],
@@ -1924,7 +1924,7 @@
       },
       {
         "text": {
-          "ja": "高密度セルは1,600,000 AE。空間収納など大きな瞬間消費に備えられる。",
+          "ja": "高密度セルは1,600,000 AEを蓄えます。空間収納など大きな瞬間消費に備えられます。",
           "en": "A dense cell stores 1,600,000 AE, useful for large instantaneous loads such as Spatial IO."
         },
         "show": [
@@ -1950,7 +1950,7 @@
       "en": "What belongs to one network?"
     },
     "summary": {
-      "ja": "フルブロックを通る接続にも注意する。",
+      "ja": "フルブロックを通る接続にも注意します。",
       "en": "Trace connections through full blocks too."
     },
     "icon": "ae2:interface",
@@ -2076,7 +2076,7 @@
     "steps": [
       {
         "text": {
-          "ja": "接続したケーブルと装置は、ひとつのネットワークになる。",
+          "ja": "接続したケーブルと装置は、ひとつのネットワークになります。",
           "en": "Connected cables and devices form one network."
         },
         "show": [
@@ -2098,7 +2098,7 @@
       },
       {
         "text": {
-          "ja": "多くのフルブロック装置もケーブルのように接続を通す。",
+          "ja": "多くのフルブロック装置もケーブルのように接続を通します。",
           "en": "Many full-block devices also pass network connections like cables."
         },
         "show": [
@@ -2111,7 +2111,7 @@
       },
       {
         "text": {
-          "ja": "赤ケーブルを別側へつないでも、このインターフェースを経由して主ネットとつながる。",
+          "ja": "赤ケーブルを別側へつないでも、このインターフェースを経由して主ネットとつながります。",
           "en": "The red cable still connects to the main network through this interface."
         },
         "show": [
@@ -2127,7 +2127,7 @@
       },
       {
         "text": {
-          "ja": "ケーブルの色だけでサブネットにはならない。装置を含む接続経路を全部追おう。",
+          "ja": "ケーブルの色だけでサブネットにはなりません。装置を含む接続経路をすべて確認してください。",
           "en": "Cable color alone does not create a subnet. Trace every route, including devices."
         },
         "show": [],
@@ -2140,7 +2140,7 @@
       },
       {
         "text": {
-          "ja": "電力だけ共有したいときはクォーツファイバーを使う。収納とチャネルを分離できる。",
+          "ja": "電力だけ共有したいときはクォーツファイバーを使います。収納とチャネルを分離できます。",
           "en": "Use quartz fiber to share only power while keeping storage and channels separate."
         },
         "show": [],
@@ -2164,7 +2164,7 @@
       "en": "The eight-channel limit"
     },
     "summary": {
-      "ja": "コントローラなしの9台目で何が起こるか。",
+      "ja": "コントローラなしで9台目をつなぐと、何が起こるかを確認します。",
       "en": "See what a ninth device does on an ad-hoc network."
     },
     "icon": "ae2:fluix_smart_cable",
@@ -2355,7 +2355,7 @@
     "steps": [
       {
         "text": {
-          "ja": "チャネルは、倉庫や端末などがネットワークのサービスを使うための枠。",
+          "ja": "チャネルは、倉庫や端末などがネットワークのサービスを使うための枠です。",
           "en": "Channels are the capacity used by storage and terminals for network services."
         },
         "show": [
@@ -2376,7 +2376,7 @@
       },
       {
         "text": {
-          "ja": "コントローラなしのネットワークは、チャネルを使う装置が全体で最大8台。",
+          "ja": "コントローラなしのネットワークでは、チャネルを使う装置は全体で最大8台です。",
           "en": "Without a controller, a network supports at most eight channel-using devices in total."
         },
         "show": [
@@ -2394,7 +2394,7 @@
       },
       {
         "text": {
-          "ja": "9台以上になると、チャネルを必要とする装置が停止する。ケーブルを増やすだけでは直らない。",
+          "ja": "9台以上になると、チャネルを必要とする装置が停止します。ケーブルを増やすだけでは直りません。",
           "en": "At nine or more devices, channel-using devices stop. More cables alone do not fix it."
         },
         "show": [
@@ -2408,7 +2408,7 @@
       },
       {
         "text": {
-          "ja": "不要な装置を外すか、コントローラを導入しよう。",
+          "ja": "不要な装置を外すか、コントローラを導入してください。",
           "en": "Remove a device or add a controller."
         },
         "show": [],
@@ -2425,7 +2425,7 @@
       },
       {
         "text": {
-          "ja": "この説明は標準チャネル設定。サーバーのchannelmodeで上限が変わることがある。",
+          "ja": "この説明は標準チャネル設定です。サーバーのchannelmodeで上限が変わることがあります。",
           "en": "These limits use the default channel mode. A server channelmode setting can change them."
         },
         "show": [],
@@ -2445,7 +2445,7 @@
       "en": "Expanding with a controller"
     },
     "summary": {
-      "ja": "面ごと32チャネル、構造はひとつにつなげる。",
+      "ja": "面ごと32チャネル、構造はひとつにつなげます。",
       "en": "Get 32 channels per face with one connected structure."
     },
     "icon": "ae2:controller",
@@ -2580,7 +2580,7 @@
     "steps": [
       {
         "text": {
-          "ja": "8台を超えるならコントローラを導入する。正常に通電すると色が変化する。",
+          "ja": "8台を超えるならコントローラを導入します。正常に通電すると色が変化します。",
           "en": "Add a controller when expanding beyond eight devices. A powered valid controller cycles colors."
         },
         "show": [
@@ -2606,7 +2606,7 @@
       },
       {
         "text": {
-          "ja": "コントローラは1面につき32チャネルを供給する。1ブロック全体で32ではない。",
+          "ja": "コントローラは1面につき32チャネルを供給します。1ブロック全体で32ではありません。",
           "en": "Each controller face provides 32 channels, not just 32 for the entire block."
         },
         "show": [],
@@ -2617,7 +2617,7 @@
       },
       {
         "text": {
-          "ja": "複数ブロックで大きくできるが、すべてひとつの塊として直接つながっている必要がある。",
+          "ja": "複数ブロックで大きくできますが、すべてひとつの塊として直接つながっている必要があります。",
           "en": "Multiple controller blocks are allowed, but must form one directly connected structure."
         },
         "show": [
@@ -2631,7 +2631,7 @@
       },
       {
         "text": {
-          "ja": "離れたコントローラを同じネットに置くと競合する。独立した2つの司令塔は使えない。",
+          "ja": "離れたコントローラを同じネットに置くと競合します。独立した2つの司令塔は使えません。",
           "en": "Separate controllers on the same network conflict. Two disconnected controller structures are invalid."
         },
         "show": [
@@ -2645,7 +2645,7 @@
       },
       {
         "text": {
-          "ja": "構造は7×7×7以内。1ブロックの両側に隣接できる軸は最大1軸。迷ったら小さな構造から始めよう。",
+          "ja": "構造は7×7×7以内です。1ブロックの両側に隣接できる軸は最大1軸です。迷ったら小さな構造から始めてください。",
           "en": "Keep the structure within 7×7×7. A block may have two neighbors on at most one axis. Start with a simple shape."
         },
         "show": [],
@@ -2665,7 +2665,7 @@
       "en": "Dense trunks and eight-channel branches"
     },
     "summary": {
-      "ja": "高密度ケーブルから通常ケーブルへ枝分かれする。",
+      "ja": "高密度ケーブルから通常ケーブルへ枝分かれします。",
       "en": "Branch from dense cables into normal cables."
     },
     "icon": "ae2:fluix_smart_dense_cable",
@@ -2867,7 +2867,7 @@
     "steps": [
       {
         "text": {
-          "ja": "コントローラ直後の幹を高密度ケーブルにすると、最大32チャネルが通る。",
+          "ja": "コントローラ直後の幹を高密度ケーブルにすると、最大32チャネルが通ります。",
           "en": "Use a dense cable as the controller trunk to carry up to 32 channels."
         },
         "show": [
@@ -2893,7 +2893,7 @@
       },
       {
         "text": {
-          "ja": "通常ケーブルは最大8チャネル。幹から分岐して、8台以内のまとまりを作ろう。",
+          "ja": "通常ケーブルは最大8チャネルです。幹から分岐して、8台以内のまとまりを作ります。",
           "en": "Normal cables carry eight channels. Make branches with at most eight channel-using devices."
         },
         "show": [
@@ -2914,7 +2914,7 @@
       },
       {
         "text": {
-          "ja": "別の枝にも8台まで置ける。32本を、8本ずつの枝に分けて使うイメージだ。",
+          "ja": "別の枝にも8台まで置けます。32本を、8本ずつの枝に分けて使うイメージです。",
           "en": "Another branch can serve its own eight devices. Divide the trunk into eight-channel branches."
         },
         "show": [
@@ -2931,7 +2931,7 @@
       },
       {
         "text": {
-          "ja": "ドライブなどの装置を幹の途中に挟むと、そこが8チャネルのボトルネックになる。",
+          "ja": "ドライブなどの装置を幹の途中に挟むと、そこが8チャネルのボトルネックになります。",
           "en": "Putting a normal full-block device in the dense trunk creates an eight-channel bottleneck."
         },
         "show": [],
@@ -2944,7 +2944,7 @@
       },
       {
         "text": {
-          "ja": "高密度ケーブルには端末やバスを直接付けられない。通常ケーブルへ分岐して取り付けよう。",
+          "ja": "高密度ケーブルには端末やバスを直接付けられません。通常ケーブルへ分岐して取り付けてください。",
           "en": "Terminals and buses cannot attach directly to dense cables. Attach them to normal branches."
         },
         "show": [],
@@ -2969,7 +2969,7 @@
       "en": "Organizing cables with colors"
     },
     "summary": {
-      "ja": "色は接続を制限し、チャネル数を増やさない。",
+      "ja": "色は接続を制限し、チャネル数を増やしません。",
       "en": "Colors control connections, not channel capacity."
     },
     "icon": "ae2:red_smart_cable",
@@ -3108,7 +3108,7 @@
     "steps": [
       {
         "text": {
-          "ja": "同じ色のケーブルはつながる。違う色同士は直接つながらない。",
+          "ja": "同じ色のケーブルはつながります。違う色同士は直接つながりません。",
           "en": "Cables of the same color connect. Different colors do not connect directly."
         },
         "show": [
@@ -3125,7 +3125,7 @@
       },
       {
         "text": {
-          "ja": "無色のフルーシュケーブルはどの色ともつながる。意図しない橋にならないよう注意しよう。",
+          "ja": "無色のフルーシュケーブルはどの色ともつながります。意図しない橋にならないよう注意してください。",
           "en": "Uncolored fluix cables connect to every color. Watch for unintended bridges."
         },
         "show": [
@@ -3151,7 +3151,7 @@
       },
       {
         "text": {
-          "ja": "ケーブルアンカーは、特定の面で隣のケーブルへの接続を止められる。",
+          "ja": "ケーブルアンカーは、特定の面で隣のケーブルへの接続を止められます。",
           "en": "A cable anchor can prevent a connection to an adjacent cable on a selected face."
         },
         "show": [],
@@ -3168,7 +3168,7 @@
       },
       {
         "text": {
-          "ja": "色分けしても上限は同じ8本・32本。色がチャネルを増やすわけではない。",
+          "ja": "色分けしても上限は同じ8本・32本です。色がチャネルを増やすわけではありません。",
           "en": "Color does not change the normal limits of eight or 32 channels."
         },
         "show": [],
@@ -3180,7 +3180,7 @@
       },
       {
         "text": {
-          "ja": "ファサードは配線を隠す飾り。整理中はスマートケーブルの表示が見えるようにしよう。",
+          "ja": "ファサードは配線を隠す飾りです。整理中はスマートケーブルの表示が見えるようにしてください。",
           "en": "Facades hide cables decoratively. Keep smart cable indicators visible while planning."
         },
         "show": [],
@@ -3200,7 +3200,7 @@
       "en": "Bytes and the 63-type limit"
     },
     "summary": {
-      "ja": "大きなセルも品目数は増えない。",
+      "ja": "大きなセルも品目数は増えません。",
       "en": "Bigger cells hold more items, not more types."
     },
     "icon": "ae2:item_storage_cell_1k",
@@ -3327,7 +3327,7 @@
     "steps": [
       {
         "text": {
-          "ja": "通常のアイテムセルは1k・4k・16k・64k・256k。数字はバイト容量を表す。",
+          "ja": "通常のアイテムセルは1k・4k・16k・64k・256kです。数字はバイト容量を表します。",
           "en": "Normal item cells come in 1k, 4k, 16k, 64k, and 256k sizes. The number is byte capacity."
         },
         "show": [
@@ -3359,7 +3359,7 @@
       },
       {
         "text": {
-          "ja": "どのサイズも最大63種類。丸石1万個は1種類だが、状態の違う道具は別種類になる。",
+          "ja": "どのサイズも最大63種類です。丸石1万個は1種類ですが、状態の違う道具は別種類になります。",
           "en": "Every size has 63 types. Ten thousand cobblestone use one type; tools with different data use separate types."
         },
         "show": [],
@@ -3379,7 +3379,7 @@
       },
       {
         "text": {
-          "ja": "品物8個で1バイト。さらに種類ごとの領域が必要なので、表示容量すべてを品物には使えない。",
+          "ja": "品物8個で1バイトを使います。さらに種類ごとの領域が必要なので、表示容量すべてを品物には使えません。",
           "en": "Eight items use one byte, plus per-type overhead. Not every byte is available for item counts."
         },
         "show": [],
@@ -3391,7 +3391,7 @@
       },
       {
         "text": {
-          "ja": "1kセルは1種類なら最大8,128個、63種類を使うと合計4,160個。種類数でも実容量が変わる。",
+          "ja": "1kセルは1種類なら最大8,128個、63種類を使うと合計4,160個です。種類数でも実容量が変わります。",
           "en": "A 1k cell holds 8,128 items with one type, or 4,160 total with all 63 types in use."
         },
         "show": [],
@@ -3402,7 +3402,7 @@
       },
       {
         "text": {
-          "ja": "品目が多いなら小さなセルを増やす。大量の同じ品物なら大きな専用セルを使おう。",
+          "ja": "品目が多いなら小さなセルを増やします。大量の同じ品物なら大きな専用セルを使ってください。",
           "en": "Use more small cells for many types, and larger dedicated cells for bulk items."
         },
         "show": [],
@@ -3427,7 +3427,7 @@
       "en": "Reading drive status lights"
     },
     "summary": {
-      "ja": "満杯の理由をランプで見分ける。",
+      "ja": "満杯の理由をランプで見分けます。",
       "en": "Distinguish type-full and completely full cells."
     },
     "icon": "ae2:drive",
@@ -3523,7 +3523,7 @@
     "steps": [
       {
         "text": {
-          "ja": "MEドライブはセルを10枚収納し、ドライブ全体で1チャネルを使う。",
+          "ja": "MEドライブはセルを10枚収納し、ドライブ全体で1チャネルを使います。",
           "en": "An ME drive holds ten cells and uses one channel for the whole drive."
         },
         "show": [
@@ -3548,7 +3548,7 @@
       },
       {
         "text": {
-          "ja": "緑は空、青は使用中。青ならまだ空きがある。",
+          "ja": "緑は空、青は使用中です。青ならまだ空きがあります。",
           "en": "Green means empty. Blue means in use with remaining capacity."
         },
         "show": [],
@@ -3562,7 +3562,7 @@
       },
       {
         "text": {
-          "ja": "オレンジは種類数が満杯。同じ種類は入れられても、新しい種類は入らない。",
+          "ja": "オレンジは種類数が満杯です。同じ種類は入れられても、新しい種類は入りません。",
           "en": "Orange means type-full. Existing types may still fit, but a new type cannot enter."
         },
         "show": [],
@@ -3576,7 +3576,7 @@
       },
       {
         "text": {
-          "ja": "赤は容量も満杯。セルを追加するか、中身を移そう。",
+          "ja": "赤は容量も満杯です。セルを追加するか、中身を移してください。",
           "en": "Red means full. Add cells or move contents elsewhere."
         },
         "show": [],
@@ -3590,7 +3590,7 @@
       },
       {
         "text": {
-          "ja": "消灯は電力やチャネル不足の可能性がある。MEチェストはセル1枚を直接使う別の入門装置。",
+          "ja": "消灯は電力やチャネル不足の可能性があります。MEチェストはセル1枚を直接使う別の入門装置です。",
           "en": "Dark indicators can mean missing power or channels. An ME chest is an alternative using one accessible cell."
         },
         "show": [],
@@ -3615,7 +3615,7 @@
       "en": "Partitions and storage priority"
     },
     "summary": {
-      "ja": "大量品を専用の置き場へ集める。",
+      "ja": "大量品を専用の置き場へ集めます。",
       "en": "Direct bulk items to dedicated storage."
     },
     "icon": "ae2:cell_workbench",
@@ -3736,7 +3736,7 @@
     "steps": [
       {
         "text": {
-          "ja": "セルワークベンチにセルを入れ、受け入れる品物を登録して専用セルにする。",
+          "ja": "セルワークベンチにセルを入れ、受け入れる品物を登録して専用セルにします。",
           "en": "Insert a cell into a cell workbench and set its accepted items to partition it."
         },
         "show": [
@@ -3767,7 +3767,7 @@
       },
       {
         "text": {
-          "ja": "専用セルや収納バスの優先度を、一般倉庫より高くする。",
+          "ja": "専用セルや収納バスの優先度を、一般倉庫より高くします。",
           "en": "Give dedicated cells or storage buses a higher priority than general storage."
         },
         "show": [],
@@ -3779,7 +3779,7 @@
       },
       {
         "text": {
-          "ja": "投入は高い優先度から、取り出しは低い優先度から行われる。使うほど専用側にまとまる。",
+          "ja": "投入は高い優先度から、取り出しは低い優先度から行われます。使うほど専用側にまとまります。",
           "en": "Insertion prefers higher priority; extraction prefers lower priority. Normal use consolidates dedicated storage."
         },
         "show": [],
@@ -3796,7 +3796,7 @@
       },
       {
         "text": {
-          "ja": "同じ優先度では、すでに同じ品物がある収納が優先される。ホワイトリストもその扱いになる。",
+          "ja": "同じ優先度では、すでに同じ品物がある収納が優先されます。ホワイトリストもその扱いになります。",
           "en": "At equal priority, storage already holding the item is preferred. Whitelisted cells receive that preference too."
         },
         "show": [],
@@ -3808,7 +3808,7 @@
       },
       {
         "text": {
-          "ja": "均等配分カードは種類ごとに容量を分ける。反転カードは許可リストを除外リストに変える。",
+          "ja": "均等配分カードは種類ごとに容量を分けます。反転カードは許可リストを除外リストに変えます。",
           "en": "Equal distribution divides byte space between types. An inverter changes a whitelist to a blacklist."
         },
         "show": [],
@@ -3836,7 +3836,7 @@
       "en": "Adding external inventories"
     },
     "summary": {
-      "ja": "収納バスは中身を移さず見せる。",
+      "ja": "収納バスは中身を移さず見せます。",
       "en": "A storage bus exposes an inventory without copying it."
     },
     "icon": "ae2:storage_bus",
@@ -3955,7 +3955,7 @@
     "steps": [
       {
         "text": {
-          "ja": "収納バスの表面をチェストや樽へ向け、背面のケーブルをMEネットにつなぐ。",
+          "ja": "収納バスの表面をチェストや樽へ向け、背面のケーブルをMEネットにつなぎます。",
           "en": "Face a storage bus toward a chest or barrel, and connect its cable to the ME network."
         },
         "show": [
@@ -3983,7 +3983,7 @@
       },
       {
         "text": {
-          "ja": "中身は外部収納に残ったまま、端末から見える。セルへ自動で全部移す装置ではない。",
+          "ja": "中身は外部収納に残ったまま、端末から見えます。セルへ自動で全部移す装置ではありません。",
           "en": "Contents stay in the external inventory while becoming visible in the terminal."
         },
         "show": [],
@@ -3995,7 +3995,7 @@
       },
       {
         "text": {
-          "ja": "収納バスのフィルタで受け入れる品物を決める。大量品の専用置き場に向いている。",
+          "ja": "収納バスのフィルタで受け入れる品物を決めます。大量品の専用置き場に向いています。",
           "en": "Use the storage bus filter to choose accepted items. It suits dedicated bulk storage."
         },
         "show": [],
@@ -4011,7 +4011,7 @@
       },
       {
         "text": {
-          "ja": "優先度を高くすれば、対象品はセルより先にこの収納へ入る。",
+          "ja": "優先度を高くすれば、対象品はセルより先にこの収納へ入ります。",
           "en": "A higher priority directs accepted items here before general cells."
         },
         "show": [],
@@ -4028,7 +4028,7 @@
       },
       {
         "text": {
-          "ja": "外部装置の投入面・取り出し面にも制限がある。見えない場合はバスの向きと面を確認しよう。",
+          "ja": "外部装置の投入面・取り出し面にも制限があります。見えない場合はバスの向きと面を確認してください。",
           "en": "External machines can restrict accessible faces. Check the bus direction and inventory face if contents are missing."
         },
         "show": [],
@@ -4048,7 +4048,7 @@
       "en": "Fluids in the same network"
     },
     "summary": {
-      "ja": "液体セルと液体フィルタを使う。",
+      "ja": "液体セルと液体フィルタを使います。",
       "en": "Use fluid cells and fluid filters."
     },
     "icon": "ae2:fluid_storage_cell_4k",
@@ -4167,7 +4167,7 @@
     "steps": [
       {
         "text": {
-          "ja": "液体を保存するには液体ストレージセルをドライブへ入れる。アイテムセルとは別だ。",
+          "ja": "液体を保存するには液体ストレージセルをドライブへ入れます。アイテムセルとは別です。",
           "en": "Put fluid cells in the drive to store fluids. They are separate from item cells."
         },
         "show": [
@@ -4192,7 +4192,7 @@
       },
       {
         "text": {
-          "ja": "1.21.1の通常液体セルは最大18種類。同じネットでアイテムと液体を扱える。",
+          "ja": "1.21.1の通常液体セルは最大18種類です。同じネットでアイテムと液体を扱えます。",
           "en": "Normal 1.21.1 fluid cells support up to 18 fluid types. One network can hold both items and fluids."
         },
         "show": [],
@@ -4204,7 +4204,7 @@
       },
       {
         "text": {
-          "ja": "入出力バスや収納バスは、液体にも使える。液体専用の別バスを探す必要はない。",
+          "ja": "入出力バスや収納バスは、液体にも使えます。液体専用の別バスを探す必要はありません。",
           "en": "Import, export, and storage buses also handle fluids. Separate fluid-only bus variants are unnecessary."
         },
         "show": [
@@ -4219,7 +4219,7 @@
       },
       {
         "text": {
-          "ja": "フィルタ枠を液体入りの容器で右クリックすると、容器ではなく中の液体を指定できる。",
+          "ja": "フィルタ枠を液体入りの容器で右クリックすると、容器ではなく中の液体を指定できます。",
           "en": "Right-click a filter slot with a filled fluid container to select its fluid rather than the container item."
         },
         "show": [],
@@ -4235,7 +4235,7 @@
       },
       {
         "text": {
-          "ja": "空のバケツという品物と、水という液体は別。端末でも両者を見分けよう。",
+          "ja": "空のバケツという品物と、水という液体は別です。端末でも両者を見分けてください。",
           "en": "An empty bucket item and water fluid are different resources. Distinguish them in the terminal."
         },
         "show": [],
@@ -4264,7 +4264,7 @@
       "en": "Moving and reusing storage cells"
     },
     "summary": {
-      "ja": "IOポートで内容を移してから整理する。",
+      "ja": "IOポートで内容を移してから整理します。",
       "en": "Use an IO port to move cell contents."
     },
     "icon": "ae2:io_port",
@@ -4385,7 +4385,7 @@
     "steps": [
       {
         "text": {
-          "ja": "セルの中身はセルと一緒に持ち運べる。ドライブから抜いても保存内容はセルに残る。",
+          "ja": "セルの中身はセルと一緒に持ち運べます。ドライブから抜いても保存内容はセルに残ります。",
           "en": "A cell carries its contents. Removing it from a drive keeps its stored data."
         },
         "show": [
@@ -4412,7 +4412,7 @@
       },
       {
         "text": {
-          "ja": "IOポートは、セルとネットワーク収納の間で中身を移す装置。移動方向を設定しよう。",
+          "ja": "IOポートは、セルとネットワーク収納の間で中身を移す装置です。移動方向を設定してください。",
           "en": "An IO port moves contents between cells and network storage. Choose the transfer direction."
         },
         "show": [],
@@ -4423,7 +4423,7 @@
       },
       {
         "text": {
-          "ja": "空にするなら、他のセルや外部収納に十分な空きを用意してから投入する。",
+          "ja": "空にするなら、他のセルや外部収納に十分な空きを用意してから投入します。",
           "en": "Before emptying a cell, ensure other cells or external storage have enough space."
         },
         "show": [],
@@ -4445,7 +4445,7 @@
       },
       {
         "text": {
-          "ja": "空のセルは手に持ってスニーク右クリックすると、部品と筐体に分解できる。",
+          "ja": "空のセルは手に持ってスニーク右クリックすると、部品と筐体に分解できます。",
           "en": "Sneak-right-click an empty cell in your hand to separate its component and housing."
         },
         "show": [],
@@ -4469,7 +4469,7 @@
       },
       {
         "text": {
-          "ja": "分割設定を変えても中身が消えるわけではない。再利用前に内容と移動先を確かめよう。",
+          "ja": "分割設定を変えても中身が消えるわけではありません。再利用前に内容と移動先を確かめてください。",
           "en": "Changing a partition does not erase stored contents. Check contents and destination before reuse."
         },
         "show": [],
@@ -4489,7 +4489,7 @@
       "en": "Portable storage and wireless terminals"
     },
     "summary": {
-      "ja": "持ち歩くセルと遠隔アクセスは別の道具。",
+      "ja": "持ち歩くセルと遠隔アクセスは別の道具です。",
       "en": "Distinguish carried storage from remote access."
     },
     "icon": "ae2:wireless_crafting_terminal",
@@ -4616,7 +4616,7 @@
     "steps": [
       {
         "text": {
-          "ja": "ポータブルセルは、そのセルの中身を持ち歩く小さな倉庫。無線端末は拠点の倉庫にアクセスする。",
+          "ja": "ポータブルセルは、そのセルの中身を持ち歩く小さな倉庫です。無線端末は拠点の倉庫にアクセスします。",
           "en": "A portable cell carries its own storage. A wireless terminal accesses your base network."
         },
         "show": [
@@ -4647,7 +4647,7 @@
       },
       {
         "text": {
-          "ja": "無線アクセスポイントをネットワークへ接続する。これは1チャネルを使う。",
+          "ja": "無線アクセスポイントをネットワークへ接続します。これは1チャネルを使います。",
           "en": "Connect a wireless access point to the network. It uses one channel."
         },
         "show": [
@@ -4660,7 +4660,7 @@
       },
       {
         "text": {
-          "ja": "アクセスポイントの端末登録枠へ無線端末を入れて、ネットワークとペアリングする。",
+          "ja": "アクセスポイントの端末登録枠へ無線端末を入れて、ネットワークとペアリングします。",
           "en": "Insert the wireless terminal into the access point pairing slot to link it to the network."
         },
         "show": [],
@@ -4681,7 +4681,7 @@
       },
       {
         "text": {
-          "ja": "端末の充電とアクセスポイントの範囲が必要。ブースターで範囲を伸ばすと消費電力も増える。",
+          "ja": "端末の充電とアクセスポイントの範囲が必要です。ブースターで範囲を伸ばすと消費電力も増えます。",
           "en": "The terminal needs charge and access-point coverage. Boosters extend range but increase energy usage."
         },
         "show": [],
@@ -4698,7 +4698,7 @@
       },
       {
         "text": {
-          "ja": "充電器で充電しよう。エネルギーカードは携帯機器の電池容量を増やす。",
+          "ja": "充電器で充電してください。エネルギーカードは携帯機器の電池容量を増やします。",
           "en": "Recharge in a charger. Energy cards increase portable device battery capacity."
         },
         "show": [],
@@ -4731,7 +4731,7 @@
       "en": "Import and export directions"
     },
     "summary": {
-      "ja": "ネットへ入れるのがインポート、外へ出すのがエクスポート。",
+      "ja": "ネットへ入れるのがインポート、外へ出すのがエクスポートです。",
       "en": "Import enters the network; export leaves it."
     },
     "icon": "ae2:export_bus",
@@ -4892,7 +4892,7 @@
     "steps": [
       {
         "text": {
-          "ja": "エクスポートバスはME倉庫から外の装置へ品物を送る。名前の基準はMEネットだ。",
+          "ja": "エクスポートバスはME倉庫から外の装置へ品物を送ります。名前の基準はMEネットです。",
           "en": "An export bus sends items from ME storage into an external machine. Direction is named from the ME network."
         },
         "show": [
@@ -4918,7 +4918,7 @@
       },
       {
         "text": {
-          "ja": "かまどの上に鉱石用バスを向け、送りたい品物をフィルタへ登録する。",
+          "ja": "かまどの上に鉱石用バスを向け、送りたい品物をフィルタへ登録します。",
           "en": "Face the ore export bus toward the furnace top, and set its item filter."
         },
         "show": [],
@@ -4940,7 +4940,7 @@
       },
       {
         "text": {
-          "ja": "燃料は横から投入する。かまど自身の面ごとのルールに合わせよう。",
+          "ja": "燃料は横から投入します。かまど自身の面ごとのルールに合わせてください。",
           "en": "Supply fuel from a side. Respect the furnace inventory rules for each face."
         },
         "show": [],
@@ -4962,7 +4962,7 @@
       },
       {
         "text": {
-          "ja": "下のインポートバスは完成品をME倉庫へ回収する。",
+          "ja": "下のインポートバスは完成品をME倉庫へ回収します。",
           "en": "The import bus below retrieves the furnace result into ME storage."
         },
         "show": [],
@@ -4984,7 +4984,7 @@
       },
       {
         "text": {
-          "ja": "搬入と搬出を逆にすると動かない。空き容量・電力・チャネルも確認しよう。",
+          "ja": "搬入と搬出を逆にすると動きません。空き容量・電力・チャネルも確認してください。",
           "en": "Swapped bus directions will not work. Also check storage space, power, and channels."
         },
         "show": [],
@@ -5005,7 +5005,7 @@
       "en": "Using an interface as a transfer point"
     },
     "summary": {
-      "ja": "外から入れる・必要数を置いておく。",
+      "ja": "外から入れる・必要数を置いておきます。",
       "en": "Insert from outside or keep a local stock."
     },
     "icon": "ae2:interface",
@@ -5157,7 +5157,7 @@
     "steps": [
       {
         "text": {
-          "ja": "インターフェースは、外のパイプやホッパーがMEネットへ出し入れする窓口。",
+          "ja": "インターフェースは、外のパイプやホッパーがMEネットへ出し入れする窓口です。",
           "en": "An interface gives external pipes or hoppers access to the ME network."
         },
         "show": [
@@ -5180,7 +5180,7 @@
       },
       {
         "text": {
-          "ja": "外から入った品物はネットワーク収納へ送られる。完成品の回収にも使える。",
+          "ja": "外から入った品物はネットワーク収納へ送られます。完成品の回収にも使えます。",
           "en": "Items inserted from outside enter network storage. This can return machine outputs."
         },
         "show": [],
@@ -5202,7 +5202,7 @@
       },
       {
         "text": {
-          "ja": "要求枠へ品物と数を指定すると、その数を内部に在庫する。機械側に取り出させよう。",
+          "ja": "要求枠へ品物と数を指定すると、その数を内部に在庫します。機械側に取り出させてください。",
           "en": "Set an item and quantity in the request slots to keep that stock inside. Let the machine extract it."
         },
         "show": [],
@@ -5224,7 +5224,7 @@
       },
       {
         "text": {
-          "ja": "クラフトカードがあれば、足りない在庫を自動クラフトで補える。",
+          "ja": "クラフトカードがあれば、足りない在庫を自動クラフトで補えます。",
           "en": "With a crafting card, missing local stock can be supplied by autocrafting."
         },
         "show": [],
@@ -5240,7 +5240,7 @@
       },
       {
         "text": {
-          "ja": "平面版も同じ役割。接触面ではネットを直結しないので、サブネットの受け渡しにも便利。",
+          "ja": "平面版も同じ役割です。接触面ではネットを直結しないので、サブネットの受け渡しにも便利です。",
           "en": "The flat variant has the same role. Its face does not directly join networks, useful for subnet transfers."
         },
         "show": [
@@ -5267,7 +5267,7 @@
       "en": "Choosing upgrade cards"
     },
     "summary": {
-      "ja": "速度・フィルタ・制御には別々のカードを使う。",
+      "ja": "速度・フィルタ・制御には別々のカードを使います。",
       "en": "Use different cards for speed, filters, and control."
     },
     "icon": "ae2:speed_card",
@@ -5411,7 +5411,7 @@
     "steps": [
       {
         "text": {
-          "ja": "加速カードは対応装置の処理を速くする。電力や出力先が詰まっていたら先に直そう。",
+          "ja": "加速カードは対応装置の処理を速くします。電力や出力先が詰まっていたら先に直してください。",
           "en": "Acceleration cards speed up supported devices. Fix missing power or blocked destinations first."
         },
         "show": [
@@ -5441,7 +5441,7 @@
       },
       {
         "text": {
-          "ja": "容量カードは入出力バスなどのフィルタ枠を増やす。セルのバイト容量を増やすカードではない。",
+          "ja": "容量カードは入出力バスなどのフィルタ枠を増やします。セルのバイト容量を増やすカードではありません。",
           "en": "Capacity cards add filter slots on supported buses. They do not increase a storage cell byte capacity."
         },
         "show": [],
@@ -5457,7 +5457,7 @@
       },
       {
         "text": {
-          "ja": "レッドストーンカードで、信号がある時だけ動かすなどの条件を選べる。",
+          "ja": "レッドストーンカードで、信号がある時だけ動かすなどの条件を選べます。",
           "en": "A redstone card enables conditions such as running only while receiving a signal."
         },
         "show": [],
@@ -5473,7 +5473,7 @@
       },
       {
         "text": {
-          "ja": "クラフトカードは不足品の作成を要求する。パターンと空いているクラフトCPUも必要。",
+          "ja": "クラフトカードは不足品の作成を要求します。パターンと空いているクラフトCPUも必要です。",
           "en": "A crafting card requests missing items. It still needs patterns and an available crafting CPU."
         },
         "show": [],
@@ -5489,7 +5489,7 @@
       },
       {
         "text": {
-          "ja": "あいまいカードや反転カードはフィルタの意味を変える。装置ごとに対応カードを確認しよう。",
+          "ja": "あいまいカードや反転カードはフィルタの意味を変えます。装置ごとに対応カードを確認してください。",
           "en": "Fuzzy and inverter cards change filtering behavior. Check which upgrades each device supports."
         },
         "show": [],
@@ -5518,7 +5518,7 @@
       "en": "Stopping at the target stock"
     },
     "summary": {
-      "ja": "レベルエミッターの信号で入出力を制御する。",
+      "ja": "レベルエミッターの信号で入出力を制御します。",
       "en": "Use a level emitter signal to control transfers."
     },
     "icon": "ae2:level_emitter",
@@ -5648,7 +5648,7 @@
     "steps": [
       {
         "text": {
-          "ja": "レベルエミッターは、指定した品物のネットワーク内数量を見て信号を出す。",
+          "ja": "レベルエミッターは、指定した品物のネットワーク内数量を見て信号を出します。",
           "en": "A level emitter sends a redstone signal based on the network quantity of a selected resource."
         },
         "show": [
@@ -5676,7 +5676,7 @@
       },
       {
         "text": {
-          "ja": "目標数と「未満」「以上」を設定する。例えば鉄が256個未満の間だけ回収する。",
+          "ja": "目標数と「未満」「以上」を設定します。例えば鉄が256個未満の間だけ回収します。",
           "en": "Set the threshold and below/at-least mode. For example, collect iron only below 256."
         },
         "show": [],
@@ -5688,7 +5688,7 @@
       },
       {
         "text": {
-          "ja": "バスにレッドストーンカードを入れ、信号がある時に動く設定を選ぶ。",
+          "ja": "バスにレッドストーンカードを入れ、信号がある時に動く設定を選びます。",
           "en": "Put a redstone card in the bus and set it to run when signaled."
         },
         "show": [],
@@ -5709,7 +5709,7 @@
       },
       {
         "text": {
-          "ja": "レベルエミッター自体はチャネル不要。エネルギー版は蓄電量を監視できる。",
+          "ja": "レベルエミッター自体はチャネル不要です。エネルギー版は蓄電量を監視できます。",
           "en": "The level emitter itself needs no channel. The energy variant monitors stored energy."
         },
         "show": [],
@@ -5726,7 +5726,7 @@
       },
       {
         "text": {
-          "ja": "設備全体の切断にはトグルバスも使えるが、切替時にネットが再計算される。",
+          "ja": "設備全体の切断にはトグルバスも使えますが、切替時にネットが再計算されます。",
           "en": "A toggle bus can disconnect a whole branch, but toggling it can reboot and recalculate the network."
         },
         "show": [],
@@ -5751,7 +5751,7 @@
       "en": "Your first autocrafting setup"
     },
     "summary": {
-      "ja": "パターン・プロバイダー・CPU・組立機をそろえる。",
+      "ja": "パターン・プロバイダー・CPU・組立機をそろえます。",
       "en": "Add a pattern, provider, CPU, and assembler."
     },
     "icon": "ae2:pattern_provider",
@@ -5891,7 +5891,7 @@
     "steps": [
       {
         "text": {
-          "ja": "パターンエンコード端末でレシピを登録し、空のパターンへ書き込む。",
+          "ja": "パターンエンコード端末でレシピを登録し、空のパターンへ書き込みます。",
           "en": "Encode a crafting-table recipe into a blank pattern at the pattern encoding terminal."
         },
         "show": [
@@ -5916,7 +5916,7 @@
       },
       {
         "text": {
-          "ja": "完成したパターンをパターンプロバイダーへ入れ、分子組立機を隣接させる。",
+          "ja": "完成したパターンをパターンプロバイダーへ入れ、分子組立機を隣接させます。",
           "en": "Put the encoded pattern in a pattern provider beside a molecular assembler."
         },
         "show": [
@@ -5941,7 +5941,7 @@
       },
       {
         "text": {
-          "ja": "同じネットにクラフトストレージをつなぐ。1ブロックだけでも最小CPUになる。",
+          "ja": "同じネットにクラフトストレージをつなぎます。1ブロックだけでも最小CPUになります。",
           "en": "Connect crafting storage to the same network. A single crafting storage block is a minimal CPU."
         },
         "show": [
@@ -5959,7 +5959,7 @@
       },
       {
         "text": {
-          "ja": "クラフト端末から数量を指定して作成を要求する。計算結果で必要材料を確かめよう。",
+          "ja": "クラフト端末から数量を指定して作成を要求します。計算結果で必要材料を確かめてください。",
           "en": "Request a quantity in the crafting terminal. Check required ingredients in the calculation preview."
         },
         "show": [
@@ -5978,7 +5978,7 @@
       },
       {
         "text": {
-          "ja": "プロバイダーが材料を送り、組立機が完成品を戻す。在庫済みの品物は「ブロック選択」キーでも作成要求できる。",
+          "ja": "プロバイダーが材料を送り、組立機が完成品を戻します。在庫済みの品物は「ブロック選択」キーでも作成要求できます。",
           "en": "The provider sends ingredients and the assembler returns results. Use Pick Block to request more of an item already in stock."
         },
         "show": [],
@@ -6008,7 +6008,7 @@
       "en": "Building crafting CPUs"
     },
     "summary": {
-      "ja": "直方体、最低1ストレージ、1CPUにつき1ジョブ。",
+      "ja": "直方体、最低1ストレージ、1CPUにつき1ジョブです。",
       "en": "Build a cuboid with storage; one CPU handles one job."
     },
     "icon": "ae2:4k_crafting_storage",
@@ -6173,7 +6173,7 @@
     "steps": [
       {
         "text": {
-          "ja": "CPUは中身が詰まった直方体にする。最低1ブロックのクラフトストレージが必要。",
+          "ja": "CPUは中身が詰まった直方体にします。最低1ブロックのクラフトストレージが必要です。",
           "en": "A CPU must be a filled rectangular prism with at least one crafting storage block."
         },
         "show": [
@@ -6205,7 +6205,7 @@
       },
       {
         "text": {
-          "ja": "クラフトストレージは作成途中の材料を保持する。倉庫用セルとは別の部品。",
+          "ja": "クラフトストレージは作成途中の材料を保持します。倉庫用セルとは別の部品です。",
           "en": "Crafting storage holds job ingredients and intermediates. It is separate from ordinary storage cells."
         },
         "show": [],
@@ -6222,7 +6222,7 @@
       },
       {
         "text": {
-          "ja": "大きな依頼に「バイト不足」が出たら、CPUのストレージを増やす。",
+          "ja": "大きな依頼に「バイト不足」が出たら、CPUのストレージを増やします。",
           "en": "If a large request needs more crafting bytes, increase the CPU storage."
         },
         "show": [],
@@ -6238,7 +6238,7 @@
       },
       {
         "text": {
-          "ja": "並列処理ユニットは材料の送り出しを増やす。モニターは進行表示、ユニットは形を埋める部品。",
+          "ja": "並列処理ユニットは材料の送り出しを増やします。モニターは進行表示、ユニットは形を埋める部品です。",
           "en": "Co-processors increase ingredient dispatch. Monitors show progress; crafting units fill the shape."
         },
         "show": [],
@@ -6256,7 +6256,7 @@
       },
       {
         "text": {
-          "ja": "1CPUは同時に1ジョブ。別の依頼も同時に動かすなら、独立したCPUを増やそう。",
+          "ja": "1CPUは同時に1ジョブです。別の依頼も同時に動かすなら、独立したCPUを増やしてください。",
           "en": "One CPU runs one job at a time. Add a separate CPU for simultaneous requests."
         },
         "show": [
@@ -6278,7 +6278,7 @@
       "en": "Encoding machine processing"
     },
     "summary": {
-      "ja": "入力と出力を正確に宣言し、結果をMEへ戻す。",
+      "ja": "入力と出力を正確に宣言し、結果をMEへ戻します。",
       "en": "Declare exact inputs and outputs, then return the result."
     },
     "icon": "ae2:processing_pattern",
@@ -6452,7 +6452,7 @@
     "steps": [
       {
         "text": {
-          "ja": "処理パターンは「この入力を送ると、この出力が戻る」という約束。機械の動作はAE2が代行しない。",
+          "ja": "処理パターンは「この入力を送ると、この出力が戻る」という約束です。機械の動作はAE2が代行しません。",
           "en": "A processing pattern promises outputs for given inputs. AE2 does not run the machine operation itself."
         },
         "show": [
@@ -6478,7 +6478,7 @@
       },
       {
         "text": {
-          "ja": "例えば原鉄1個→鉄インゴット1個。プロバイダーを、かまどの投入面へ向ける。",
+          "ja": "例えば原鉄1個→鉄インゴット1個です。プロバイダーを、かまどの投入面へ向けます。",
           "en": "For example, encode one raw iron to one iron ingot. Aim the provider at the furnace input face."
         },
         "show": [
@@ -6510,7 +6510,7 @@
       },
       {
         "text": {
-          "ja": "燃料や電力は加工装置側にも必要。パターンに書くだけでは装置は動かない。",
+          "ja": "燃料や電力は加工装置側にも必要です。パターンに書くだけでは装置は動きません。",
           "en": "The processing machine still needs fuel or power. Encoding a pattern does not supply that automatically."
         },
         "show": [],
@@ -6526,7 +6526,7 @@
       },
       {
         "text": {
-          "ja": "完成品をインポートバスなどでネットへ戻す。戻る数量までパターンと一致させよう。",
+          "ja": "完成品をインポートバスなどでネットへ戻します。戻る数量までパターンと一致させてください。",
           "en": "Return the result with an import bus or similar. Its quantity must match the pattern."
         },
         "show": [
@@ -6550,7 +6550,7 @@
       },
       {
         "text": {
-          "ja": "収納バス付きチェストへ直接出すだけでは、CPUが完成を認識できない。ネットへの投入イベントが必要。",
+          "ja": "収納バス付きチェストへ直接出すだけでは、CPUが完成を認識できません。ネットへの投入イベントが必要です。",
           "en": "Writing straight into a storage-bus chest does not notify the CPU of completion. The result must enter network storage through an insertion event."
         },
         "show": [],
@@ -6571,7 +6571,7 @@
       "en": "Parallel autocrafting"
     },
     "summary": {
-      "ja": "組立機・プロバイダー・CPUの分担を考える。",
+      "ja": "組立機・プロバイダー・CPUの分担を考えます。",
       "en": "Balance assemblers, providers, and CPU dispatch."
     },
     "icon": "ae2:molecular_assembler",
@@ -6752,7 +6752,7 @@
     "steps": [
       {
         "text": {
-          "ja": "プロバイダーの複数面に組立機を隣接させると、送り先を増やせる。",
+          "ja": "プロバイダーの複数面に組立機を隣接させると、送り先を増やせます。",
           "en": "Place assemblers on several provider faces to add dispatch destinations."
         },
         "show": [
@@ -6777,7 +6777,7 @@
       },
       {
         "text": {
-          "ja": "CPUに並列処理ユニットを足すと、複数の加工を送り出しやすくなる。",
+          "ja": "CPUに並列処理ユニットを足すと、複数の加工を送り出しやすくなります。",
           "en": "Add CPU co-processors so more operations can be dispatched together."
         },
         "show": [
@@ -6797,7 +6797,7 @@
       },
       {
         "text": {
-          "ja": "同じパターンを複数のプロバイダーへ置く方法も使える。複数台の機械を分担させよう。",
+          "ja": "同じパターンを複数のプロバイダーへ置く方法も使えます。複数台の機械を分担させてください。",
           "en": "Duplicate patterns in multiple providers can distribute work across machines."
         },
         "show": [
@@ -6822,7 +6822,7 @@
       },
       {
         "text": {
-          "ja": "加速カードは組立機側に入れる。プロバイダーの数だけで速度が決まるわけではない。",
+          "ja": "加速カードは組立機側に入れます。プロバイダーの数だけで速度が決まるわけではありません。",
           "en": "Put acceleration cards in assemblers. Provider count alone does not determine speed."
         },
         "show": [],
@@ -6839,7 +6839,7 @@
       },
       {
         "text": {
-          "ja": "鍛冶・石切りパターンも組立機で扱える。パターンアクセス端末と装置の名前で大量のレシピを整理しよう。",
+          "ja": "鍛冶・石切りパターンも組立機で扱えます。パターンアクセス端末と装置の名前で大量のレシピを整理してください。",
           "en": "Assemblers also handle smithing and stonecutting patterns. Use the pattern access terminal and device names to organize recipes."
         },
         "show": [],
@@ -6869,7 +6869,7 @@
       "en": "Preventing mixed batches and excess stock"
     },
     "summary": {
-      "ja": "ブロッキング・結果待ち・在庫要求を使い分ける。",
+      "ja": "ブロッキング・結果待ち・在庫要求を使い分けます。",
       "en": "Use blocking, result locking, and stock requests."
     },
     "icon": "ae2:pattern_provider",
@@ -7011,7 +7011,7 @@
     "steps": [
       {
         "text": {
-          "ja": "プロバイダーはパターン1回分の材料をまとめて送る。一部だけ入る半端な投入は行わない。",
+          "ja": "プロバイダーはパターン1回分の材料をまとめて送ります。一部だけ入る半端な投入は行いません。",
           "en": "A provider sends a complete recipe batch. It will not insert only some of that batch."
         },
         "show": [
@@ -7041,7 +7041,7 @@
       },
       {
         "text": {
-          "ja": "材料が混ざる機械にはブロッキングを使う。機械に材料が残っている間、次の投入を待つ。",
+          "ja": "材料が混ざる機械にはブロッキングを使います。機械に材料が残っている間、次の投入を待ちます。",
           "en": "Use blocking mode for machines where batches could mix. It waits while ingredients remain in the machine."
         },
         "show": [],
@@ -7053,7 +7053,7 @@
       },
       {
         "text": {
-          "ja": "結果待ちロックを使う場合、完成品をそのプロバイダー自身へ戻す必要がある。",
+          "ja": "結果待ちロックを使う場合、完成品をそのプロバイダー自身へ戻す必要があります。",
           "en": "When locking until the result returns, insert that result into the same provider."
         },
         "show": [],
@@ -7075,7 +7075,7 @@
       },
       {
         "text": {
-          "ja": "クラフトカード付きインターフェースは指定数を内部に在庫する。空きCPUとパターンが必要。",
+          "ja": "クラフトカード付きインターフェースは指定数を内部に在庫します。空きCPUとパターンが必要です。",
           "en": "An interface with a crafting card maintains its requested local stock. It needs an available CPU and a pattern."
         },
         "show": [],
@@ -7096,7 +7096,7 @@
       },
       {
         "text": {
-          "ja": "ネット全体の在庫量で工場を止めたいなら、レベルエミッターで設備を制御する。",
+          "ja": "ネット全体の在庫量で工場を止めたいなら、レベルエミッターで設備を制御します。",
           "en": "To stop a factory at a network-wide stock level, control it using a level emitter."
         },
         "show": [],
@@ -7116,7 +7116,7 @@
       "en": "Building a small subnetwork"
     },
     "summary": {
-      "ja": "収納を分けた小さなネットで処理する。",
+      "ja": "収納を分けた小さなネットで処理します。",
       "en": "Use a separate network for a focused task."
     },
     "icon": "ae2:quartz_fiber",
@@ -7298,7 +7298,7 @@
     "steps": [
       {
         "text": {
-          "ja": "サブネットは、小さな仕事を担当する別ネットワーク。主ネットと収納を分けられる。",
+          "ja": "サブネットは、小さな仕事を担当する別ネットワークです。主ネットと収納を分けられます。",
           "en": "A subnet is a separate network doing a small job. It can keep its storage separate from the main network."
         },
         "show": [
@@ -7318,7 +7318,7 @@
       },
       {
         "text": {
-          "ja": "この緑の配線は、左の樽から右の樽へ運ぶだけのネット。",
+          "ja": "この緑の配線は、左の樽から右の樽へ運ぶだけのネットです。",
           "en": "The green network only transfers from the left barrel to the right barrel."
         },
         "show": [
@@ -7342,7 +7342,7 @@
       },
       {
         "text": {
-          "ja": "受け取り先は収納バス。主ネットのセルが見えないので、品物は右の樽へ向かう。",
+          "ja": "受け取り先は収納バスです。主ネットのセルが見えないので、品物は右の樽へ向かいます。",
           "en": "Its only destination is the storage bus. Main-network cells are invisible, so items go to the right barrel."
         },
         "show": [],
@@ -7359,7 +7359,7 @@
       },
       {
         "text": {
-          "ja": "クォーツファイバーで電力だけ渡す。これならネットワーク自体は合体しない。",
+          "ja": "クォーツファイバーで電力だけ渡します。これならネットワーク自体は合体しません。",
           "en": "Quartz fiber shares power without joining the two networks."
         },
         "show": [
@@ -7378,7 +7378,7 @@
       },
       {
         "text": {
-          "ja": "フルブロック装置を挟んだ別経路があると、ネットが合体する。全接続を確認しよう。",
+          "ja": "フルブロック装置を挟んだ別経路があると、ネットが合体します。すべての接続を確認してください。",
           "en": "An alternate route through full-block devices can merge the networks. Trace every connection."
         },
         "show": [],
@@ -7399,7 +7399,7 @@
       "en": "Exposing subnet storage"
     },
     "summary": {
-      "ja": "主ネットからだけ収納を参照する。",
+      "ja": "主ネットからだけ収納を参照します。",
       "en": "Expose a subnet storage without merging networks."
     },
     "icon": "ae2:storage_bus",
@@ -7549,7 +7549,7 @@
     "steps": [
       {
         "text": {
-          "ja": "専用の倉庫を別ネットで作る。農場の出力などを主ネットから分離できる。",
+          "ja": "専用の倉庫を別ネットで作ります。農場の出力などを主ネットから分離できます。",
           "en": "Build dedicated storage on a separate network, such as storage for farm output."
         },
         "show": [
@@ -7570,7 +7570,7 @@
       },
       {
         "text": {
-          "ja": "主ネットの収納バスを、サブネットのインターフェースへ向ける。",
+          "ja": "主ネットの収納バスを、サブネットのインターフェースへ向けます。",
           "en": "Face a main-network storage bus toward the subnet interface."
         },
         "show": [
@@ -7596,7 +7596,7 @@
       },
       {
         "text": {
-          "ja": "要求枠が空のインターフェースなら、収納バスからサブネットの倉庫を参照できる。",
+          "ja": "要求枠が空のインターフェースなら、収納バスからサブネットの倉庫を参照できます。",
           "en": "With an unconfigured interface, the storage bus can access the subnet storage."
         },
         "show": [],
@@ -7609,7 +7609,7 @@
       },
       {
         "text": {
-          "ja": "逆方向には主ネットの倉庫が見えない。接続を合体させず、1つの窓口にまとめられる。",
+          "ja": "逆方向には主ネットの倉庫が見えません。接続を合体させず、1つの窓口にまとめられます。",
           "en": "The subnet cannot see the main storage in reverse. This provides one access point without merging networks."
         },
         "show": [],
@@ -7621,7 +7621,7 @@
       },
       {
         "text": {
-          "ja": "クォーツファイバーで電力だけ渡す。インターフェースの要求枠を使うと受け渡しの動作が変わる。",
+          "ja": "クォーツファイバーで電力だけ渡します。インターフェースの要求枠を使うと受け渡しの動作が変わります。",
           "en": "Share power through quartz fiber. Configuring interface request slots changes this transfer behavior."
         },
         "show": [
@@ -7648,7 +7648,7 @@
       "en": "Transporting channels through P2P"
     },
     "summary": {
-      "ja": "32本の通り道を別ネットに載せる。",
+      "ja": "32本の通り道を別ネットに載せます。",
       "en": "Carry a 32-channel route on a separate network."
     },
     "icon": "ae2:me_p2p_tunnel",
@@ -7828,7 +7828,7 @@
     "steps": [
       {
         "text": {
-          "ja": "ME P2Pはチャネルの通り道を遠くへつなぐ。青い運搬ネットと、運ばれる主ネットは別もの。",
+          "ja": "ME P2Pはチャネルの通り道を遠くへつなぎます。青い運搬ネットと、運ばれる主ネットは別ものです。",
           "en": "ME P2P carries a channel route across distance. The blue transport network is distinct from the carried main network."
         },
         "show": [
@@ -7850,7 +7850,7 @@
       },
       {
         "text": {
-          "ja": "入力の面をコントローラへ向け、出力の面を遠くの配線へ向ける。運べる上限は32チャネル。",
+          "ja": "入力の面をコントローラへ向け、出力の面を遠くの配線へ向けます。運べる上限は32チャネルです。",
           "en": "Face the input toward the controller and the output toward remote cabling. The carried route supports up to 32 channels."
         },
         "show": [
@@ -7875,7 +7875,7 @@
       },
       {
         "text": {
-          "ja": "メモリーカードで入力をスニーク右クリックし、出力を右クリックして同じ周波数にする。",
+          "ja": "メモリーカードで入力をスニーク右クリックし、出力を右クリックして同じ周波数にします。",
           "en": "Sneak-right-click the input with a memory card, then right-click the output to copy its frequency."
         },
         "show": [],
@@ -7904,7 +7904,7 @@
       },
       {
         "text": {
-          "ja": "運搬ネットでは入力1・出力1の計2チャネルを使う。出力を増やしても元の32本を複製できない。",
+          "ja": "運搬ネットでは入力1・出力1の計2チャネルを使います。出力を増やしても元の32本を複製できません。",
           "en": "The transport network uses one channel per endpoint, two for this pair. Extra outputs share the carried capacity rather than duplicating it."
         },
         "show": [],
@@ -7916,7 +7916,7 @@
       },
       {
         "text": {
-          "ja": "ME P2P自身のチャネルを、別のME P2Pで入れ子に運ぶことはできない。",
+          "ja": "ME P2P自身のチャネルを、別のME P2Pで入れ子に運ぶことはできません。",
           "en": "The channels required by ME P2P endpoints cannot themselves be nested through another ME P2P tunnel."
         },
         "show": [],
@@ -7937,7 +7937,7 @@
       "en": "P2P for items, fluids, and energy"
     },
     "summary": {
-      "ja": "面を遠くにつなぐ仕組みを使い分ける。",
+      "ja": "面を遠くにつなぐ仕組みを使い分けます。",
       "en": "Use remote faces for different resource types."
     },
     "icon": "ae2:item_p2p_tunnel",
@@ -8071,7 +8071,7 @@
     "steps": [
       {
         "text": {
-          "ja": "P2Pは種類ごとに運ぶものが違う。ME P2Pを、対応する品物で右クリックして切り替えられる。",
+          "ja": "P2Pは種類ごとに運ぶものが違います。ME P2Pを、対応する品物で右クリックして切り替えられます。",
           "en": "P2P types carry different things. Right-click an ME P2P with an attunement item to change its type."
         },
         "show": [
@@ -8101,7 +8101,7 @@
       },
       {
         "text": {
-          "ja": "チェストやホッパーなら品物P2P、バケツなら液体P2P、電力を持つ品物なら電力P2Pになる。",
+          "ja": "チェストやホッパーなら品物P2P、バケツなら液体P2P、電力を持つ品物なら電力P2Pになります。",
           "en": "Chests or hoppers select item P2P, buckets select fluid P2P, and energy items select energy P2P."
         },
         "show": [],
@@ -8126,7 +8126,7 @@
       },
       {
         "text": {
-          "ja": "このホッパーは、離れた樽へ直接接しているように投入する。品物はMEセルに保管されない。",
+          "ja": "このホッパーは、離れた樽へ直接接しているように投入します。品物はMEセルに保管されません。",
           "en": "This hopper inserts as if it directly touched the remote barrel. The items are not stored in ME cells."
         },
         "show": [],
@@ -8148,7 +8148,7 @@
       },
       {
         "text": {
-          "ja": "P2P自身は樽から品物を吸い出さない。入力側で押し出す装置か、出力側で取り出す装置が必要。",
+          "ja": "P2P自身は樽から品物を吸い出しません。入力側で押し出す装置か、出力側で取り出す装置が必要です。",
           "en": "P2P does not pull items out of a barrel by itself. A device must push at the input or pull at the output."
         },
         "show": [],
@@ -8160,7 +8160,7 @@
       },
       {
         "text": {
-          "ja": "入力→出力の向きがあり、電力P2Pには通常2.5%分の追加消費がある。種類と周波数を両端でそろえよう。",
+          "ja": "入力→出力の向きがあり、電力P2Pには通常2.5%分の追加消費があります。種類と周波数を両端でそろえてください。",
           "en": "P2P has defined inputs and outputs. Energy P2P normally adds a 2.5% energy cost. Match type and frequency at both ends."
         },
         "show": [],
@@ -8189,7 +8189,7 @@
       "en": "Breaking and placing with planes"
     },
     "summary": {
-      "ja": "世界のブロックも収納の入出力として扱う。",
+      "ja": "世界のブロックも収納の入出力として扱います。",
       "en": "Treat world blocks as storage insertion and output."
     },
     "icon": "ae2:annihilation_plane",
@@ -8365,7 +8365,7 @@
     "steps": [
       {
         "text": {
-          "ja": "消滅面は前のブロックを壊し、面に接触した品物を回収してネットへ入れる。",
+          "ja": "消滅面は前のブロックを壊し、面に接触した品物を回収してネットへ入れます。",
           "en": "An annihilation plane breaks its front block and collects items touching its face into network storage."
         },
         "show": [
@@ -8398,7 +8398,7 @@
       },
       {
         "text": {
-          "ja": "形成面は、そこへ収納された品物をブロックとして置くか、品物として落とす。",
+          "ja": "形成面は、そこへ収納された品物をブロックとして置くか、品物として落とします。",
           "en": "A formation plane places or drops items when they are inserted into it as storage."
         },
         "show": [
@@ -8416,7 +8416,7 @@
       },
       {
         "text": {
-          "ja": "形成面はフィルタを設定できる。勝手に主倉庫の全品物を取り出して置く装置ではない。",
+          "ja": "形成面はフィルタを設定できます。勝手に主倉庫の全品物を取り出して置く装置ではありません。",
           "en": "A formation plane has a filter. It does not automatically extract every item from your main storage."
         },
         "show": [],
@@ -8435,7 +8435,7 @@
       },
       {
         "text": {
-          "ja": "消滅面のフィルタは収納先で決まる。専用サブネットの受け入れ品を絞ろう。",
+          "ja": "消滅面のフィルタは収納先で決まります。専用サブネットの受け入れ品を絞ってください。",
           "en": "An annihilation plane is filtered by its available storage. Restrict accepted drops on a dedicated subnet."
         },
         "show": [],
@@ -8447,7 +8447,7 @@
       },
       {
         "text": {
-          "ja": "保護された土地では偽プレイヤーの許可も必要。幸運やシルクタッチの効果を、壊す前に確認しよう。",
+          "ja": "保護された土地では偽プレイヤーの許可も必要です。幸運やシルクタッチの効果を、壊す前に確認してください。",
           "en": "Claimed areas may require fake-player permission. Check Fortune or Silk Touch behavior before breaking blocks."
         },
         "show": [],
@@ -8467,7 +8467,7 @@
       "en": "Harvesting only fully grown quartz"
     },
     "summary": {
-      "ja": "粉を受け入れないサブネットで成長を待つ。",
+      "ja": "粉を受け入れないサブネットで成長を待ちます。",
       "en": "Reject dust on a subnet to wait for full crystals."
     },
     "icon": "ae2:growth_accelerator",
@@ -8652,7 +8652,7 @@
     "steps": [
       {
         "text": {
-          "ja": "完全な芽生えたクォーツへ加速器を隣接させ、空いた面で結晶を育てる。",
+          "ja": "完全な芽生えたクォーツへ加速器を隣接させ、空いた面で結晶を育てます。",
           "en": "Place an accelerator beside flawless budding quartz and grow crystals on a free face."
         },
         "show": [
@@ -8676,7 +8676,7 @@
       },
       {
         "text": {
-          "ja": "その面へ消滅面を向け、収穫専用の緑サブネットを作る。",
+          "ja": "その面へ消滅面を向け、収穫専用の緑サブネットを作ります。",
           "en": "Aim an annihilation plane at the growth face on a separate green harvesting network."
         },
         "show": [
@@ -8698,7 +8698,7 @@
       },
       {
         "text": {
-          "ja": "収納バスの受け入れをケルタスクォーツ結晶だけにする。途中の芽が落とす粉は受け入れない。",
+          "ja": "収納バスの受け入れをケルタスクォーツ結晶だけにします。途中の芽が落とす粉は受け入れません。",
           "en": "Filter the storage bus to accept only certus crystals, rejecting dust dropped by immature buds."
         },
         "show": [],
@@ -8719,7 +8719,7 @@
       },
       {
         "text": {
-          "ja": "粉の収納先がないので、消滅面は途中の芽を壊さず待つ。完成した結晶は採掘して樽へ送る。",
+          "ja": "粉の収納先がないので、消滅面は途中の芽を壊さず待ちます。完成した結晶は採掘して樽へ送ります。",
           "en": "With no storage for dust, the plane waits through immature stages, then harvests the finished crystal into the barrel."
         },
         "show": [],
@@ -8741,7 +8741,7 @@
       },
       {
         "text": {
-          "ja": "主ネットへ直結すると粉も受け入れて早刈りになる。必要量で止める制御も加えよう。",
+          "ja": "主ネットへ直結すると粉も受け入れて早刈りになります。必要量で止める制御も加えてください。",
           "en": "Connecting to general storage can accept dust and harvest too early. Add stock-based control when needed."
         },
         "show": [
@@ -8764,7 +8764,7 @@
       "en": "Overflow and the matter condenser"
     },
     "summary": {
-      "ja": "消去する経路を専用の品物に限定する。",
+      "ja": "消去する経路を専用の品物に限定します。",
       "en": "Restrict destructive routes to chosen resources."
     },
     "icon": "ae2:condenser",
@@ -8894,7 +8894,7 @@
     "steps": [
       {
         "text": {
-          "ja": "物質凝縮器は、不要品を消すか、物質球や特異点へ変える装置。",
+          "ja": "物質凝縮器は、不要品を消すか、物質球や特異点へ変える装置です。",
           "en": "A matter condenser can discard resources or convert them into matter balls and singularities."
         },
         "show": [
@@ -8926,7 +8926,7 @@
       },
       {
         "text": {
-          "ja": "物質球は256個、特異点は256,000個の品物またはバケツ分が必要。モードを選ぼう。",
+          "ja": "物質球は256個、特異点は256,000個の品物またはバケツ分が必要です。モードを選んでください。",
           "en": "A matter ball needs 256 items or buckets; a singularity needs 256,000. Choose the correct mode."
         },
         "show": [],
@@ -8937,7 +8937,7 @@
       },
       {
         "text": {
-          "ja": "生成モードでは上の枠にストレージ「部品」を入れる。特異点なら64k部品で容量を確保できる。",
+          "ja": "生成モードでは上の枠にストレージ「部品」を入れます。特異点なら64k部品で容量を確保できます。",
           "en": "Production modes need a storage component in the top slot. A 64k component has enough capacity for singularities."
         },
         "show": [],
@@ -8958,7 +8958,7 @@
       },
       {
         "text": {
-          "ja": "あふれ破壊カードは満杯になったセルへの追加品を消す。必ず品物を限定した専用セルに使おう。",
+          "ja": "あふれ破壊カードは満杯になったセルへの追加品を消します。必ず品物を限定した専用セルに使ってください。",
           "en": "An overflow destruction card deletes incoming excess when a cell is full. Use it only on a carefully partitioned dedicated cell."
         },
         "show": [],
@@ -8980,7 +8980,7 @@
       },
       {
         "text": {
-          "ja": "廃棄経路へ貴重品を流さないよう、フィルタと優先度を確認する。生成品の搬出が詰まると凝縮器も止まる。",
+          "ja": "廃棄経路へ貴重品を流さないよう、フィルタと優先度を確認します。生成品の搬出が詰まると凝縮器も止まります。",
           "en": "Check filters and priority to keep valuables out. A backed-up product buffer can also stop condenser intake."
         },
         "show": [],
@@ -9001,7 +9001,7 @@
       "en": "Connecting through quantum bridges"
     },
     "summary": {
-      "ja": "両端の構造・特異点ペア・読み込みをそろえる。",
+      "ja": "両端の構造・特異点ペア・読み込みをそろえます。",
       "en": "Match structures, singularity pairs, and chunk loading."
     },
     "icon": "ae2:quantum_ring",
@@ -9246,7 +9246,7 @@
     "steps": [
       {
         "text": {
-          "ja": "リンクチャンバー1個の周りにリング8個。これを両端に作る。",
+          "ja": "リンクチャンバー1個の周りにリング8個を置きます。これを両端に作ります。",
           "en": "Build a link chamber surrounded by eight rings at each end."
         },
         "show": [
@@ -9267,7 +9267,7 @@
       },
       {
         "text": {
-          "ja": "特異点とエンダーパールかエンダー粉を一緒に爆風へさらすと、対応する量子特異点が2個できる。",
+          "ja": "特異点とエンダーパールかエンダー粉を一緒に爆風へさらすと、対応する量子特異点が2個できます。",
           "en": "Expose a singularity with an ender pearl or ender dust to an explosion to create a matching entangled pair."
         },
         "show": [],
@@ -9291,7 +9291,7 @@
       },
       {
         "text": {
-          "ja": "同じペアを1個ずつ両端のチャンバーへ入れる。別に作ったペアはつながらない。",
+          "ja": "同じペアを1個ずつ両端のチャンバーへ入れます。別に作ったペアはつながりません。",
           "en": "Put one of the same pair into each chamber. Unrelated pairs do not link."
         },
         "show": [
@@ -9327,7 +9327,7 @@
       },
       {
         "text": {
-          "ja": "ケーブルは中央に隣接する4つのリングへ接続する。角とチャンバーには接続できない。",
+          "ja": "ケーブルは中央に隣接する4つのリングへ接続します。角とチャンバーには接続できません。",
           "en": "Connect cables to the four rings directly adjacent to the chamber. Corners and the chamber do not accept cables."
         },
         "show": [
@@ -9345,7 +9345,7 @@
       },
       {
         "text": {
-          "ja": "距離やディメンションを超えて合計32チャネルを運べる。両端の通電とチャンク読み込みが必要。",
+          "ja": "距離やディメンションを超えて合計32チャネルを運べます。両端の通電とチャンク読み込みが必要です。",
           "en": "The bridge carries 32 channels total across distance and dimensions. Both ends need power and loaded chunks."
         },
         "show": [
@@ -9369,7 +9369,7 @@
       "en": "Storing a physical room"
     },
     "summary": {
-      "ja": "パイロンで囲った範囲を丸ごと交換する。",
+      "ja": "パイロンで囲った範囲を丸ごと交換します。",
       "en": "Swap the physical volume inside a pylon boundary."
     },
     "icon": "ae2:spatial_io_port",
@@ -9594,7 +9594,7 @@
     "steps": [
       {
         "text": {
-          "ja": "空間収納はブロックのある空間を丸ごと交換する仕組み。普通のアイテム倉庫とは使い方が違う。",
+          "ja": "空間収納はブロックのある空間を丸ごと交換する仕組みです。普通のアイテム倉庫とは使い方が違います。",
           "en": "Spatial IO swaps a physical volume of blocks, rather than acting like an ordinary item warehouse."
         },
         "show": [
@@ -9609,7 +9609,7 @@
       },
       {
         "text": {
-          "ja": "パイロンの外側の境界から、各方向に1ブロック内側が対象範囲になる。ここでは1×2×1。",
+          "ja": "パイロンの外側の境界から、各方向に1ブロック内側が対象範囲になります。ここでは1×2×1です。",
           "en": "The target is the pylon bounding box inset by one block on every side. This example stores 1×2×1."
         },
         "show": [
@@ -9632,7 +9632,7 @@
       },
       {
         "text": {
-          "ja": "パイロンの連続列は最低2ブロック。IOポートとすべての列を同じ専用ネットに接続する。",
+          "ja": "パイロンの連続列は最低2ブロックです。IOポートとすべての列を同じ専用ネットに接続します。",
           "en": "Each continuous pylon line must contain at least two blocks. Connect every line and the IO port to one dedicated network."
         },
         "show": [
@@ -9653,7 +9653,7 @@
       },
       {
         "text": {
-          "ja": "ポートで範囲・効率・必要エネルギーを確認する。消費は一瞬なので、高密度蓄電セルも用意しよう。",
+          "ja": "ポートで範囲・効率・必要エネルギーを確認します。消費は一瞬なので、高密度蓄電セルも用意してください。",
           "en": "Check volume, efficiency, and required energy in the port. The operation consumes energy instantly, so provide enough buffer."
         },
         "show": [],
@@ -9670,7 +9670,7 @@
       },
       {
         "text": {
-          "ja": "空間セルを入力枠へ入れ、レッドストーンパルスを送る。次の操作は保存空間と現場の交換になる。",
+          "ja": "空間セルを入力枠へ入れ、レッドストーンパルスを送ります。次の操作は保存空間と現場の交換になります。",
           "en": "Insert a spatial cell in the input slot and send a redstone pulse. Later operations swap the saved volume with the current one."
         },
         "show": [
@@ -9702,7 +9702,7 @@
       "en": "Spatial dimensions and safe operation"
     },
     "summary": {
-      "ja": "寸法は初回で固定。対象範囲に入らない。",
+      "ja": "寸法は初回で固定されます。対象範囲には入らないでください。",
       "en": "Dimensions are fixed on first use. Stay outside the volume."
     },
     "icon": "ae2:spatial_storage_cell_16",
@@ -9928,7 +9928,7 @@
     "steps": [
       {
         "text": {
-          "ja": "空間セルは2³・16³・128³。名前の数字は各辺に使える最大長さ。",
+          "ja": "空間セルは2³・16³・128³です。名前の数字は各辺に使える最大長さです。",
           "en": "Spatial cells come in 2³, 16³, and 128³ sizes. The number is the maximum length of each axis."
         },
         "show": [
@@ -9971,7 +9971,7 @@
       },
       {
         "text": {
-          "ja": "最初に使ったXYZ寸法がセルに固定される。この1×2×1のセルを別の寸法へ再設定はできない。",
+          "ja": "最初に使ったXYZ寸法がセルに固定されます。この1×2×1のセルを別の寸法へ再設定はできません。",
           "en": "The first XYZ dimensions are permanently fixed to the cell. A used 1×2×1 cell cannot be resized."
         },
         "show": [],
@@ -9986,7 +9986,7 @@
       },
       {
         "text": {
-          "ja": "同じ体積でも1×2×1と2×1×1は別。回転や寸法の違う範囲では動かない。",
+          "ja": "同じ体積でも1×2×1と2×1×1は別です。回転や寸法の違う範囲では動きません。",
           "en": "Equal volume is not enough: 1×2×1 differs from 2×1×1. Rotation or mismatched dimensions will not work."
         },
         "show": [],
@@ -9999,7 +9999,7 @@
       },
       {
         "text": {
-          "ja": "対象範囲のプレイヤーや生物も一緒に移る。脱出手段のない空間へ自分を送らないようにしよう。",
+          "ja": "対象範囲のプレイヤーや生物も一緒に移ります。脱出手段のない空間へ自分を送らないようにしてください。",
           "en": "Players and entities in the volume move too. Do not trap yourself without an exit."
         },
         "show": [
@@ -10015,7 +10015,7 @@
       },
       {
         "text": {
-          "ja": "操作スイッチは範囲の外に置き、保存したセルに寸法と用途を記録しよう。完全な芽生えたクォーツの移設にも使える。",
+          "ja": "操作スイッチは範囲の外に置き、保存したセルに寸法と用途を記録してください。完全な芽生えたクォーツの移設にも使えます。",
           "en": "Keep the control outside the volume and label cells with dimensions and purpose. Spatial IO can also move flawless budding quartz."
         },
         "show": [],
@@ -10031,11 +10031,11 @@
     "id": "diagnostics",
     "chapter": "troubleshooting",
     "title": {
-      "ja": "動かないときはここを見る",
+      "ja": "動かないときの確認方法",
       "en": "Diagnosing a stalled network"
     },
     "summary": {
-      "ja": "電力→チャネル→収納→入力面→完成品の順で調べる。",
+      "ja": "電力→チャネル→収納→入力面→完成品の順で調べます。",
       "en": "Check power, channels, storage, faces, then returned results."
     },
     "icon": "ae2:network_tool",
@@ -10183,7 +10183,7 @@
     "steps": [
       {
         "text": {
-          "ja": "まずネットワークツールかコントローラで、消費・供給・蓄電量を見る。瞬間的な不足も確認する。",
+          "ja": "まずネットワークツールかコントローラで、消費・供給・蓄電量を見ます。瞬間的な不足も確認します。",
           "en": "Use a network tool or controller to check demand, supply, and stored energy, including burst shortages."
         },
         "show": [
@@ -10211,7 +10211,7 @@
       },
       {
         "text": {
-          "ja": "次にチャネル。通常ケーブルは8本、装置の直列も8本まで。最短経路へ偏るので、ループを減らそう。",
+          "ja": "次にチャネルです。通常ケーブルは8本、装置の直列も8本までです。最短経路へ偏るので、ループを減らしてください。",
           "en": "Next check channels: normal cables and most devices pass eight. Routes prefer shortest paths; reduce loops."
         },
         "show": [],
@@ -10224,7 +10224,7 @@
       },
       {
         "text": {
-          "ja": "入らない品物があるなら、セルの種類数・容量・フィルタ・外部収納の面を調べる。",
+          "ja": "入らない品物があるなら、セルの種類数・容量・フィルタ・外部収納の面を調べます。",
           "en": "If an item will not enter, check cell types, byte capacity, filters, and external inventory faces."
         },
         "show": [],
@@ -10241,7 +10241,7 @@
       },
       {
         "text": {
-          "ja": "クラフトが始まらないなら、空いたCPU・必要バイト・材料・プロバイダーのパターンを確認する。",
+          "ja": "クラフトが始まらないなら、空いたCPU・必要バイト・材料・プロバイダーのパターンを確認します。",
           "en": "If a craft will not start, check for an available CPU, enough crafting bytes, ingredients, and a provider pattern."
         },
         "show": [
@@ -10266,7 +10266,7 @@
       },
       {
         "text": {
-          "ja": "途中で止まるなら、加工装置の電力と投入面、出力の数と戻り先を見る。原因を1つずつ直そう。",
+          "ja": "途中で止まるなら、加工装置の電力と投入面、出力の数と戻り先を見ます。原因を1つずつ直してください。",
           "en": "For a stalled job, check machine power and input faces, then result quantity and return destination. Fix one cause at a time."
         },
         "show": [],
