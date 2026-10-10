@@ -93,14 +93,27 @@ ext.generateLocalizedGuideResources = { lessons, destination ->
         page.append('<CommandLink command="/ae2ponder">').append(text('start')).append('</CommandLink>\n\n')
         page.append('## ').append(text('how_to')).append('\n\n').append(text('controls')).append('\n\n').append(text('description')).append('\n\n')
         lessons.groupBy { it.chapter }.each { chapter, chapterLessons ->
+            if (chapter == 'addons')
+                page.append('<ae2ponder:IfModLoaded mods="ae2omnicells,bigger_ae2,ae2things,ae2_mega_things" mode="any">\n\n')
             page.append('## ').append(escape(strings["ae2ponder.chapter.${chapter}"])).append('\n\n')
             page.append(escape(strings["ae2ponder.ponder.tag.${chapter}.description"])).append('\n\n')
-            chapterLessons.each { lesson ->
-                page.append('- <CommandLink command="/ae2ponder lesson ').append(lesson.id).append('">')
-                    .append(escape(strings["ae2ponder.ponder.${lesson.id}.header"])).append('</CommandLink> — ')
-                    .append(escape(strings["ae2ponder.lesson.${lesson.id}.summary"])).append('\n')
+            def groups = chapterLessons.groupBy { (it.requiresMods ?: []).join(',') }
+            groups.each { mods, group ->
+                if (mods) {
+                    page.append('<ae2ponder:IfModLoaded mods="').append(mods).append('">\n\n')
+                    def names = ['ae2omnicells': 'AE2 OMNI Cells', 'bigger_ae2': 'Bigger AE2',
+                        'ae2things': 'AE2 Things', 'ae2_mega_things': 'AE2 MEGA Things']
+                    page.append('### ').append(names[group.first().requiresMods.first()]).append('\n\n')
+                }
+                group.each { lesson ->
+                    page.append('- <CommandLink command="/ae2ponder lesson ').append(lesson.id).append('">')
+                        .append(escape(strings["ae2ponder.ponder.${lesson.id}.header"])).append('</CommandLink> — ')
+                        .append(escape(strings["ae2ponder.lesson.${lesson.id}.summary"])).append('\n')
+                }
+                page.append('\n')
+                if (mods) page.append('</ae2ponder:IfModLoaded>\n\n')
             }
-            page.append('\n')
+            if (chapter == 'addons') page.append('</ae2ponder:IfModLoaded>\n\n')
         }
         def folder = language == 'en_us' ? '' : "_${language}/"
         write("assets/ae2ponder/ae2guide/${folder}ponder.md", page.toString())

@@ -48,7 +48,7 @@ public final class GuidePlugin implements PonderPlugin {
     }
 
     @Override public void registerTags(PonderTagRegistrationHelper<ResourceLocation> helper) {
-        for (var chapter : GuideChapter.values()) {
+        for (var chapter : GuideChapter.active(GuideBook.lessons())) {
             helper.registerTag(chapter.id()).title(chapter.en()).description(chapter.description())
                     .item(BuiltInRegistries.ITEM.get(ResourceLocation.parse(chapter.icon()))).addToIndex().register();
         }

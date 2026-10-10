@@ -7,7 +7,7 @@ modId="ae2ponder"
 version="${version}"
 displayName="AE2 Ponder Guide"
 authors="AE2 Ponder Guide contributors"
-description='''A visual, step-by-step Applied Energistics 2 guide with standalone Ponder. Japanese and English included.'''
+description='''A visual, step-by-step Applied Energistics 2 guide with standalone Ponder, 15 languages, and optional add-on lessons.'''
 
 [[mixins]]
 config="ae2ponder.mixins.json"
@@ -37,5 +37,40 @@ side="BOTH"
 modId="ponder"
 type="required"
 versionRange="[1.0.87,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[dependencies.ae2ponder]]
+modId="ae2omnicells"
+type="optional"
+versionRange="[1.1.6,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[dependencies.ae2ponder]]
+modId="guideme"
+type="required"
+versionRange="[21.1.19,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[dependencies.ae2ponder]]
+modId="bigger_ae2"
+type="optional"
+versionRange="[1.4.9,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[dependencies.ae2ponder]]
+modId="ae2things"
+type="optional"
+versionRange="[1.4.2-beta,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[dependencies.ae2ponder]]
+modId="ae2_mega_things"
+type="optional"
+versionRange="[2.0.4,)"
 ordering="AFTER"
 side="CLIENT"

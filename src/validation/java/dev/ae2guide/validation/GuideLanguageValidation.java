@@ -59,6 +59,7 @@ final class GuideLanguageValidation {
         String locale = SAMPLES.get(sample);
         if (frame == 4) {
             screenshot("guide-" + locale + ".png");
+            GuideUiValidation.checkCompiledGuideContents(client.screen);
             client.setScreen(new GuideScreen(client.screen));
         }
         if (frame == 7) {
@@ -115,6 +116,17 @@ final class GuideLanguageValidation {
             @SuppressWarnings("unchecked") var found = (List<GuideBook.Lesson>) field.get(catalogue);
             if (found.size() != 1 || !found.getFirst().id().equals("meteorite"))
                 throw new IllegalStateException("Catalogue cannot search localized lesson names: " + locale);
+            var addonLesson = GuideBook.lessons().stream()
+                    .filter(lesson -> lesson.chapter().equals("addons")).findFirst();
+            if (addonLesson.isPresent()) {
+                String addonTitle = own.get("ae2ponder.ponder." + addonLesson.get().id() + ".header");
+                if (addonTitle == null || addonTitle.isBlank())
+                    throw new IllegalStateException("Localized add-on lesson title is missing: " + locale);
+                search.setValue(addonTitle);
+                @SuppressWarnings("unchecked") var addonResults = (List<GuideBook.Lesson>) field.get(catalogue);
+                if (addonResults.stream().noneMatch(lesson -> lesson.id().equals(addonLesson.get().id())))
+                    throw new IllegalStateException("Catalogue cannot search localized add-on titles: " + locale);
+            }
             GuideUiValidation.checkTagPages();
             String prefix = locale.equals("en_us") ? "" : "_" + locale + "/";
             readPage(ResourceLocation.fromNamespaceAndPath("ae2ponder", "ae2guide/" + prefix + "ponder.md"));
@@ -133,7 +145,7 @@ final class GuideLanguageValidation {
         var resources = Minecraft.getInstance().getResourceManager();
         try (var input = resources.getResourceOrThrow(id).open()) {
             String page = new String(input.readAllBytes(), StandardCharsets.UTF_8);
-            for (var lesson : GuideBook.lessons()) {
+            for (var lesson : GuideBook.allLessons()) {
                 if (!page.contains("command=\"/ae2ponder lesson " + lesson.id() + "\""))
                     throw new IllegalStateException("Localized ME Guide missed a lesson link: " + id + "/" + lesson.id());
             }

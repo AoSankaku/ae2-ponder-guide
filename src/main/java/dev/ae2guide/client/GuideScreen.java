@@ -56,11 +56,11 @@ public final class GuideScreen extends Screen {
         search.setValue(query);
         search.setResponder(value -> { query = value; page = 0; refresh(); });
         addRenderableWidget(search);
-        addChapter("", Component.translatable("ae2ponder.chapter.all"), 76);
-        int y = 98;
-        for (var value : GuideChapter.values()) {
+        addChapter("", Component.translatable("ae2ponder.chapter.all"), 70);
+        int y = 88;
+        for (var value : GuideChapter.active(GuideBook.lessons())) {
             addChapter(value.id(), value.label(), y);
-            y += 22;
+            y += 17;
         }
         previous = addRenderableWidget(Button.builder(Component.literal("<"), button -> { page--; refresh(); })
                 .bounds(LIST_X, height - 31, 28, 20).build());
@@ -73,7 +73,7 @@ public final class GuideScreen extends Screen {
 
     private void addChapter(String id, Component label, int y) {
         chapterButtons.put(id, addRenderableWidget(Button.builder(label, button -> { chapter = id; page = 0; refresh(); })
-                .bounds(12, y, 104, 20).build()));
+                .bounds(12, y, 104, 16).build()));
     }
 
     private void refresh() {

@@ -10,6 +10,7 @@ chapters, Ponder/GuideME controls, and the ME Guide page. Do not ship English fa
 language. Keep Hong Kong/Taiwan Chinese and Brazil/Portugal Portuguese distinct.
 
 - English/Japanese lesson text lives in `src/main/resources/assets/ae2ponder/guide/lessons.json`.
+  Optional add-on lesson text lives in the adjacent `addons.json`; translate it in all 15 languages too.
 - English/Japanese UI, chapters, Ponder/GuideME controls and guide introduction live in `src/main/templates/lang`.
 - The other 13 complete language bundles live in `src/main/translations/<locale>.json`.
 - `python tools/localization.py source` exports the current English keys and `_source_hash`
@@ -27,3 +28,8 @@ language. Keep Hong Kong/Taiwan Chinese and Brazil/Portugal Portuguese distinct.
 
 Verification should inspect non-Latin text and catalogue searches when localization code
 changes. Prefer one hidden client and targeted language checks over repeated Minecraft startups.
+
+All supported add-ons and their required dependencies are included in development/test launches.
+Verify both the default launch and `-PwithoutAddons` after changing optional integration.
+Keep add-ons optional in the distributed mod and exclude absent lessons from the catalogue,
+Ponder registration/course, and GuideME rendering/search. Do not reference add-on Java classes.

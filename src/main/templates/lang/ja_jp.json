@@ -28,7 +28,7 @@
   "ae2ponder.ponder.tag.troubleshooting": "困ったとき",
   "ae2ponder.ponder.tag.troubleshooting.description": "電力、チャネル、容量、クラフトの問題を探す",
   "ae2ponder.guide.heading": "Ponderで学ぶAE2",
-  "ae2ponder.guide.intro": "動く立体模型で、AE2の使い方を40場面に分けて学べます。最初から順番に見ることも、下の項目から知りたい場面へ進むこともできます。どの項目も、同じコースの選んだ場面から再生します。",
+  "ae2ponder.guide.intro": "動く立体模型で、AE2と導入済みアドオンの使い方を学べます。最初から順番に見ることも、下の項目から知りたい場面へ進むこともできます。どの項目も、同じコースの選んだ場面から再生します。",
   "ae2ponder.guide.start": "最初から見る",
   "ae2ponder.guide.how_to": "見方",
   "ae2ponder.guide.controls": "ワールドに入った状態でガイドを開き、見たい項目をクリックしてください。Ponderの左右のナビゲーションボタンで前後の場面へ移動できます。左下の戻る矢印を押すと、このガイドページへ戻ります。",
@@ -91,5 +91,8 @@
   "guideme.guidebook.ZoomOut": "縮小",
   "item.guideme.guide": "ガイド",
   "key.guideme.category": "GuideME",
-  "key.guideme.guide": "アイテムのガイドを開く"
+  "key.guideme.guide": "アイテムのガイドを開く",
+  "ae2ponder.chapter.addons": "7. アドオン",
+  "ae2ponder.ponder.tag.addons": "アドオン",
+  "ae2ponder.ponder.tag.addons.description": "導入済みアドオンのストレージとクラフト"
 }

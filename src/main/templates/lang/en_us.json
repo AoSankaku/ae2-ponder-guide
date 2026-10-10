@@ -28,7 +28,7 @@
   "ae2ponder.ponder.tag.troubleshooting": "Troubleshooting",
   "ae2ponder.ponder.tag.troubleshooting.description": "Diagnose power, channel, storage and crafting problems",
   "ae2ponder.guide.heading": "AE2 with Ponder",
-  "ae2ponder.guide.intro": "Learn AE2 through 40 animated, three-dimensional scenes. Start from the beginning or choose a topic below. Every topic opens the same course at the selected scene.",
+  "ae2ponder.guide.intro": "Learn AE2 and installed add-ons through animated models. Start from the beginning or choose a lesson below. Each link opens that lesson within the same course.",
   "ae2ponder.guide.start": "Watch from the beginning",
   "ae2ponder.guide.how_to": "How to watch",
   "ae2ponder.guide.controls": "Open the guide while playing in a world, then click a topic. Use Ponder's left and right navigation buttons to move between scenes. The return arrow in the lower-left corner brings you back to this guide page.",
@@ -91,5 +91,8 @@
   "guideme.guidebook.ZoomOut": "Zoom Out",
   "item.guideme.guide": "Guide",
   "key.guideme.category": "GuideME",
-  "key.guideme.guide": "Open Guide for Items"
+  "key.guideme.guide": "Open Guide for Items",
+  "ae2ponder.chapter.addons": "7. Add-ons",
+  "ae2ponder.ponder.tag.addons": "Add-ons",
+  "ae2ponder.ponder.tag.addons.description": "Storage and crafting from installed add-ons"
 }

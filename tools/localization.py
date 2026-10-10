@@ -24,6 +24,7 @@ def read(path):
 
 def sources():
     lessons = read(ROOT / "src/main/resources/assets/ae2ponder/guide/lessons.json")
+    lessons += read(ROOT / "src/main/resources/assets/ae2ponder/guide/addons.json")
     result = {}
     for locale, field in [("en_us", "en"), ("ja_jp", "ja")]:
         strings = read(ROOT / f"src/main/templates/lang/{locale}.json")

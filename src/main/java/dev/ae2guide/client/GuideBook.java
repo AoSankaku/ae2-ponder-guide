@@ -3,6 +3,7 @@ package dev.ae2guide.client;
 import com.google.gson.Gson;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.fml.ModList;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -17,22 +18,42 @@ public final class GuideBook {
     private GuideBook() {}
 
     private static final class Holder {
-        private static final List<Lesson> LESSONS = load();
+        private static final List<Lesson> ALL_LESSONS = load();
     }
 
-    public static List<Lesson> lessons() { return Holder.LESSONS; }
+    /** All core and add-on lessons, regardless of which optional mods are installed. */
+    public static List<Lesson> allLessons() { return Holder.ALL_LESSONS; }
+
+    /** Lessons whose optional dependencies are present in the current client. */
+    public static List<Lesson> lessons() {
+        return lessonsForMods(ModList.get().getMods().stream().map(mod -> mod.getModId())
+                .collect(java.util.stream.Collectors.toUnmodifiableSet()));
+    }
+
+    /** Pure filter kept separate from the runtime mod list so every combination is testable. */
+    public static List<Lesson> lessonsForMods(java.util.Set<String> loadedMods) {
+        Objects.requireNonNull(loadedMods);
+        return allLessons().stream().filter(lesson -> loadedMods.containsAll(lesson.requiresMods())).toList();
+    }
 
     private static List<Lesson> load() {
-        var stream = Objects.requireNonNull(GuideBook.class.getResourceAsStream(
-                "/assets/ae2ponder/guide/lessons.json"), "Missing AE2 lesson catalogue");
-        try (var reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
-            var lessons = List.copyOf(Arrays.asList(new Gson().fromJson(reader, Lesson[].class)));
+        try {
+            var lessons = new java.util.ArrayList<Lesson>();
+            lessons.addAll(readLessons("/assets/ae2ponder/guide/lessons.json"));
+            lessons.addAll(readLessons("/assets/ae2ponder/guide/addons.json"));
             if (lessons.isEmpty()) throw new IllegalStateException("AE2 lesson catalogue is empty");
             if (lessons.stream().map(Lesson::id).distinct().count() != lessons.size())
                 throw new IllegalStateException("Duplicate AE2 lesson ID");
-            return lessons;
+            return List.copyOf(lessons);
         } catch (Exception exception) {
             throw new IllegalStateException("Unable to load AE2 Ponder Guide lessons", exception);
+        }
+    }
+
+    private static List<Lesson> readLessons(String path) throws Exception {
+        var stream = Objects.requireNonNull(GuideBook.class.getResourceAsStream(path), "Missing AE2 lesson catalogue: " + path);
+        try (var reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
+            return List.copyOf(Arrays.asList(new Gson().fromJson(reader, Lesson[].class)));
         }
     }
 
@@ -90,6 +111,7 @@ public final class GuideBook {
     }
 
     public record Lesson(String id, String chapter, Localized title, Localized summary, String icon,
+                         List<String> requiresMods,
                          List<String> components, List<Node> nodes, List<Step> steps) {
         public Lesson {
             if (id == null || !id.matches("[a-z0-9_]+")) throw new IllegalArgumentException("Invalid lesson ID");
@@ -97,6 +119,9 @@ public final class GuideBook {
             Objects.requireNonNull(title);
             Objects.requireNonNull(summary);
             ResourceLocation.parse(icon);
+            requiresMods = requiresMods == null ? List.of() : List.copyOf(requiresMods);
+            if (requiresMods.stream().anyMatch(mod -> mod == null || !mod.matches("[a-z0-9_.-]+")))
+                throw new IllegalArgumentException("Invalid required mod ID for lesson: " + id);
             components = List.copyOf(components);
             nodes = List.copyOf(nodes);
             steps = List.copyOf(steps);

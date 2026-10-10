@@ -8,7 +8,8 @@ public enum GuideChapter {
     STORAGE("storage", "Storage", "Cells, filtering and external inventories", "ae2:drive"),
     AUTOMATION("automation", "Automation", "Transport and request-based crafting", "ae2:pattern_provider"),
     ADVANCED("advanced", "Advanced systems", "Subnetworks, P2P, quantum and spatial storage", "ae2:quantum_ring"),
-    TROUBLESHOOTING("troubleshooting", "Troubleshooting", "Diagnose power, channel, storage and crafting problems", "ae2:network_tool");
+    TROUBLESHOOTING("troubleshooting", "Troubleshooting", "Diagnose power, channel, storage and crafting problems", "ae2:network_tool"),
+    ADDONS("addons", "Add-ons", "Storage and crafting from installed add-ons", "ae2:fluix_crystal");
 
     private final String id;
     private final String en;
@@ -22,4 +23,9 @@ public enum GuideChapter {
     public String description() { return description; }
     public String icon() { return icon; }
     public Component label() { return Component.translatable("ae2ponder.chapter." + id); }
+
+    public static java.util.List<GuideChapter> active(java.util.List<GuideBook.Lesson> lessons) {
+        boolean hasAddons = lessons.stream().anyMatch(lesson -> lesson.chapter().equals(ADDONS.id));
+        return java.util.Arrays.stream(values()).filter(chapter -> chapter != ADDONS || hasAddons).toList();
+    }
 }

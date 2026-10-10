@@ -3,6 +3,7 @@ package dev.ae2guide.validation;
 import com.google.gson.Gson;
 import com.mojang.logging.LogUtils;
 import dev.ae2guide.client.GuideBook;
+import dev.ae2guide.client.GuideChapter;
 import dev.ae2guide.client.GuidePlugin;
 import dev.ae2guide.client.GuideScreen;
 import dev.ae2guide.client.GuideScenes;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.WorldDataConfiguration;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -39,6 +41,7 @@ import org.lwjgl.glfw.GLFW;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /** Opt-in integration harness, excluded from the released mod JAR. */
 @EventBusSubscriber(modid = "ae2ponder", bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -50,7 +53,8 @@ public final class GuideValidation {
     private static final List<PonderScene> SCENES = new ArrayList<>();
     private static final List<List<Integer>> CALLOUT_TIMES = new ArrayList<>();
     private static final List<String> CALLOUT_SCREENSHOTS = List.of(
-            "first_network", "charged_fluix", "processors", "p2p_channels", "quantum_bridge", "cell_io");
+            "first_network", "charged_fluix", "processors", "p2p_channels", "quantum_bridge", "cell_io",
+            "omni_cells", "omni_crafting", "bigger_singularity", "bigger_crafting", "things_disks", "mega_fluid_disks");
     private static int verifiedCallouts;
 
     private GuideValidation() {}
@@ -143,7 +147,9 @@ public final class GuideValidation {
                 Files.writeString(result, new Gson().toJson(java.util.Map.of("passed", true,
                         "lessons", SCENES.size(), "rendered", SCENES.size(), "callouts", verifiedCallouts,
                         "tagLayouts", GuideUiValidation.layouts(), "nativeNavigation", true, "guideMeLink", true,
-                        "languages", GuideLanguageValidation.checkedLanguages(), "createInstalled", false)));
+                        "languages", GuideLanguageValidation.checkedLanguages(), "createInstalled", false,
+                        "loadedAddons", List.of("ae2omnicells", "bigger_ae2", "ae2things", "ae2_mega_things")
+                                .stream().filter(ModList.get()::isLoaded).toList())));
                 LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_PASS: {} storyboards compiled, replayed and rendered; {} item callouts verified",
                         SCENES.size(), verifiedCallouts);
                 client.stop();
@@ -158,6 +164,7 @@ public final class GuideValidation {
 
     private static void validateScenes() {
         if (net.neoforged.fml.ModList.get().isLoaded("create")) throw new IllegalStateException("Create must be absent during validation");
+        validateOptionalLessons();
         String selection = System.getProperty("ae2ponder.validationLessons", "");
         var selectedIds = selection.isBlank() ? List.<String>of() : List.of(selection.split(","));
         var lessons = GuideBook.lessons().stream().filter(lesson -> selectedIds.isEmpty() || selectedIds.contains(lesson.id())).toList();
@@ -183,6 +190,91 @@ public final class GuideValidation {
             SCENES.add(scene);
             LogUtils.getLogger().info("AE2_GUIDE_SCENE_PASS {} ({} nodes, {} steps)", lesson.id(), lesson.nodes().size(), lesson.steps().size());
         }
+    }
+
+    private static void validateOptionalLessons() {
+        var supportedAddons = List.of("ae2omnicells", "bigger_ae2", "ae2things", "ae2_mega_things");
+        var allLessons = GuideBook.allLessons();
+        for (var lesson : allLessons) {
+            if (lesson.chapter().equals(GuideChapter.ADDONS.id()) && lesson.requiresMods().isEmpty())
+                throw new IllegalStateException("Add-on lesson has no optional mod requirement: " + lesson.id());
+            if (!supportedAddons.containsAll(lesson.requiresMods()))
+                throw new IllegalStateException("Lesson requires an untested add-on: " + lesson.id());
+        }
+
+        for (int mask = 0; mask < 1 << supportedAddons.size(); mask++) {
+            var loaded = new java.util.HashSet<String>();
+            for (int bit = 0; bit < supportedAddons.size(); bit++)
+                if ((mask & (1 << bit)) != 0) loaded.add(supportedAddons.get(bit));
+            var expected = allLessons.stream().filter(lesson -> loaded.containsAll(lesson.requiresMods()))
+                    .map(GuideBook.Lesson::id).toList();
+            var actual = GuideBook.lessonsForMods(loaded).stream().map(GuideBook.Lesson::id).toList();
+            if (!actual.equals(expected)) throw new IllegalStateException("Optional lesson filter failed for add-on mask " + mask);
+        }
+
+        var loadedAddons = supportedAddons.stream().filter(ModList.get()::isLoaded).collect(java.util.stream.Collectors.toSet());
+        boolean expectAddons = Boolean.getBoolean("ae2ponder.expectAddons");
+        if (expectAddons && !loadedAddons.equals(Set.copyOf(supportedAddons)))
+            throw new IllegalStateException("All four optional add-ons were expected, found " + loadedAddons);
+        if (!expectAddons && !loadedAddons.isEmpty())
+            throw new IllegalStateException("The no-add-on test configuration unexpectedly loaded " + loadedAddons);
+
+        var expectedAvailable = GuideBook.lessonsForMods(loadedAddons);
+        if (!GuideBook.lessons().stream().map(GuideBook.Lesson::id).toList()
+                .equals(expectedAvailable.stream().map(GuideBook.Lesson::id).toList()))
+            throw new IllegalStateException("Runtime lesson availability disagrees with loaded add-ons");
+        var activeChapters = GuideChapter.active(GuideBook.lessons());
+        if (activeChapters.contains(GuideChapter.ADDONS) != GuideBook.lessons().stream()
+                .anyMatch(lesson -> lesson.chapter().equals(GuideChapter.ADDONS.id())))
+            throw new IllegalStateException("The add-on chapter visibility is incorrect");
+
+        var addonLessons = expectedAvailable.stream()
+                .filter(lesson -> lesson.chapter().equals(GuideChapter.ADDONS.id())).toList();
+        var addonTagId = ResourceLocation.fromNamespaceAndPath("ae2ponder", GuideChapter.ADDONS.id());
+        var addonTag = PonderIndex.getTagAccess().getRegisteredTag(addonTagId);
+        if (addonLessons.isEmpty()) {
+            // Ponder returns its not_registered sentinel for an unknown tag, rather than null.
+            if (addonTag.getId().equals(addonTagId)
+                    || PonderIndex.getTagAccess().getListedTags().stream().anyMatch(tag -> tag.getId().equals(addonTagId))
+                    || !PonderIndex.getTagAccess().getItems(addonTagId).isEmpty())
+                throw new IllegalStateException("The add-on chapter is registered without an installed add-on");
+        } else {
+            if (!addonTag.getId().equals(addonTagId))
+                throw new IllegalStateException("The installed add-on chapter was not registered");
+            var expectedItems = new java.util.HashSet<ResourceLocation>();
+            expectedItems.add(ResourceLocation.parse(GuideChapter.ADDONS.icon()));
+            addonLessons.forEach(lesson -> {
+                expectedItems.add(ResourceLocation.parse(lesson.icon()));
+                lesson.components().stream().map(ResourceLocation::parse).forEach(expectedItems::add);
+            });
+            var actualItems = new java.util.HashSet<>(PonderIndex.getTagAccess().getItems(addonTag));
+            if (!addonTag.getMainItem().isEmpty())
+                actualItems.add(BuiltInRegistries.ITEM.getKey(addonTag.getMainItem().getItem()));
+            if (!actualItems.equals(expectedItems))
+                throw new IllegalStateException("The add-on chapter exposes missing or unavailable related items");
+        }
+
+        for (var lesson : expectedAvailable) {
+            requireItem(lesson.icon());
+            lesson.components().forEach(GuideValidation::requireItem);
+            GuidePlugin.entry(lesson.id());
+        }
+        for (var lesson : allLessons) {
+            if (expectedAvailable.contains(lesson)) continue;
+            try {
+                GuidePlugin.entry(lesson.id());
+                throw new IllegalStateException("Unavailable add-on lesson was registered: " + lesson.id());
+            } catch (IllegalStateException expected) {
+                if (!expected.getMessage().startsWith("Ponder lesson has not been registered:")) throw expected;
+            }
+        }
+
+        var compiledCourse = PonderIndex.getSceneAccess().compile(GuidePlugin.course()).stream()
+                .map(scene -> scene.getId().getPath()).toList();
+        if (!compiledCourse.equals(expectedAvailable.stream().map(GuideBook.Lesson::id).toList()))
+            throw new IllegalStateException("Native Ponder course includes hidden lessons or has the wrong order");
+        LogUtils.getLogger().info("AE2_GUIDE_OPTIONAL_PASS: {} loaded; {} available lessons; 16 mod combinations checked",
+                loadedAddons, expectedAvailable.size());
     }
 
     private static List<Integer> checkCallouts(GuideBook.Lesson lesson, PonderScene scene) {

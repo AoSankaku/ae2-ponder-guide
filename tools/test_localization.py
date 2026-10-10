@@ -100,6 +100,27 @@ class LocalizationChecks(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Duplicate key"):
             localization.read(path)
 
+    def test_optional_subtitle_changes_invalidate_translation_reviews(self):
+        guide = self.folder / "src/main/resources/assets/ae2ponder/guide"
+        templates = self.folder / "src/main/templates/lang"
+        guide.mkdir(parents=True)
+        templates.mkdir(parents=True)
+        for locale in ("en_us", "ja_jp"):
+            (templates / (locale + ".json")).write_text('{}', encoding="utf-8")
+        (guide / "lessons.json").write_text('[]', encoding="utf-8")
+        lesson = {"id": "optional_cell", "title": {"en": "Cell", "ja": "セル"},
+                  "summary": {"en": "Store items", "ja": "アイテムを保存"},
+                  "steps": [{"text": {"en": "Finite capacity", "ja": "容量は有限"}}]}
+        path = guide / "addons.json"
+        path.write_text(json.dumps([lesson]), encoding="utf-8")
+        with patch.object(localization, "ROOT", self.folder):
+            original = localization.sources()
+            self.assertEqual(original["ja_jp"]["ae2ponder.ponder.shared.optional_cell_0"], "容量は有限")
+            lesson["steps"][0]["text"]["en"] = "Finite capacity; unlimited types"
+            path.write_text(json.dumps([lesson]), encoding="utf-8")
+            self.assertNotEqual(localization.source_hash(original),
+                                localization.source_hash(localization.sources()))
+
 
 if __name__ == "__main__":
     unittest.main()

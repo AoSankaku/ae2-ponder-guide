@@ -26,6 +26,7 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.lwjgl.glfw.GLFW;
 
@@ -75,6 +76,7 @@ final class GuideUiValidation {
         if (frame == 44) {
             if (!(client.screen instanceof GuideUiHost)) throw new IllegalStateException("ME Guide did not open");
             meGuide = client.screen;
+            checkCompiledGuideContents(meGuide);
             screenshot("me-guide-ponder.png");
         }
         if (frame == 45) clickFirstGuideLink();
@@ -122,7 +124,7 @@ final class GuideUiValidation {
     static void checkTagPages() {
         var client = Minecraft.getInstance();
         for (var size : List.of(new int[]{320, 240}, new int[]{427, 260}, new int[]{640, 360})) {
-            for (var chapter : GuideChapter.values()) {
+            for (var chapter : GuideChapter.active(GuideBook.lessons())) {
                 var tag = PonderIndex.getTagAccess().getRegisteredTag(ResourceLocation.fromNamespaceAndPath("ae2ponder", chapter.id()));
                 var screen = new PonderTagScreen(tag);
                 client.setScreen(screen);
@@ -195,6 +197,37 @@ final class GuideUiValidation {
     static void clickBack() {
         var screen = Minecraft.getInstance().screen;
         screen.mouseClicked(41, screen.height - 41, 0);
+    }
+
+    static void checkCompiledGuideContents(Screen screen) throws ReflectiveOperationException {
+        if (!(screen instanceof DocumentScreen)) throw new IllegalStateException("Expected a compiled ME Guide page");
+        var getter = DocumentScreen.class.getDeclaredMethod("getDocumentWithLayout");
+        getter.setAccessible(true);
+        var document = (LytDocument) getter.invoke(screen);
+        int[] links = {0};
+        var text = new StringBuilder();
+        document.visit(new LytVisitor() {
+            @Override public Result beforeFlowContent(LytFlowContent content) {
+                if (content instanceof LytFlowLink) links[0]++;
+                if (content instanceof guideme.document.flow.LytFlowText flowText)
+                    text.append(flowText.getText()).append(' ');
+                return Result.CONTINUE;
+            }
+        });
+        int expectedLinks = GuideBook.lessons().size() + 1; // One start link and one per available lesson.
+        if (links[0] != expectedLinks)
+            throw new IllegalStateException("Compiled ME Guide has " + links[0] + " links; expected " + expectedLinks);
+
+        var availableIds = GuideBook.lessons().stream().map(GuideBook.Lesson::id).collect(java.util.stream.Collectors.toSet());
+        for (var lesson : GuideBook.allLessons()) {
+            if (availableIds.contains(lesson.id())) continue;
+            for (String key : List.of("ae2ponder.ponder." + lesson.id() + ".header",
+                    "ae2ponder.lesson." + lesson.id() + ".summary")) {
+                String hiddenText = Component.translatable(key).getString();
+                if (!hiddenText.isBlank() && text.indexOf(hiddenText) >= 0)
+                    throw new IllegalStateException("Unavailable add-on text leaked into compiled ME Guide: " + lesson.id());
+            }
+        }
     }
 
     private static void clickFirstGuideLink() throws ReflectiveOperationException {

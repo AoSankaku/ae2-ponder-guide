@@ -19,6 +19,8 @@ repositories {
     mavenCentral()
     maven { url = 'https://maven.createmod.net' }
     maven { url = 'https://maven.neoforged.net/releases' }
+    maven { url = 'https://api.modrinth.com/maven'; content { includeGroup 'maven.modrinth' } }
+    maven { url = 'https://www.cursemaven.com'; content { includeGroup 'curse.maven' } }
 }
 
 neoForge {
@@ -36,6 +38,7 @@ neoForge {
             systemProperty 'ae2ponder.validate', 'true'
             systemProperty 'ae2ponder.validationLessons', project.findProperty('validationLessons') ?: ''
             systemProperty 'ae2ponder.validateLanguages', project.hasProperty('validateLanguages').toString()
+            systemProperty 'ae2ponder.expectAddons', (!project.hasProperty('withoutAddons')).toString()
             programArguments.addAll '--width', '960', '--height', '640'
         }
         performanceClient {
@@ -60,7 +63,17 @@ dependencies {
     implementation "net.createmod.ponder:ponder-neoforge:${ponder_version}"
     runtimeOnly "org.appliedenergistics:appliedenergistics2:${ae2_version}"
     runtimeOnly 'org.appliedenergistics:guideme:21.1.19'
+    compileOnly 'org.appliedenergistics:guideme:21.1.19'
     validationCompileOnly 'org.appliedenergistics:guideme:21.1.19'
+    // Development/test launches include every supported add-on. None is bundled or required by our JAR.
+    if (!project.hasProperty('withoutAddons')) {
+        runtimeOnly "maven.modrinth:ae2-omni-cells:${omni_version}"
+        runtimeOnly "maven.modrinth:bigger-ae2:${bigger_version}"
+        runtimeOnly 'curse.maven:ae2-things-609977:5637783'
+        runtimeOnly 'curse.maven:ae2-mega-things-1150075:6203833'
+        runtimeOnly "maven.modrinth:mega:${megacells_version}"
+        runtimeOnly "maven.modrinth:kotlin-for-forge:${kotlinforforge_version}"
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -79,15 +92,34 @@ apply from: 'gradle/localization.gradle'
 // Keep Ponder translation keys synchronized with the same data used by the catalogue.
 def guideResources = tasks.register('generateGuideResources') {
     def lessonsFile = file('src/main/resources/assets/ae2ponder/guide/lessons.json')
+    def addonsFile = file('src/main/resources/assets/ae2ponder/guide/addons.json')
     inputs.file(lessonsFile)
+    inputs.file(addonsFile)
     inputs.dir('src/main/templates/lang')
     inputs.dir('src/main/translations')
     inputs.file('gradle/localization.gradle')
     def destination = layout.buildDirectory.dir('generated/guideResources')
     outputs.dir(destination)
     doLast {
-        def lessons = new groovy.json.JsonSlurper().parse(lessonsFile, 'UTF-8')
-        def allowedChapters = ['start', 'network', 'storage', 'automation', 'advanced', 'troubleshooting']
+        def core = new groovy.json.JsonSlurper().parse(lessonsFile, 'UTF-8')
+        def addons = new groovy.json.JsonSlurper().parse(addonsFile, 'UTF-8')
+        def supportedAddons = ['ae2omnicells', 'bigger_ae2', 'ae2things', 'ae2_mega_things'] as Set
+        assert core.every { !it.requiresMods } : 'Core AE2 lessons must not depend on add-ons'
+        assert addons.every { it.chapter == 'addons' && it.requiresMods && it.requiresMods.every { mod -> mod in supportedAddons } } : 'Optional lessons need a supported mod condition'
+        assert addons.collectMany { it.requiresMods }.toSet() == supportedAddons : 'Every supported add-on needs lessons'
+        def addonNamespaces = ['ae2omnicells': ['ae2omnicells'], 'bigger_ae2': ['bigger_ae2'],
+            'ae2things': ['ae2things'], 'ae2_mega_things': ['ae2_mega_things', 'ae2things', 'megacells']]
+        addons.each { lesson ->
+            def allowedNamespaces = ['minecraft', 'ae2'] + lesson.requiresMods.collectMany { addonNamespaces[it] }
+            def resources = [lesson.icon] + lesson.components + lesson.nodes*.block
+            lesson.steps.each { step ->
+                resources.addAll((step.callouts ?: [])*.item)
+                if (step.flow) resources.add(step.flow.item)
+            }
+            assert resources.every { it.split(':')[0] in allowedNamespaces } : "Unguarded add-on resource in ${lesson.id}"
+        }
+        def lessons = core + addons
+        def allowedChapters = ['start', 'network', 'storage', 'automation', 'advanced', 'troubleshooting', 'addons']
         assert lessons.size() >= 36 : 'The guide must cover all major AE2 systems'
         assert lessons*.id.toSet().size() == lessons.size() : 'Duplicate lesson ID'
         assert lessons*.chapter.toSet() == allowedChapters.toSet() : 'Missing or invalid chapter'
