@@ -26,6 +26,10 @@ Minecraft 1.21.1 / NeoForge向けの、Applied Energistics 2を立体アニメ�
 プレイヤーのワールドを操作しません。電力源や他MODの加工機は導入環境によって異なります。
 レシピ変更やチャネル設定変更があるMODパックでは、その設定を優先してください。
 
+収納セル、投入素材、回路、アップグレードカード、パターンなどは、対象の装置に向けた
+アイテム画像付きの吹き出しでも示します。複数の素材は順番に表示し、字幕と一緒に確認できます。
+実際にアイテムを持って操作する場面には、右クリックやスニークの印も表示します。
+
 ## 必要なMOD
 
 | MOD | 検証対象バージョン |
@@ -35,7 +39,7 @@ Minecraft 1.21.1 / NeoForge向けの、Applied Energistics 2を立体アニメ�
 | GuideME | 21.1.19（AE2の必須依存） |
 | Ponder | 1.0.87+mc1.21.1 |
 | Flywheel | 1.0.4 |
-| AE2 Ponder Guide | 1.0.1 |
+| AE2 Ponder Guide | 1.0.2 |
 
 AE2が要求するGuideMEは必要ですが、今回のガイドはPonderから利用します。
 Createが既にPonder/Flywheelを同梱している環境では、同じMODを重複導入しないでください。
@@ -48,13 +52,14 @@ Java 21を使用します。
 .\gradlew.bat build
 ```
 
-出力は `build/libs/ae2-ponder-guide-1.0.1.jar` です。
-`generateGuideResources` が全場面のノード参照・座標・表示順・多言語テキストを検証し、
+出力は `build/libs/ae2-ponder-guide-1.0.2.jar` です。
+`generateGuideResources` が全場面のノード参照・座標・表示順・吹き出し・多言語テキストを検証し、
 Ponder用の翻訳ファイルを生成します。構造NBTを変更する場合は `python tools/generate_structure.py` を使います。
 
 統合検証は `./gradlew -PvalidateGuide runValidationClient` で実行できます。
 検証用コードは配布JARに含まれません。別の開発ワールドを自動作成し、ウィンドウを隠して、
-Createなしで全場面のコンパイル・再生・巻き戻し・部品復元・描画と設定の小ボタンから一覧への移動を確認します。
+Createなしで全場面のコンパイル・再生・巻き戻し・部品復元・吹き出しのアイテムと表示順・描画、
+設定の小ボタンから一覧への移動を確認します。
 結果は `build/validation-run/validation-result.json`、画像は同ディレクトリの `screenshots` に保存します。
 
 通常ワールドの性能調査には `./gradlew -PvalidateGuide runPerformanceClient` を利用できます。

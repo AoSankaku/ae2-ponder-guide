@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -58,14 +59,33 @@ public final class GuideBook {
 
     public record Flow(String from, String to, String item) {}
 
+    public record Callout(String item, String anchor, String action, String pointing, List<Double> offset, boolean sneak) {
+        public Callout {
+            ResourceLocation.parse(item);
+            Objects.requireNonNull(anchor);
+            action = action == null ? "none" : action;
+            if (!List.of("none", "right_click", "left_click", "scroll").contains(action))
+                throw new IllegalArgumentException("Invalid callout action: " + action);
+            pointing = pointing == null ? "down" : pointing.toLowerCase(Locale.ROOT);
+            if (!List.of("up", "down", "left", "right").contains(pointing))
+                throw new IllegalArgumentException("Invalid callout direction: " + pointing);
+            offset = offset == null ? List.of(0.0, 0.25, 0.0) : List.copyOf(offset);
+            if (offset.size() != 3 || offset.stream().anyMatch(value -> !Double.isFinite(value) || Math.abs(value) > 2))
+                throw new IllegalArgumentException("Invalid callout offset: " + offset);
+            if (sneak && action.equals("none")) throw new IllegalArgumentException("Sneak requires a callout action");
+        }
+    }
+
     public record Step(Localized text, List<String> show, List<String> focus, List<String> hide,
-                       Flow flow, boolean warning, Map<String, String> nbt) {
+                       Flow flow, boolean warning, Map<String, String> nbt, List<Callout> callouts) {
         public Step {
             Objects.requireNonNull(text);
             show = show == null ? List.of() : List.copyOf(show);
             focus = focus == null ? List.of() : List.copyOf(focus);
             hide = hide == null ? List.of() : List.copyOf(hide);
             nbt = nbt == null ? Map.of() : Map.copyOf(nbt);
+            callouts = callouts == null ? List.of() : List.copyOf(callouts);
+            if (callouts.size() > 3) throw new IllegalArgumentException("Too many callouts in one step");
         }
     }
 
@@ -84,11 +104,19 @@ public final class GuideBook {
             if (nodes.stream().map(Node::id).distinct().count() != nodes.size())
                 throw new IllegalArgumentException("Duplicate node in " + id);
             var nodeList = nodes;
+            var visible = new java.util.HashSet<String>();
             for (var step : steps) {
                 step.show().forEach(n -> requireNode(nodeList, n));
                 step.focus().forEach(n -> requireNode(nodeList, n));
                 step.hide().forEach(n -> requireNode(nodeList, n));
                 step.nbt().keySet().forEach(n -> requireNode(nodeList, n));
+                visible.removeAll(step.hide());
+                visible.addAll(step.show());
+                for (var callout : step.callouts()) {
+                    requireNode(nodeList, callout.anchor());
+                    if (!visible.contains(callout.anchor()))
+                        throw new IllegalArgumentException("Callout points to a hidden node: " + id + "/" + callout.anchor());
+                }
                 if (step.flow() != null) {
                     requireNode(nodes, step.flow().from());
                     requireNode(nodes, step.flow().to());

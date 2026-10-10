@@ -98,7 +98,9 @@ def guideResources = tasks.register('generateGuideResources') {
                 assert node.pos.size() == 3 && node.pos[0] in 0..8 && node.pos[1] in 1..4 && node.pos[2] in 0..8 : "Out of bounds ${lesson.id}/${node.id}"
             }
             lesson.steps.each { step ->
-                def refs = (step.show ?: []) + (step.focus ?: []) + (step.hide ?: []) + (step.nbt ?: [:]).keySet()
+                def callouts = step.callouts ?: []
+                assert callouts.size() <= 3 : "Too many callouts in ${lesson.id}"
+                def refs = (step.show ?: []) + (step.focus ?: []) + (step.hide ?: []) + (step.nbt ?: [:]).keySet() + callouts*.anchor
                 if (step.flow) refs += [step.flow.from, step.flow.to]
                 assert refs.every { it in ids } : "Unknown node reference in ${lesson.id}"
                 visible.removeAll(step.hide ?: [])
@@ -106,7 +108,17 @@ def guideResources = tasks.register('generateGuideResources') {
                 revealed.addAll(step.show ?: [])
                 assert (step.focus ?: []).every { it in visible } : "Focus on invisible node in ${lesson.id}"
                 if (step.flow) assert step.flow.from in visible && step.flow.to in visible : "Invisible flow in ${lesson.id}"
+                callouts.each { callout ->
+                    assert callout.item ==~ '[a-z0-9_.-]+:[a-z0-9_./-]+' : "Invalid callout item in ${lesson.id}"
+                    assert callout.anchor in visible : "Callout on hidden node in ${lesson.id}"
+                    assert (callout.action ?: 'none') in ['none', 'right_click', 'left_click', 'scroll'] : "Invalid callout action in ${lesson.id}"
+                    assert (callout.pointing ?: 'down') in ['up', 'down', 'left', 'right'] : "Invalid callout direction in ${lesson.id}"
+                    def offset = callout.offset ?: [0, 0.25, 0]
+                    assert offset.size() == 3 && offset.every { it instanceof Number && it >= -2 && it <= 2 } : "Invalid callout offset in ${lesson.id}"
+                    assert !callout.sneak || callout.action in ['right_click', 'left_click', 'scroll'] : "Sneak without an action in ${lesson.id}"
+                }
             }
+            assert lesson.steps.any { it.callouts } : "Lesson has no item callouts: ${lesson.id}"
             assert revealed == ids : "Unrevealed nodes in ${lesson.id}: ${ids - revealed}"
         }
         ['ja_jp': 'ja', 'en_us': 'en'].each { language, field ->
@@ -130,7 +142,8 @@ def guideResources = tasks.register('generateGuideResources') {
             target.parentFile.mkdirs()
             target.setText(groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(translations)), 'UTF-8')
         }
-        logger.lifecycle("Validated ${lessons.size()} lessons and generated Japanese/English Ponder translations")
+        def calloutCount = lessons.sum { lesson -> lesson.steps.sum { step -> (step.callouts ?: []).size() } }
+        logger.lifecycle("Validated ${lessons.size()} lessons and ${calloutCount} item callouts; generated Japanese/English Ponder translations")
     }
 }
 sourceSets.main.resources.srcDir(guideResources)

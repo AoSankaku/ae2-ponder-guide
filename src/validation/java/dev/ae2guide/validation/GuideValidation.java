@@ -8,6 +8,7 @@ import dev.ae2guide.client.GuideScreen;
 import dev.ae2guide.client.GuideScenes;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.createmod.ponder.foundation.PonderScene;
+import net.createmod.ponder.foundation.element.InputWindowElement;
 import net.createmod.ponder.foundation.ui.PonderUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
@@ -18,6 +19,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.GameRules;
@@ -45,6 +47,10 @@ public final class GuideValidation {
     private static boolean validating;
     private static int frame;
     private static final List<PonderScene> SCENES = new ArrayList<>();
+    private static final List<List<Integer>> CALLOUT_TIMES = new ArrayList<>();
+    private static final List<String> CALLOUT_SCREENSHOTS = List.of(
+            "first_network", "charged_fluix", "processors", "p2p_channels", "quantum_bridge", "cell_io");
+    private static int verifiedCallouts;
 
     private GuideValidation() {}
 
@@ -100,20 +106,28 @@ public final class GuideValidation {
             if (frame == 20) screenshot("first-lesson.png");
             if (frame >= 24 && frame < 24 + SCENES.size() * 12 && (frame - 24) % 12 == 0) {
                 int index = (frame - 24) / 12;
-                client.setScreen(new ValidationPonderScreen(SCENES.get(index)));
+                client.setScreen(new ValidationPonderScreen(SCENES.get(index), CALLOUT_TIMES.get(index).getFirst()));
             }
             if (frame >= 24 && frame < 24 + SCENES.size() * 12 && client.screen instanceof PonderUI ui) {
                 int phase = (frame - 24) % 12;
-                if (phase == 4) ui.seekToTime(ui.getActiveScene().getTotalTime() / 2);
+                if (phase == 4) {
+                    var times = CALLOUT_TIMES.get((frame - 24) / 12);
+                    int target = times.get(times.size() / 2);
+                    if (target > ui.getActiveScene().getCurrentTime()) ui.seekToTime(target);
+                }
                 if (phase == 8) ui.seekToTime(ui.getActiveScene().getTotalTime());
-                if (phase == 10 && (SCENES.size() <= 6 || ((frame - 24) / 12) % 6 == 0))
+                boolean captureCallouts = SCENES.size() <= 6 || CALLOUT_SCREENSHOTS.contains(ui.getActiveScene().getId().getPath());
+                if (phase == 3 && (captureCallouts || ((frame - 24) / 12) % 6 == 0))
                     screenshot("lesson-" + ui.getActiveScene().getId().getPath() + ".png");
+                if (phase == 6 && captureCallouts)
+                    screenshot("callout-" + ui.getActiveScene().getId().getPath() + ".png");
             }
             if (frame >= 24 + SCENES.size() * 12) {
                 var result = client.gameDirectory.toPath().resolve("validation-result.json");
                 Files.writeString(result, new Gson().toJson(java.util.Map.of("passed", true,
-                        "lessons", SCENES.size(), "rendered", SCENES.size(), "createInstalled", false)));
-                LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_PASS: {} storyboards compiled, replayed and rendered", SCENES.size());
+                        "lessons", SCENES.size(), "rendered", SCENES.size(), "callouts", verifiedCallouts, "createInstalled", false)));
+                LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_PASS: {} storyboards compiled, replayed and rendered; {} item callouts verified",
+                        SCENES.size(), verifiedCallouts);
                 client.stop();
             }
         } catch (Throwable exception) {
@@ -139,15 +153,48 @@ public final class GuideValidation {
                     throw new IllegalStateException("Item has no tooltip Ponder entry: " + component);
             }
             lesson.steps().stream().filter(step -> step.flow() != null).forEach(step -> requireItem(step.flow().item()));
+            lesson.steps().stream().flatMap(step -> step.callouts().stream()).forEach(callout -> requireItem(callout.item()));
             var scene = PonderIndex.getSceneAccess().compile(List.of(GuidePlugin.entry(lesson.id()))).getFirst();
             if (scene.getBounds().maxY() != 4 || scene.getBounds().maxX() != 8) throw new IllegalStateException("Incorrect stage bounds");
             scene.seekToTime(scene.getTotalTime());
             checkBlocks(lesson, scene);
             scene.begin();
+            CALLOUT_TIMES.add(checkCallouts(lesson, scene));
             scene.seekToTime(scene.getTotalTime());
             checkBlocks(lesson, scene);
             SCENES.add(scene);
             LogUtils.getLogger().info("AE2_GUIDE_SCENE_PASS {} ({} nodes, {} steps)", lesson.id(), lesson.nodes().size(), lesson.steps().size());
+        }
+    }
+
+    private static List<Integer> checkCallouts(GuideBook.Lesson lesson, PonderScene scene) {
+        try {
+            var itemField = InputWindowElement.class.getDeclaredField("item");
+            itemField.setAccessible(true);
+            var times = new ArrayList<Integer>();
+            if (scene.getKeyframeCount() != lesson.steps().size()) throw new IllegalStateException("Missing step keyframes");
+            for (int stepIndex = 0; stepIndex < lesson.steps().size(); stepIndex++) {
+                var step = lesson.steps().get(stepIndex);
+                if (step.callouts().isEmpty()) continue;
+                int slotDuration = GuideScenes.captionDuration(step) / step.callouts().size();
+                for (int slot = 0; slot < step.callouts().size(); slot++) {
+                    int time = scene.getKeyframeTime(stepIndex) + 12 + slot * slotDuration + 15;
+                    scene.seekToTime(time);
+                    var visible = scene.getElements().stream().filter(InputWindowElement.class::isInstance)
+                            .map(InputWindowElement.class::cast).filter(InputWindowElement::isVisible).toList();
+                    if (visible.size() != 1) throw new IllegalStateException("Missing or overlapping callouts: " + lesson.id() + "/" + stepIndex);
+                    var bubble = visible.getFirst();
+                    var item = (ItemStack) itemField.get(bubble);
+                    if (bubble.getFade(1) < .99f || !BuiltInRegistries.ITEM.getKey(item.getItem()).toString().equals(step.callouts().get(slot).item()))
+                        throw new IllegalStateException("Wrong or invisible callout item: " + lesson.id() + "/" + stepIndex + "/" + slot);
+                    times.add(time);
+                    verifiedCallouts++;
+                }
+            }
+            if (times.isEmpty()) throw new IllegalStateException("No item callouts in " + lesson.id());
+            return List.copyOf(times);
+        } catch (ReflectiveOperationException exception) {
+            throw new IllegalStateException("Cannot inspect Ponder item callouts", exception);
         }
     }
 
@@ -193,10 +240,14 @@ public final class GuideValidation {
     }
 
     private static final class ValidationPonderScreen extends PonderUI {
-        private ValidationPonderScreen(PonderScene scene) { super(List.of(scene)); }
+        private final int initialTime;
+        private ValidationPonderScreen(PonderScene scene, int initialTime) {
+            super(List.of(scene));
+            this.initialTime = initialTime;
+        }
         @Override protected void init() {
             super.init();
-            seekToTime(Math.min(60, getActiveScene().getTotalTime()));
+            seekToTime(initialTime);
         }
     }
 }

@@ -165,6 +165,12 @@
         "focus": [
           "sky0",
           "sky1"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:meteorite_compass",
+            "anchor": "sky2"
+          }
         ]
       },
       {
@@ -181,6 +187,12 @@
         ],
         "focus": [
           "cube"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:certus_quartz_crystal",
+            "anchor": "cluster"
+          }
         ]
       },
       {
@@ -196,7 +208,21 @@
           "from": "cube",
           "to": "flawed",
           "item": "ae2:logic_processor_press"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:logic_processor_press",
+            "anchor": "cube"
+          },
+          {
+            "item": "ae2:calculation_processor_press",
+            "anchor": "cube"
+          },
+          {
+            "item": "ae2:engineering_processor_press",
+            "anchor": "cube"
+          }
+        ]
       },
       {
         "text": {
@@ -207,7 +233,8 @@
         "focus": [
           "flawless"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       },
       {
         "text": {
@@ -217,6 +244,12 @@
         "show": [],
         "focus": [
           "cluster"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:certus_quartz_crystal",
+            "anchor": "cluster"
+          }
         ]
       }
     ]
@@ -360,7 +393,8 @@
           "bud1",
           "bud2",
           "bud3"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -371,6 +405,16 @@
         "focus": [
           "bud2",
           "bud3"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:certus_quartz_dust",
+            "anchor": "bud2"
+          },
+          {
+            "item": "ae2:certus_quartz_crystal",
+            "anchor": "bud3"
+          }
         ]
       },
       {
@@ -383,7 +427,8 @@
           "root1",
           "root2",
           "root3"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -400,7 +445,17 @@
           "from": "root3",
           "to": "repair",
           "item": "ae2:charged_certus_quartz_crystal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:charged_certus_quartz_crystal",
+            "anchor": "repair"
+          },
+          {
+            "item": "ae2:quartz_block",
+            "anchor": "repair"
+          }
+        ]
       },
       {
         "text": {
@@ -411,7 +466,13 @@
         "focus": [
           "root0"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": [
+          {
+            "item": "ae2:spatial_storage_cell_2",
+            "anchor": "root0"
+          }
+        ]
       }
     ]
   },
@@ -573,7 +634,8 @@
         "focus": [
           "root",
           "accelerator"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -585,6 +647,12 @@
         ],
         "focus": [
           "crank"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:crank",
+            "anchor": "crank"
+          }
         ]
       },
       {
@@ -605,6 +673,12 @@
         "focus": [
           "power",
           "accelerator"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:energy_acceptor",
+            "anchor": "power"
+          }
         ]
       },
       {
@@ -616,7 +690,8 @@
         "focus": [
           "root",
           "cluster"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -627,7 +702,8 @@
         "focus": [
           "accelerator",
           "root"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -783,7 +859,13 @@
           "from": "access",
           "to": "charger",
           "item": "ae2:certus_quartz_crystal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:certus_quartz_crystal",
+            "anchor": "charger"
+          }
+        ]
       },
       {
         "text": {
@@ -798,7 +880,13 @@
           "from": "charger",
           "to": "access",
           "item": "ae2:charged_certus_quartz_crystal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:charged_certus_quartz_crystal",
+            "anchor": "charger"
+          }
+        ]
       },
       {
         "text": {
@@ -815,7 +903,21 @@
           "from": "charger",
           "to": "water",
           "item": "ae2:charged_certus_quartz_crystal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:charged_certus_quartz_crystal",
+            "anchor": "water"
+          },
+          {
+            "item": "minecraft:quartz",
+            "anchor": "water"
+          },
+          {
+            "item": "minecraft:redstone",
+            "anchor": "water"
+          }
+        ]
       },
       {
         "text": {
@@ -830,7 +932,13 @@
           "from": "water",
           "to": "access",
           "item": "ae2:fluix_crystal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:fluix_crystal",
+            "anchor": "water"
+          }
+        ]
       },
       {
         "text": {
@@ -841,7 +949,8 @@
         "focus": [
           "charger",
           "water"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -1026,7 +1135,8 @@
         ],
         "focus": [
           "power"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -1043,7 +1153,21 @@
           "from": "access",
           "to": "logic",
           "item": "minecraft:gold_ingot"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:logic_processor_press",
+            "anchor": "logic"
+          },
+          {
+            "item": "minecraft:gold_ingot",
+            "anchor": "logic"
+          },
+          {
+            "item": "ae2:printed_logic_processor",
+            "anchor": "logic"
+          }
+        ]
       },
       {
         "text": {
@@ -1058,7 +1182,21 @@
           "from": "access",
           "to": "assembly",
           "item": "ae2:silicon"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:silicon_press",
+            "anchor": "assembly"
+          },
+          {
+            "item": "ae2:silicon",
+            "anchor": "assembly"
+          },
+          {
+            "item": "ae2:printed_silicon",
+            "anchor": "assembly"
+          }
+        ]
       },
       {
         "text": {
@@ -1073,7 +1211,21 @@
           "from": "logic",
           "to": "assembly",
           "item": "ae2:printed_logic_processor"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:printed_logic_processor",
+            "anchor": "assembly"
+          },
+          {
+            "item": "minecraft:redstone",
+            "anchor": "assembly"
+          },
+          {
+            "item": "ae2:printed_silicon",
+            "anchor": "assembly"
+          }
+        ]
       },
       {
         "text": {
@@ -1089,7 +1241,21 @@
           "from": "assembly",
           "to": "drive",
           "item": "ae2:logic_processor"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:logic_processor",
+            "anchor": "assembly"
+          },
+          {
+            "item": "ae2:calculation_processor",
+            "anchor": "assembly"
+          },
+          {
+            "item": "ae2:engineering_processor",
+            "anchor": "assembly"
+          }
+        ]
       }
     ]
   },
@@ -1273,7 +1439,8 @@
         ],
         "focus": [
           "machine"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -1287,6 +1454,12 @@
         "focus": [
           "hopper",
           "machine"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:certus_quartz_wrench",
+            "anchor": "machine"
+          }
         ]
       },
       {
@@ -1306,7 +1479,13 @@
           "from": "machine",
           "to": "chest",
           "item": "ae2:logic_processor"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:logic_processor",
+            "anchor": "chest"
+          }
+        ]
       },
       {
         "text": {
@@ -1316,6 +1495,16 @@
         "show": [],
         "focus": [
           "machine"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:printed_logic_processor",
+            "anchor": "machine"
+          },
+          {
+            "item": "ae2:printed_silicon",
+            "anchor": "machine"
+          }
         ]
       },
       {
@@ -1327,6 +1516,12 @@
         "focus": [
           "input",
           "machine"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:speed_card",
+            "anchor": "machine"
+          }
         ]
       }
     ]
@@ -1446,6 +1641,12 @@
         ],
         "focus": [
           "drive"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_4k",
+            "anchor": "drive"
+          }
         ]
       },
       {
@@ -1459,7 +1660,8 @@
         ],
         "focus": [
           "power"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -1475,6 +1677,16 @@
         ],
         "focus": [
           "access"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:fluix_glass_cable",
+            "anchor": "c2"
+          },
+          {
+            "item": "ae2:terminal",
+            "anchor": "access"
+          }
         ]
       },
       {
@@ -1491,7 +1703,13 @@
           "from": "access",
           "to": "drive",
           "item": "minecraft:iron_ingot"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:iron_ingot",
+            "anchor": "access"
+          }
+        ]
       },
       {
         "text": {
@@ -1502,7 +1720,8 @@
         "focus": [
           "drive",
           "power"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -1649,7 +1868,8 @@
         ],
         "focus": [
           "power"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -1661,6 +1881,16 @@
         ],
         "focus": [
           "vibration"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:coal",
+            "anchor": "vibration"
+          },
+          {
+            "item": "ae2:network_tool",
+            "anchor": "vibration"
+          }
         ]
       },
       {
@@ -1673,7 +1903,8 @@
           "drive",
           "buffer"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       },
       {
         "text": {
@@ -1683,6 +1914,12 @@
         "show": [],
         "focus": [
           "buffer"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:energy_cell",
+            "anchor": "buffer"
+          }
         ]
       },
       {
@@ -1695,6 +1932,12 @@
         ],
         "focus": [
           "dense"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:dense_energy_cell",
+            "anchor": "dense"
+          }
         ]
       }
     ]
@@ -1850,7 +2093,8 @@
           "c1",
           "c2",
           "drive"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -1862,7 +2106,8 @@
         ],
         "focus": [
           "bridge"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -1877,7 +2122,8 @@
           "red",
           "bridge",
           "c2"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -1889,7 +2135,8 @@
           "bridge",
           "red"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       },
       {
         "text": {
@@ -1899,6 +2146,12 @@
         "show": [],
         "focus": [
           "bridge"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:quartz_fiber",
+            "anchor": "bridge"
+          }
         ]
       }
     ]
@@ -2118,7 +2371,8 @@
         "focus": [
           "drive",
           "access"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -2135,7 +2389,8 @@
         ],
         "focus": [
           "c2"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -2148,7 +2403,8 @@
         "focus": [
           "ninth"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       },
       {
         "text": {
@@ -2159,6 +2415,12 @@
         "focus": [
           "drive",
           "d5"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:controller",
+            "anchor": "c2"
+          }
         ]
       },
       {
@@ -2170,7 +2432,8 @@
         "focus": [
           "c1",
           "c2"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -2333,6 +2596,12 @@
         ],
         "focus": [
           "controller"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:controller",
+            "anchor": "controller"
+          }
         ]
       },
       {
@@ -2343,7 +2612,8 @@
         "show": [],
         "focus": [
           "controller"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -2356,7 +2626,8 @@
         "focus": [
           "controller",
           "controllerTop"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -2369,7 +2640,8 @@
         "focus": [
           "separate"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       },
       {
         "text": {
@@ -2380,7 +2652,8 @@
         "focus": [
           "controller",
           "controllerTop"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -2610,6 +2883,12 @@
         "focus": [
           "trunk2",
           "trunk3"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:fluix_smart_dense_cable",
+            "anchor": "trunk2"
+          }
         ]
       },
       {
@@ -2625,6 +2904,12 @@
         ],
         "focus": [
           "brancha"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:fluix_smart_cable",
+            "anchor": "brancha"
+          }
         ]
       },
       {
@@ -2641,7 +2926,8 @@
         ],
         "focus": [
           "branchb"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -2653,7 +2939,8 @@
           "drivea",
           "trunk3"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       },
       {
         "text": {
@@ -2664,6 +2951,12 @@
         "focus": [
           "access",
           "branchb"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:terminal",
+            "anchor": "access"
+          }
         ]
       }
     ]
@@ -2827,7 +3120,8 @@
         "focus": [
           "red1",
           "blue1"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -2847,6 +3141,12 @@
         "focus": [
           "c2",
           "red1"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:fluix_smart_cable",
+            "anchor": "c3"
+          }
         ]
       },
       {
@@ -2858,6 +3158,12 @@
         "focus": [
           "red1",
           "blue1"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:cable_anchor",
+            "anchor": "red1"
+          }
         ]
       },
       {
@@ -2869,7 +3175,8 @@
         "focus": [
           "red1",
           "blue1"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -2880,7 +3187,8 @@
         "focus": [
           "access",
           "c3"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -3037,6 +3345,16 @@
         "focus": [
           "small",
           "large"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_1k",
+            "anchor": "small"
+          },
+          {
+            "item": "ae2:item_storage_cell_256k",
+            "anchor": "large"
+          }
         ]
       },
       {
@@ -3047,6 +3365,16 @@
         "show": [],
         "focus": [
           "small"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:cobblestone",
+            "anchor": "small"
+          },
+          {
+            "item": "minecraft:iron_sword",
+            "anchor": "small"
+          }
         ]
       },
       {
@@ -3058,7 +3386,8 @@
         "focus": [
           "large",
           "small"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -3068,7 +3397,8 @@
         "show": [],
         "focus": [
           "small"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -3079,6 +3409,12 @@
         "focus": [
           "small",
           "large"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_64k",
+            "anchor": "large"
+          }
         ]
       }
     ]
@@ -3202,6 +3538,12 @@
         ],
         "focus": [
           "drive"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_4k",
+            "anchor": "drive"
+          }
         ]
       },
       {
@@ -3215,7 +3557,8 @@
         ],
         "nbt": {
           "drive": "{\"visual\":{\"online\":1b,\"cell0\":{\"id\":\"ae2:item_storage_cell_4k\",\"state\":\"empty\"},\"cell1\":{\"id\":\"ae2:item_storage_cell_4k\",\"state\":\"not_empty\"}}}"
-        }
+        },
+        "callouts": []
       },
       {
         "text": {
@@ -3228,7 +3571,8 @@
         ],
         "nbt": {
           "drive": "{\"visual\":{\"online\":1b,\"cell0\":{\"id\":\"ae2:item_storage_cell_4k\",\"state\":\"types_full\"}}}"
-        }
+        },
+        "callouts": []
       },
       {
         "text": {
@@ -3241,7 +3585,8 @@
         ],
         "nbt": {
           "drive": "{\"visual\":{\"online\":1b,\"cell0\":{\"id\":\"ae2:item_storage_cell_4k\",\"state\":\"full\"}}}"
-        }
+        },
+        "callouts": []
       },
       {
         "text": {
@@ -3252,6 +3597,12 @@
         "focus": [
           "drive",
           "power"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:chest",
+            "anchor": "drive"
+          }
         ]
       }
     ]
@@ -3402,6 +3753,16 @@
         ],
         "focus": [
           "workbench"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_64k",
+            "anchor": "workbench"
+          },
+          {
+            "item": "minecraft:cobblestone",
+            "anchor": "workbench"
+          }
         ]
       },
       {
@@ -3413,7 +3774,8 @@
         "focus": [
           "bulk",
           "drive"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -3429,7 +3791,8 @@
           "from": "drive",
           "to": "bulk",
           "item": "minecraft:cobblestone"
-        }
+        },
+        "callouts": []
       },
       {
         "text": {
@@ -3440,7 +3803,8 @@
         "focus": [
           "workbench",
           "bulk"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -3450,6 +3814,16 @@
         "show": [],
         "focus": [
           "workbench"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:equal_distribution_card",
+            "anchor": "workbench"
+          },
+          {
+            "item": "ae2:inverter_card",
+            "anchor": "workbench"
+          }
         ]
       }
     ]
@@ -3599,6 +3973,12 @@
         "focus": [
           "bus",
           "barrel"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:storage_bus",
+            "anchor": "bus"
+          }
         ]
       },
       {
@@ -3610,7 +3990,8 @@
         "focus": [
           "barrel",
           "access"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -3620,6 +4001,12 @@
         "show": [],
         "focus": [
           "bus"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:cobblestone",
+            "anchor": "bus"
+          }
         ]
       },
       {
@@ -3636,7 +4023,8 @@
           "from": "access",
           "to": "barrel",
           "item": "minecraft:cobblestone"
-        }
+        },
+        "callouts": []
       },
       {
         "text": {
@@ -3647,7 +4035,8 @@
         "focus": [
           "bus",
           "barrel"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -3793,6 +4182,12 @@
         ],
         "focus": [
           "drive"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:fluid_storage_cell_4k",
+            "anchor": "drive"
+          }
         ]
       },
       {
@@ -3804,7 +4199,8 @@
         "focus": [
           "drive",
           "access"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -3818,7 +4214,8 @@
         "focus": [
           "fluidbus",
           "tank"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -3828,6 +4225,12 @@
         "show": [],
         "focus": [
           "fluidbus"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:water_bucket",
+            "anchor": "fluidbus"
+          }
         ]
       },
       {
@@ -3839,6 +4242,16 @@
         "focus": [
           "access",
           "tank"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:bucket",
+            "anchor": "access"
+          },
+          {
+            "item": "minecraft:water_bucket",
+            "anchor": "access"
+          }
         ]
       }
     ]
@@ -3989,6 +4402,12 @@
         ],
         "focus": [
           "drive"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_1k",
+            "anchor": "drive"
+          }
         ]
       },
       {
@@ -3999,7 +4418,8 @@
         "show": [],
         "focus": [
           "io"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -4015,7 +4435,13 @@
           "from": "io",
           "to": "drive",
           "item": "ae2:item_storage_cell_1k"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_64k",
+            "anchor": "drive"
+          }
+        ]
       },
       {
         "text": {
@@ -4025,6 +4451,20 @@
         "show": [],
         "focus": [
           "io"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_1k",
+            "anchor": "io"
+          },
+          {
+            "item": "ae2:cell_component_1k",
+            "anchor": "io"
+          },
+          {
+            "item": "ae2:item_cell_housing",
+            "anchor": "io"
+          }
         ]
       },
       {
@@ -4036,7 +4476,8 @@
         "focus": [
           "io",
           "workbench"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -4192,6 +4633,16 @@
         "focus": [
           "charger",
           "drive"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:portable_item_cell_4k",
+            "anchor": "charger"
+          },
+          {
+            "item": "ae2:wireless_terminal",
+            "anchor": "access"
+          }
         ]
       },
       {
@@ -4204,7 +4655,8 @@
         ],
         "focus": [
           "wireless"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -4219,7 +4671,13 @@
           "from": "charger",
           "to": "wireless",
           "item": "ae2:wireless_crafting_terminal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:wireless_crafting_terminal",
+            "anchor": "wireless"
+          }
+        ]
       },
       {
         "text": {
@@ -4230,6 +4688,12 @@
         "focus": [
           "wireless",
           "charger"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:wireless_booster",
+            "anchor": "wireless"
+          }
         ]
       },
       {
@@ -4245,7 +4709,17 @@
           "from": "wireless",
           "to": "charger",
           "item": "ae2:wireless_crafting_terminal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:wireless_crafting_terminal",
+            "anchor": "charger"
+          },
+          {
+            "item": "ae2:energy_card",
+            "anchor": "charger"
+          }
+        ]
       }
     ]
   },
@@ -4439,7 +4913,8 @@
         ],
         "focus": [
           "ore"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -4455,7 +4930,13 @@
           "from": "drive",
           "to": "ore",
           "item": "minecraft:raw_iron"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:raw_iron",
+            "anchor": "ore"
+          }
+        ]
       },
       {
         "text": {
@@ -4471,7 +4952,13 @@
           "from": "drive",
           "to": "fuel",
           "item": "minecraft:coal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:coal",
+            "anchor": "fuel"
+          }
+        ]
       },
       {
         "text": {
@@ -4487,7 +4974,13 @@
           "from": "result",
           "to": "drive",
           "item": "minecraft:iron_ingot"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:iron_ingot",
+            "anchor": "result"
+          }
+        ]
       },
       {
         "text": {
@@ -4499,7 +4992,8 @@
           "ore",
           "result"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       }
     ]
   },
@@ -4681,7 +5175,8 @@
         ],
         "focus": [
           "interface"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -4697,7 +5192,13 @@
           "from": "hopper",
           "to": "drive",
           "item": "minecraft:iron_ingot"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:iron_ingot",
+            "anchor": "interface"
+          }
+        ]
       },
       {
         "text": {
@@ -4713,7 +5214,13 @@
           "from": "drive",
           "to": "interface",
           "item": "minecraft:coal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:coal",
+            "anchor": "interface"
+          }
+        ]
       },
       {
         "text": {
@@ -4723,6 +5230,12 @@
         "show": [],
         "focus": [
           "interface"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:crafting_card",
+            "anchor": "interface"
+          }
         ]
       },
       {
@@ -4736,6 +5249,12 @@
         ],
         "focus": [
           "flat"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:cable_interface",
+            "anchor": "flat"
+          }
         ]
       }
     ]
@@ -4912,6 +5431,12 @@
         "focus": [
           "import",
           "export"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:speed_card",
+            "anchor": "import"
+          }
         ]
       },
       {
@@ -4922,6 +5447,12 @@
         "show": [],
         "focus": [
           "export"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:capacity_card",
+            "anchor": "export"
+          }
         ]
       },
       {
@@ -4932,6 +5463,12 @@
         "show": [],
         "focus": [
           "import"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:redstone_card",
+            "anchor": "import"
+          }
         ]
       },
       {
@@ -4942,6 +5479,12 @@
         "show": [],
         "focus": [
           "export"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:crafting_card",
+            "anchor": "export"
+          }
         ]
       },
       {
@@ -4953,6 +5496,16 @@
         "focus": [
           "import",
           "export"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:fuzzy_card",
+            "anchor": "import"
+          },
+          {
+            "item": "ae2:inverter_card",
+            "anchor": "import"
+          }
         ]
       }
     ]
@@ -5113,6 +5666,12 @@
         ],
         "focus": [
           "emitter"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:iron_ingot",
+            "anchor": "emitter"
+          }
         ]
       },
       {
@@ -5124,7 +5683,8 @@
         "focus": [
           "emitter",
           "import"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -5139,7 +5699,13 @@
           "from": "farm",
           "to": "drive",
           "item": "minecraft:iron_ingot"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:redstone_card",
+            "anchor": "import"
+          }
+        ]
       },
       {
         "text": {
@@ -5150,6 +5716,12 @@
         "focus": [
           "emitter",
           "buffer"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:energy_level_emitter",
+            "anchor": "buffer"
+          }
         ]
       },
       {
@@ -5161,6 +5733,12 @@
         "focus": [
           "c2",
           "emitter"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:toggle_bus",
+            "anchor": "c2"
+          }
         ]
       }
     ]
@@ -5328,6 +5906,12 @@
         ],
         "focus": [
           "access"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:blank_pattern",
+            "anchor": "access"
+          }
         ]
       },
       {
@@ -5347,7 +5931,13 @@
           "from": "access",
           "to": "provider",
           "item": "ae2:crafting_pattern"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:crafting_pattern",
+            "anchor": "provider"
+          }
+        ]
       },
       {
         "text": {
@@ -5359,6 +5949,12 @@
         ],
         "focus": [
           "cpu"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:1k_crafting_storage",
+            "anchor": "cpu"
+          }
         ]
       },
       {
@@ -5372,6 +5968,12 @@
         "focus": [
           "request",
           "cpu"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:chest",
+            "anchor": "request"
+          }
         ]
       },
       {
@@ -5388,7 +5990,13 @@
           "from": "assembler",
           "to": "provider",
           "item": "minecraft:chest"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:chest",
+            "anchor": "assembler"
+          }
+        ]
       }
     ]
   },
@@ -5587,6 +6195,12 @@
           "co",
           "unit",
           "monitor"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:4k_crafting_storage",
+            "anchor": "storage"
+          }
         ]
       },
       {
@@ -5598,6 +6212,12 @@
         "focus": [
           "storage",
           "drive"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_4k",
+            "anchor": "drive"
+          }
         ]
       },
       {
@@ -5608,6 +6228,12 @@
         "show": [],
         "focus": [
           "storage"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:64k_crafting_storage",
+            "anchor": "storage"
+          }
         ]
       },
       {
@@ -5620,6 +6246,12 @@
           "co",
           "monitor",
           "unit"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:crafting_accelerator",
+            "anchor": "co"
+          }
         ]
       },
       {
@@ -5633,7 +6265,8 @@
         "focus": [
           "othercpu",
           "storage"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -5835,6 +6468,12 @@
         ],
         "focus": [
           "access"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:processing_pattern",
+            "anchor": "access"
+          }
         ]
       },
       {
@@ -5857,7 +6496,17 @@
           "from": "provider",
           "to": "furnace",
           "item": "minecraft:raw_iron"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:raw_iron",
+            "anchor": "provider"
+          },
+          {
+            "item": "minecraft:iron_ingot",
+            "anchor": "furnace"
+          }
+        ]
       },
       {
         "text": {
@@ -5867,6 +6516,12 @@
         "show": [],
         "focus": [
           "furnace"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:coal",
+            "anchor": "furnace"
+          }
         ]
       },
       {
@@ -5885,7 +6540,13 @@
           "from": "return",
           "to": "drive",
           "item": "minecraft:iron_ingot"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:iron_ingot",
+            "anchor": "return"
+          }
+        ]
       },
       {
         "text": {
@@ -5897,7 +6558,8 @@
           "return",
           "cpu"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       }
     ]
   },
@@ -6110,7 +6772,8 @@
           "p1",
           "a1",
           "a2"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -6124,6 +6787,12 @@
         "focus": [
           "cpu",
           "co"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:crafting_accelerator",
+            "anchor": "co"
+          }
         ]
       },
       {
@@ -6139,6 +6808,16 @@
         "focus": [
           "p1",
           "p2"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:crafting_pattern",
+            "anchor": "p1"
+          },
+          {
+            "item": "ae2:crafting_pattern",
+            "anchor": "p2"
+          }
         ]
       },
       {
@@ -6150,6 +6829,12 @@
         "focus": [
           "a1",
           "a3"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:speed_card",
+            "anchor": "a1"
+          }
         ]
       },
       {
@@ -6162,6 +6847,16 @@
           "access",
           "p1",
           "p2"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:smithing_table_pattern",
+            "anchor": "access"
+          },
+          {
+            "item": "ae2:stonecutting_pattern",
+            "anchor": "access"
+          }
         ]
       }
     ]
@@ -6336,6 +7031,12 @@
         "focus": [
           "provider",
           "machine"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:processing_pattern",
+            "anchor": "provider"
+          }
         ]
       },
       {
@@ -6347,7 +7048,8 @@
         "focus": [
           "provider",
           "machine"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -6363,7 +7065,13 @@
           "from": "machine",
           "to": "provider",
           "item": "ae2:logic_processor"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:logic_processor",
+            "anchor": "provider"
+          }
+        ]
       },
       {
         "text": {
@@ -6374,6 +7082,16 @@
         "focus": [
           "stock",
           "cpu"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:crafting_card",
+            "anchor": "stock"
+          },
+          {
+            "item": "ae2:logic_processor",
+            "anchor": "stock"
+          }
         ]
       },
       {
@@ -6385,7 +7103,8 @@
         "focus": [
           "stock",
           "drive"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -6594,7 +7313,8 @@
         ],
         "focus": [
           "drive"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -6617,7 +7337,8 @@
           "from": "input",
           "to": "output",
           "item": "minecraft:cobblestone"
-        }
+        },
+        "callouts": []
       },
       {
         "text": {
@@ -6628,6 +7349,12 @@
         "focus": [
           "store",
           "output"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:storage_bus",
+            "anchor": "store"
+          }
         ]
       },
       {
@@ -6641,6 +7368,12 @@
         ],
         "focus": [
           "fiber"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:quartz_fiber",
+            "anchor": "fiber"
+          }
         ]
       },
       {
@@ -6653,7 +7386,8 @@
           "fiber",
           "drive"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       }
     ]
   },
@@ -6826,6 +7560,12 @@
         ],
         "focus": [
           "subdrive"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_64k",
+            "anchor": "subdrive"
+          }
         ]
       },
       {
@@ -6846,6 +7586,12 @@
         "focus": [
           "c3",
           "interface"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:storage_bus",
+            "anchor": "c3"
+          }
         ]
       },
       {
@@ -6858,7 +7604,8 @@
           "interface",
           "subdrive",
           "access"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -6869,7 +7616,8 @@
         "focus": [
           "interface",
           "drive"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -6882,6 +7630,12 @@
         "focus": [
           "fiber",
           "interface"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:quartz_fiber",
+            "anchor": "fiber"
+          }
         ]
       }
     ]
@@ -7091,7 +7845,8 @@
         "focus": [
           "controller",
           "carrier4"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -7110,6 +7865,12 @@
         "focus": [
           "input",
           "output"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:me_p2p_tunnel",
+            "anchor": "input"
+          }
         ]
       },
       {
@@ -7126,7 +7887,20 @@
           "from": "input",
           "to": "output",
           "item": "ae2:memory_card"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:memory_card",
+            "anchor": "input",
+            "action": "right_click",
+            "sneak": true
+          },
+          {
+            "item": "ae2:memory_card",
+            "anchor": "output",
+            "action": "right_click"
+          }
+        ]
       },
       {
         "text": {
@@ -7137,7 +7911,8 @@
         "focus": [
           "carrier3",
           "output"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -7149,7 +7924,8 @@
           "input",
           "output"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       }
     ]
   },
@@ -7314,6 +8090,13 @@
         "focus": [
           "c2",
           "output"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:chest",
+            "anchor": "c2",
+            "action": "right_click"
+          }
         ]
       },
       {
@@ -7325,6 +8108,20 @@
         "focus": [
           "c2",
           "output"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:chest",
+            "anchor": "c2"
+          },
+          {
+            "item": "minecraft:bucket",
+            "anchor": "c2"
+          },
+          {
+            "item": "ae2:energy_cell",
+            "anchor": "c2"
+          }
         ]
       },
       {
@@ -7341,7 +8138,13 @@
           "from": "hopper",
           "to": "barrel",
           "item": "minecraft:iron_ingot"
-        }
+        },
+        "callouts": [
+          {
+            "item": "minecraft:iron_ingot",
+            "anchor": "barrel"
+          }
+        ]
       },
       {
         "text": {
@@ -7352,7 +8155,8 @@
         "focus": [
           "hopper",
           "output"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -7363,6 +8167,16 @@
         "focus": [
           "c2",
           "output"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:fe_p2p_tunnel",
+            "anchor": "output"
+          },
+          {
+            "item": "ae2:memory_card",
+            "anchor": "output"
+          }
         ]
       }
     ]
@@ -7574,6 +8388,12 @@
         "focus": [
           "import",
           "input"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:annihilation_plane",
+            "anchor": "import"
+          }
         ]
       },
       {
@@ -7591,7 +8411,8 @@
           "from": "input",
           "to": "output",
           "item": "minecraft:cobblestone"
-        }
+        },
+        "callouts": []
       },
       {
         "text": {
@@ -7604,6 +8425,12 @@
         ],
         "hide": [
           "input"
+        ],
+        "callouts": [
+          {
+            "item": "minecraft:cobblestone",
+            "anchor": "store"
+          }
         ]
       },
       {
@@ -7615,7 +8442,8 @@
         "focus": [
           "import",
           "s1"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -7626,7 +8454,8 @@
         "focus": [
           "import"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       }
     ]
   },
@@ -7842,7 +8671,8 @@
         "focus": [
           "root",
           "accelerator"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -7858,6 +8688,12 @@
         "focus": [
           "harvest",
           "cluster"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:annihilation_plane",
+            "anchor": "harvest"
+          }
         ]
       },
       {
@@ -7869,6 +8705,16 @@
         "focus": [
           "store",
           "barrel"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:certus_quartz_crystal",
+            "anchor": "store"
+          },
+          {
+            "item": "ae2:certus_quartz_dust",
+            "anchor": "store"
+          }
         ]
       },
       {
@@ -7885,7 +8731,13 @@
           "from": "cluster",
           "to": "barrel",
           "item": "ae2:certus_quartz_crystal"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:certus_quartz_crystal",
+            "anchor": "barrel"
+          }
+        ]
       },
       {
         "text": {
@@ -7899,7 +8751,8 @@
           "fiber",
           "emitter"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       }
     ]
   },
@@ -8059,6 +8912,16 @@
         ],
         "focus": [
           "condenser"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:matter_ball",
+            "anchor": "condenser"
+          },
+          {
+            "item": "ae2:singularity",
+            "anchor": "condenser"
+          }
         ]
       },
       {
@@ -8069,7 +8932,8 @@
         "show": [],
         "focus": [
           "condenser"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -8084,7 +8948,13 @@
           "from": "workbench",
           "to": "condenser",
           "item": "ae2:cell_component_64k"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:cell_component_64k",
+            "anchor": "condenser"
+          }
+        ]
       },
       {
         "text": {
@@ -8096,7 +8966,17 @@
           "workbench",
           "drive"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": [
+          {
+            "item": "ae2:void_card",
+            "anchor": "workbench"
+          },
+          {
+            "item": "minecraft:cobblestone",
+            "anchor": "workbench"
+          }
+        ]
       },
       {
         "text": {
@@ -8108,7 +8988,8 @@
           "condenser",
           "workbench"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       }
     ]
   },
@@ -8381,7 +9262,8 @@
         ],
         "focus": [
           "linka"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -8391,6 +9273,20 @@
         "show": [],
         "focus": [
           "linka"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:singularity",
+            "anchor": "linka"
+          },
+          {
+            "item": "minecraft:ender_pearl",
+            "anchor": "linka"
+          },
+          {
+            "item": "ae2:quantum_entangled_singularity",
+            "anchor": "linka"
+          }
         ]
       },
       {
@@ -8417,7 +9313,17 @@
           "from": "linka",
           "to": "linkb",
           "item": "ae2:quantum_entangled_singularity"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:quantum_entangled_singularity",
+            "anchor": "linka"
+          },
+          {
+            "item": "ae2:quantum_entangled_singularity",
+            "anchor": "linkb"
+          }
+        ]
       },
       {
         "text": {
@@ -8434,7 +9340,8 @@
         "focus": [
           "cablea",
           "ringb52"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -8449,7 +9356,8 @@
           "linka",
           "linkb"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       }
     ]
   },
@@ -8696,7 +9604,8 @@
         "focus": [
           "room1",
           "room2"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -8718,7 +9627,8 @@
           "pa4",
           "pb1",
           "pb4"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -8738,7 +9648,8 @@
         "focus": [
           "port",
           "c2"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -8749,6 +9660,12 @@
         "focus": [
           "port",
           "buffer"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:dense_energy_cell",
+            "anchor": "buffer"
+          }
         ]
       },
       {
@@ -8767,7 +9684,13 @@
           "from": "room1",
           "to": "port",
           "item": "ae2:spatial_storage_cell_2"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:spatial_storage_cell_2",
+            "anchor": "port"
+          }
+        ]
       }
     ]
   },
@@ -9030,6 +9953,20 @@
         ],
         "focus": [
           "port"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:spatial_storage_cell_2",
+            "anchor": "port"
+          },
+          {
+            "item": "ae2:spatial_storage_cell_16",
+            "anchor": "port"
+          },
+          {
+            "item": "ae2:spatial_storage_cell_128",
+            "anchor": "port"
+          }
         ]
       },
       {
@@ -9044,7 +9981,8 @@
           "pb1",
           "pb4"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       },
       {
         "text": {
@@ -9056,7 +9994,8 @@
           "room1",
           "room2",
           "port"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -9071,7 +10010,8 @@
           "room2",
           "lever"
         ],
-        "warning": true
+        "warning": true,
+        "callouts": []
       },
       {
         "text": {
@@ -9082,7 +10022,8 @@
         "focus": [
           "lever",
           "port"
-        ]
+        ],
+        "callouts": []
       }
     ]
   },
@@ -9260,6 +10201,12 @@
           "power",
           "buffer",
           "controller"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:network_tool",
+            "anchor": "controller"
+          }
         ]
       },
       {
@@ -9272,7 +10219,8 @@
           "c1",
           "c2",
           "c3"
-        ]
+        ],
+        "callouts": []
       },
       {
         "text": {
@@ -9283,6 +10231,12 @@
         "focus": [
           "drive",
           "access"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:item_storage_cell_4k",
+            "anchor": "drive"
+          }
         ]
       },
       {
@@ -9298,6 +10252,16 @@
         "focus": [
           "cpu",
           "provider"
+        ],
+        "callouts": [
+          {
+            "item": "ae2:crafting_pattern",
+            "anchor": "provider"
+          },
+          {
+            "item": "ae2:4k_crafting_storage",
+            "anchor": "cpu"
+          }
         ]
       },
       {
@@ -9314,7 +10278,13 @@
           "from": "machine",
           "to": "provider",
           "item": "ae2:logic_processor"
-        }
+        },
+        "callouts": [
+          {
+            "item": "ae2:logic_processor",
+            "anchor": "provider"
+          }
+        ]
       }
     ]
   }

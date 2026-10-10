@@ -1,6 +1,7 @@
 package dev.ae2guide.client;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.PonderPalette;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
@@ -15,8 +16,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Locale;
+
 public final class GuideScenes {
     private static final int FLOW_TICKS = 36;
+    private static final int CALLOUT_SLOT_TICKS = 72; // 60 readable ticks + fades and a short gap.
     private GuideScenes() {}
 
     public static void build(GuideBook.Lesson lesson, SceneBuilder scene, SceneBuildingUtil util) {
@@ -43,7 +47,7 @@ public final class GuideScenes {
         step.nbt().forEach((id, nbt) -> applyNbt(scene, util, lesson.node(id), nbt));
         scene.idle(12);
         // Japanese subtitles need more reading time; pauses and keyframes remain available in Ponder.
-        int duration = Math.max(120, Math.max(step.text().ja().length() * 3, step.text().en().length()));
+        int duration = captionDuration(step);
         var color = step.warning() ? PonderPalette.RED : PonderPalette.BLUE;
         for (var id : step.focus()) {
             scene.overlay().showOutline(color, "focus_" + id, util.select().position(lesson.node(id).position()), duration);
@@ -53,8 +57,42 @@ public final class GuideScenes {
                 .colored(color);
         if (step.focus().isEmpty()) caption.independent();
         else caption.pointAt(Vec3.atCenterOf(lesson.node(step.focus().getFirst()).position())).placeNearTarget();
-        if (step.flow() != null) flow(lesson, step.flow(), scene);
-        scene.idle(duration + 12);
+        // Show one ingredient/tool at a time, keeping each bubble clear of the next one.
+        int slots = Math.max(1, step.callouts().size());
+        int slotDuration = duration / slots;
+        for (int slot = 0; slot < slots; slot++) {
+            if (!step.callouts().isEmpty()) callout(lesson, step.callouts().get(slot), scene, slotDuration);
+            int elapsed = 0;
+            if (slot == 0 && step.flow() != null) {
+                flow(lesson, step.flow(), scene);
+                elapsed = FLOW_TICKS;
+            }
+            scene.idle(slotDuration - elapsed);
+        }
+        scene.idle(duration % slots + 12);
+    }
+
+    public static int captionDuration(GuideBook.Step step) {
+        return Math.max(Math.max(120, step.callouts().size() * CALLOUT_SLOT_TICKS),
+                Math.max(step.text().ja().length() * 3, step.text().en().length()));
+    }
+
+    private static void callout(GuideBook.Lesson lesson, GuideBook.Callout callout, SceneBuilder scene, int duration) {
+        var node = lesson.node(callout.anchor());
+        var offset = callout.offset();
+        var position = Vec3.atCenterOf(node.position()).add(offset.get(0), 0.5 + offset.get(1), offset.get(2));
+        var id = ResourceLocation.parse(callout.item());
+        if (!BuiltInRegistries.ITEM.containsKey(id)) throw new IllegalArgumentException("Unknown callout item: " + id);
+        // Ponder adds five ticks each for fade-in/out; leave two ticks before the following bubble.
+        var bubble = scene.overlay().showControls(position, Pointing.valueOf(callout.pointing().toUpperCase(Locale.ROOT)), duration - 12)
+                .withItem(new ItemStack(BuiltInRegistries.ITEM.get(id)));
+        switch (callout.action()) {
+            case "right_click" -> bubble.rightClick();
+            case "left_click" -> bubble.leftClick();
+            case "scroll" -> bubble.scroll();
+            default -> { }
+        }
+        if (callout.sneak()) bubble.whileSneaking();
     }
 
     private static void flow(GuideBook.Lesson lesson, GuideBook.Flow flow, SceneBuilder scene) {
