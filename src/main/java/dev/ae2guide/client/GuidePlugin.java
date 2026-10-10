@@ -9,11 +9,17 @@ import net.createmod.ponder.api.registration.StoryBoardEntry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class GuidePlugin implements PonderPlugin {
+    public static final ResourceLocation GUIDE_ITEM = ResourceLocation.fromNamespaceAndPath("ae2", "guide");
     private static final Map<String, StoryBoardEntry> ENTRIES = new LinkedHashMap<>();
+    private static final List<StoryBoardEntry> COURSE = new ArrayList<>();
+
+    public static List<StoryBoardEntry> course() { return List.copyOf(COURSE); }
 
     public static StoryBoardEntry entry(String lessonId) {
         var entry = ENTRIES.get(lessonId);
@@ -25,11 +31,15 @@ public final class GuidePlugin implements PonderPlugin {
 
     @Override public void registerScenes(PonderSceneRegistrationHelper<ResourceLocation> helper) {
         ENTRIES.clear();
+        COURSE.clear();
         for (var lesson : GuideBook.lessons()) {
             var tag = ResourceLocation.fromNamespaceAndPath(getModId(), lesson.chapter());
             var entry = helper.addStoryBoard(ResourceLocation.parse(lesson.icon()), "stage",
                     (scene, util) -> GuideScenes.build(lesson, scene, util), tag);
             ENTRIES.put(lesson.id(), entry);
+            // A single guide item supplies Ponder's native previous/next lesson navigation.
+            COURSE.add(helper.addStoryBoard(GUIDE_ITEM, "stage",
+                    (scene, util) -> GuideScenes.build(lesson, scene, util), tag));
             for (var component : lesson.components()) {
                 if (!component.equals(lesson.icon())) helper.addStoryBoard(ResourceLocation.parse(component), "stage",
                         (scene, util) -> GuideScenes.build(lesson, scene, util), tag);

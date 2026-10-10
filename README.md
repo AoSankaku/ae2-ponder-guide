@@ -3,13 +3,18 @@
 Minecraft 1.21.1 / NeoForge向けの、Applied Energistics 2を立体アニメーションで学ぶガイドです。
 独立版Ponderを使用するため、**Create本体は不要**です。日本語と英語に対応しています。
 6章・40レッスン・200ステップで、121種類のAE2アイテムから関連場面を開けます。
+MEガイドのアイテムからは全40レッスンのコースを開けます。
 
 ## 使い方
 
 1. インベントリで対応するAE2アイテムにカーソルを合わせ、**Wキーを長押し**するとPonderが開きます。
 2. Ponderの再生、一時停止、タイムライン、キーフレーム、ブロック識別を利用できます。
 3. 全レッスンの一覧は、ワールド内の「設定…」画面左下にある小さなフルーシュクリスタルのボタンから開けます。
-4. 一覧では章別・検索・学習順で場面を選び、「次のレッスン」で学習を続けられます。
+4. ME Guideのサイドバー「Ponder」にも、全レッスンへのリンクがあります。
+5. 一覧やME Guideから選んだ場面の前後へ、Ponder標準の左右ボタンで移動できます。
+   左下の戻るボタンで一覧やME Guideへ戻れます。
+
+章の関連アイテム一覧は画面幅と高さに合わせて配置し、収まらない分はページに分けます。
 
 インベントリやポーズ画面への追加ボタン、専用のPキー割り当てはありません。
 タイトル画面から開いた設定では、ワールドに入るまで一覧ボタンは無効です。
@@ -39,7 +44,7 @@ Minecraft 1.21.1 / NeoForge向けの、Applied Energistics 2を立体アニメ�
 | GuideME | 21.1.19（AE2の必須依存） |
 | Ponder | 1.0.87+mc1.21.1 |
 | Flywheel | 1.0.4 |
-| AE2 Ponder Guide | 1.0.2 |
+| AE2 Ponder Guide | 1.0.3 |
 
 AE2が要求するGuideMEは必要ですが、今回のガイドはPonderから利用します。
 Createが既にPonder/Flywheelを同梱している環境では、同じMODを重複導入しないでください。
@@ -52,14 +57,15 @@ Java 21を使用します。
 .\gradlew.bat build
 ```
 
-出力は `build/libs/ae2-ponder-guide-1.0.2.jar` です。
+出力は `build/libs/ae2-ponder-guide-1.0.3.jar` です。
 `generateGuideResources` が全場面のノード参照・座標・表示順・吹き出し・多言語テキストを検証し、
 Ponder用の翻訳ファイルを生成します。構造NBTを変更する場合は `python tools/generate_structure.py` を使います。
 
 統合検証は `./gradlew -PvalidateGuide runValidationClient` で実行できます。
 検証用コードは配布JARに含まれません。別の開発ワールドを自動作成し、ウィンドウを隠して、
 Createなしで全場面のコンパイル・再生・巻き戻し・部品復元・吹き出しのアイテムと表示順・描画、
-設定の小ボタンから一覧への移動を確認します。
+設定の小ボタンから一覧への移動、関連アイテムのページ送りと画面内配置、
+ME Guideのリンクと復帰、Ponder標準の前後移動も確認します。
 結果は `build/validation-run/validation-result.json`、画像は同ディレクトリの `screenshots` に保存します。
 
 通常ワールドの性能調査には `./gradlew -PvalidateGuide runPerformanceClient` を利用できます。
@@ -76,7 +82,9 @@ Createなしで全場面のコンパイル・再生・巻き戻し・部品復�
 - `GuideScenes`: 共通のPonder再生処理。AE2公式のvisual NBTでケーブルと部品を表示
 - `GuidePlugin`: AE2アイテムとカテゴリへの場面登録
 - `GuideScreen`: 検索可能な学習順一覧
-- `GuidePonderScreen`: 1レッスンの再生と次のレッスンへの移動
+- `GuidePonderScreen`: 選んだ場面から全コースをPonder標準のナビゲーションで再生
+- `GuideCommands` / `assets/ae2ponder/ae2guide`: ME Guideから各場面へのクライアント側リンク
+- `PonderTagScreenMixin`: AE2の関連アイテム画面を、画面サイズに応じてページ分割
 - `PonderLevelModelDataMixin`: 仮想ワールドのブロックエンティティからNeoForgeの描画データを渡す互換処理
 - `src/main/templates/lang`: UIの翻訳。場面字幕はJSONから生成
 

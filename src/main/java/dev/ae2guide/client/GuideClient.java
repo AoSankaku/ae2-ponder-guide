@@ -30,6 +30,7 @@ public final class GuideClient {
         event.enqueueWork(() -> {
             NeoForge.EVENT_BUS.addListener(GuideClient::tick);
             NeoForge.EVENT_BUS.addListener(GuideClient::screenButtons);
+            NeoForge.EVENT_BUS.addListener(GuideCommands::register);
         });
     }
 

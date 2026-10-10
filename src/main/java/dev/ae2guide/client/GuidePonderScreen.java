@@ -1,32 +1,22 @@
 package dev.ae2guide.client;
 
+import dev.ae2guide.mixin.PonderUIAccessor;
+import net.createmod.catnip.gui.ScreenOpener;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.createmod.ponder.foundation.ui.PonderUI;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.network.chat.Component;
 
-import java.util.List;
-
-final class GuidePonderScreen extends PonderUI {
-    private final GuideScreen catalogue;
-    private final GuideBook.Lesson lesson;
-
-    GuidePonderScreen(GuideScreen catalogue, GuideBook.Lesson lesson) {
-        super(PonderIndex.getSceneAccess().compile(List.of(GuidePlugin.entry(lesson.id()))));
-        this.catalogue = catalogue;
-        this.lesson = lesson;
+/** All lessons use Ponder's own arrows, next-up prompt and history navigation. */
+public final class GuidePonderScreen extends PonderUI {
+    public GuidePonderScreen(GuideBook.Lesson lesson) {
+        super(PonderIndex.getSceneAccess().compile(GuidePlugin.course()));
+        int index = GuideBook.lessons().indexOf(lesson);
+        if (index < 0) throw new IllegalArgumentException("Unknown guide lesson: " + lesson.id());
+        var access = (PonderUIAccessor) (Object) this;
+        access.ae2ponder$setIndex(index);
+        access.ae2ponder$getLazyIndex().startWithValue(index);
     }
 
-    @Override protected void init() {
-        super.init();
-        addRenderableWidget(Button.builder(Component.translatable("ae2ponder.button.catalogue"), button -> onClose())
-                .bounds(width - 108, 5, 102, 20).build());
-        var lessons = GuideBook.lessons();
-        int next = lessons.indexOf(lesson) + 1;
-        if (next < lessons.size()) addRenderableWidget(Button.builder(Component.translatable("ae2ponder.button.next"),
-                button -> minecraft.setScreen(new GuidePonderScreen(catalogue, lessons.get(next))))
-                .bounds(width - 108, 29, 102, 20).build());
+    public static void open(GuideBook.Lesson lesson) {
+        ScreenOpener.transitionTo(new GuidePonderScreen(lesson));
     }
-
-    @Override public void onClose() { minecraft.setScreen(catalogue); }
 }

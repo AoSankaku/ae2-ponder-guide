@@ -46,6 +46,7 @@ public final class GuideValidation {
     private static boolean opening;
     private static boolean validating;
     private static int frame;
+    private static final int SCENE_START = 220;
     private static final List<PonderScene> SCENES = new ArrayList<>();
     private static final List<List<Integer>> CALLOUT_TIMES = new ArrayList<>();
     private static final List<String> CALLOUT_SCREENSHOTS = List.of(
@@ -100,32 +101,44 @@ public final class GuideValidation {
                 // Exercise the actual catalogue row rather than bypassing its selection handler.
                 if (!(client.screen instanceof GuideScreen)) throw new IllegalStateException("Catalogue did not open");
                 client.screen.mouseClicked(160, 95, 0);
+            }
+            if (frame == 11) {
                 if (!(client.screen instanceof PonderUI ui)) throw new IllegalStateException("Catalogue row did not open Ponder");
+                GuideUiValidation.requireLesson(GuideBook.lessons().getFirst().id());
                 ui.seekToTime(Math.min(280, ui.getActiveScene().getTotalTime() - 1));
             }
-            if (frame == 20) screenshot("first-lesson.png");
-            if (frame >= 24 && frame < 24 + SCENES.size() * 12 && (frame - 24) % 12 == 0) {
-                int index = (frame - 24) / 12;
+            // Native controls are hidden during Ponder's opening zoom; wait for that transition.
+            if (frame == 31) GuideUiValidation.clickArrow(true);
+            if (frame == 32) GuideUiValidation.requireLesson(GuideBook.lessons().get(1).id());
+            if (frame == 41) GuideUiValidation.clickArrow(false);
+            if (frame == 42) GuideUiValidation.requireLesson(GuideBook.lessons().getFirst().id());
+            if (frame == 47) screenshot("first-lesson.png");
+            if (frame == 50) GuideUiValidation.clickBack();
+            if (frame == 52 && !(client.screen instanceof GuideScreen)) throw new IllegalStateException("Native back did not restore catalogue");
+            GuideUiValidation.tick(frame);
+            if (frame >= SCENE_START && frame < SCENE_START + SCENES.size() * 12 && (frame - SCENE_START) % 12 == 0) {
+                int index = (frame - SCENE_START) / 12;
                 client.setScreen(new ValidationPonderScreen(SCENES.get(index), CALLOUT_TIMES.get(index).getFirst()));
             }
-            if (frame >= 24 && frame < 24 + SCENES.size() * 12 && client.screen instanceof PonderUI ui) {
-                int phase = (frame - 24) % 12;
+            if (frame >= SCENE_START && frame < SCENE_START + SCENES.size() * 12 && client.screen instanceof PonderUI ui) {
+                int phase = (frame - SCENE_START) % 12;
                 if (phase == 4) {
-                    var times = CALLOUT_TIMES.get((frame - 24) / 12);
+                    var times = CALLOUT_TIMES.get((frame - SCENE_START) / 12);
                     int target = times.get(times.size() / 2);
                     if (target > ui.getActiveScene().getCurrentTime()) ui.seekToTime(target);
                 }
                 if (phase == 8) ui.seekToTime(ui.getActiveScene().getTotalTime());
                 boolean captureCallouts = SCENES.size() <= 6 || CALLOUT_SCREENSHOTS.contains(ui.getActiveScene().getId().getPath());
-                if (phase == 3 && (captureCallouts || ((frame - 24) / 12) % 6 == 0))
+                if (phase == 3 && (captureCallouts || ((frame - SCENE_START) / 12) % 6 == 0))
                     screenshot("lesson-" + ui.getActiveScene().getId().getPath() + ".png");
                 if (phase == 6 && captureCallouts)
                     screenshot("callout-" + ui.getActiveScene().getId().getPath() + ".png");
             }
-            if (frame >= 24 + SCENES.size() * 12) {
+            if (frame >= SCENE_START + SCENES.size() * 12) {
                 var result = client.gameDirectory.toPath().resolve("validation-result.json");
                 Files.writeString(result, new Gson().toJson(java.util.Map.of("passed", true,
-                        "lessons", SCENES.size(), "rendered", SCENES.size(), "callouts", verifiedCallouts, "createInstalled", false)));
+                        "lessons", SCENES.size(), "rendered", SCENES.size(), "callouts", verifiedCallouts,
+                        "tagLayouts", GuideUiValidation.layouts(), "nativeNavigation", true, "guideMeLink", true, "createInstalled", false)));
                 LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_PASS: {} storyboards compiled, replayed and rendered; {} item callouts verified",
                         SCENES.size(), verifiedCallouts);
                 client.stop();

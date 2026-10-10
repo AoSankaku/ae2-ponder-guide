@@ -17,7 +17,7 @@ import java.util.Locale;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/** A linear course and searchable reference; each row opens exactly one storyboard. */
+/** A searchable course catalogue; each row selects the initial Ponder lesson. */
 public final class GuideScreen extends Screen {
     private static final int LIST_X = 128;
     private static final int LIST_Y = 84;
@@ -85,7 +85,7 @@ public final class GuideScreen extends Screen {
         for (int i = page * pageSize; i < Math.min(filtered.size(), (page + 1) * pageSize); i++) {
             var lesson = filtered.get(i);
             int y = LIST_Y + (i % pageSize) * ROW_HEIGHT;
-            var row = Button.builder(Component.empty(), button -> minecraft.setScreen(new GuidePonderScreen(this, lesson)))
+            var row = Button.builder(Component.empty(), button -> GuidePonderScreen.open(lesson))
                     .bounds(LIST_X, y, width - LIST_X - 16, ROW_HEIGHT - 3)
                     .tooltip(Tooltip.create(localized(lesson.summary()))).build();
             rows.add(addRenderableWidget(row));

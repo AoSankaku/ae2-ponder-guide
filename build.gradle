@@ -59,6 +59,7 @@ dependencies {
     implementation "net.createmod.ponder:ponder-neoforge:${ponder_version}"
     runtimeOnly "org.appliedenergistics:appliedenergistics2:${ae2_version}"
     runtimeOnly 'org.appliedenergistics:guideme:21.1.19'
+    validationCompileOnly 'org.appliedenergistics:guideme:21.1.19'
 }
 
 tasks.withType(JavaCompile).configureEach {
