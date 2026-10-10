@@ -9,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -46,8 +47,8 @@ public final class GuideScenes {
         step.show().forEach(id -> scene.world().showSection(util.select().position(lesson.node(id).position()), Direction.DOWN));
         step.nbt().forEach((id, nbt) -> applyNbt(scene, util, lesson.node(id), nbt));
         scene.idle(12);
-        // Japanese subtitles need more reading time; pauses and keyframes remain available in Ponder.
-        int duration = captionDuration(step);
+        // Give longer translations additional reading time; Ponder also provides pauses/keyframes.
+        int duration = captionDuration(lesson, index);
         var color = step.warning() ? PonderPalette.RED : PonderPalette.BLUE;
         for (var id : step.focus()) {
             scene.overlay().showOutline(color, "focus_" + id, util.select().position(lesson.node(id).position()), duration);
@@ -75,6 +76,11 @@ public final class GuideScenes {
     public static int captionDuration(GuideBook.Step step) {
         return Math.max(Math.max(120, step.callouts().size() * CALLOUT_SLOT_TICKS),
                 Math.max(step.text().ja().length() * 3, step.text().en().length()));
+    }
+
+    public static int captionDuration(GuideBook.Lesson lesson, int index) {
+        String caption = Component.translatable("ae2ponder.ponder.shared." + lesson.id() + "_" + index).getString();
+        return Math.max(captionDuration(lesson.steps().get(index)), caption.codePointCount(0, caption.length()));
     }
 
     private static void callout(GuideBook.Lesson lesson, GuideBook.Callout callout, SceneBuilder scene, int duration) {

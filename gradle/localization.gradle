@@ -1,0 +1,109 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+import java.security.MessageDigest
+
+// Source and generated pages share one key set; translations cannot silently fall back.
+ext.generateLocalizedGuideResources = { lessons, destination ->
+    def readMap = { path ->
+        def text = file(path).getText('UTF-8')
+        def data = new JsonSlurper().parseText(text)
+        assert data instanceof Map : "Expected an object in ${path}"
+        assert (text =~ /"(?:[^"\\]|\\.)*"\s*:/).size() == data.size() : "Duplicate key in ${path}"
+        data
+    }
+    def languages = readMap('src/main/translations/languages.json')
+    assert languages.keySet() == ['ja_jp', 'en_us', 'hi_in', 'zh_hk', 'zh_tw', 'zh_cn', 'ru_ru',
+        'pt_br', 'pt_pt', 'es_es', 'de_de', 'cs_cz', 'pl_pl', 'ms_my', 'ro_ro'].toSet() : 'All 15 supported languages are required'
+    def sources = [:]
+    ['en_us': 'en', 'ja_jp': 'ja'].each { language, field ->
+        def strings = readMap("src/main/templates/lang/${language}.json")
+        lessons.each { lesson ->
+            assert lesson.title[field] && lesson.summary[field] : "Missing ${field} translation in ${lesson.id}"
+            strings["ae2ponder.ponder.${lesson.id}.header".toString()] = lesson.title[field]
+            strings["ae2ponder.lesson.${lesson.id}.summary".toString()] = lesson.summary[field]
+            lesson.steps.eachWithIndex { step, index ->
+                assert step.text[field] : "Missing ${field} subtitle in ${lesson.id}"
+                strings["ae2ponder.ponder.shared.${lesson.id}_${index}".toString()] = step.text[field]
+            }
+        }
+        sources[language] = strings
+    }
+    def expected = sources.en_us
+    assert sources.ja_jp.keySet() == expected.keySet() : 'English/Japanese translation keys differ'
+    def sourceText = new StringBuilder()
+    sources.sort().each { language, strings ->
+        sourceText.append(language).append('\u0000')
+        strings.sort().each { key, value ->
+            sourceText.append(key).append('\u0000').append(value).append('\u0000')
+        }
+    }
+    def sourceHash = MessageDigest.getInstance('SHA-256').digest(sourceText.toString().getBytes('UTF-8')).encodeHex().toString()
+    def reviews = readMap('src/main/translations/source-review.json')
+    assert reviews.keySet() == sources.keySet() : 'English/Japanese source review records are required'
+    sources.keySet().each { language ->
+        assert reviews[language] == sourceHash : "Stale source review: ${language}; review changed text in both original languages"
+    }
+    def placeholders = { text ->
+        def result = []
+        def index = 0
+        (text =~ /%(?:(\d+)\$)?([sd])/).each { match ->
+            if (!match[1]) index++
+            result.add([match[1] ? match[1].toInteger() : index, match[2]])
+        }
+        result.sort { a, b -> a[0] <=> b[0] ?: a[1] <=> b[1] }
+    }
+    def write = { path, content ->
+        def target = new File(destination, path)
+        target.parentFile.mkdirs()
+        target.setText(content, 'UTF-8')
+    }
+    def escape = { text -> text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;') }
+    def localized = [:]
+    languages.each { language, name ->
+        def strings = sources[language]
+        if (strings == null) {
+            strings = readMap("src/main/translations/${language}.json")
+            assert strings.remove('_source_hash') == sourceHash : "Stale ${language} translation: review source changes in every supported language"
+        }
+        assert strings.keySet() == expected.keySet() : "Missing/extra ${language} translations: ${expected.keySet() - strings.keySet()} / ${strings.keySet() - expected.keySet()}"
+        strings.each { key, value ->
+            assert value instanceof String && !value.trim().isEmpty() : "Empty ${language} translation: ${key}"
+            assert placeholders(value) == placeholders(expected[key]) : "Invalid placeholders: ${language}/${key}"
+        }
+        localized[language] = strings
+    }
+    // Validate everything before replacing the previous generated resources.
+    def targetPath = destination.canonicalFile.toPath()
+    def generatedPath = new File(projectDir, 'build/generated').canonicalFile.toPath()
+    assert generatedPath.startsWith(projectDir.canonicalFile.toPath()) && targetPath.startsWith(generatedPath)
+        && targetPath != generatedPath : 'Generated resource directory must stay inside the project build directory'
+    delete(destination)
+    write('assets/ae2ponder/guide/languages.json', JsonOutput.prettyPrint(JsonOutput.toJson(languages)) + '\n')
+    localized.each { language, strings ->
+        def own = strings.findAll { key, value -> key.startsWith('ae2ponder.') }
+        def ponder = strings.findAll { key, value -> key.startsWith('ponder.') || key == 'key.ponder.ponder' || key == 'key.categories.ponder' }
+        def guideMe = strings.findAll { key, value -> key.startsWith('guideme.') || key.startsWith('item.guideme.') || key.startsWith('key.guideme.') }
+        assert own.size() + ponder.size() + guideMe.size() == strings.size() : "Unassigned translation namespace in ${language}"
+        write("assets/ae2ponder/lang/${language}.json", JsonOutput.prettyPrint(JsonOutput.toJson(own)) + '\n')
+        write("assets/ponder/lang/${language}.json", JsonOutput.prettyPrint(JsonOutput.toJson(ponder)) + '\n')
+        write("assets/guideme/lang/${language}.json", JsonOutput.prettyPrint(JsonOutput.toJson(guideMe)) + '\n')
+        def page = new StringBuilder('---\nnavigation:\n  title: Ponder\n  icon: ae2:fluix_crystal\n  position: 15\n---\n\n')
+        def text = { key -> escape(strings["ae2ponder.guide.${key}"]) }
+        page.append('# ').append(text('heading')).append('\n\n').append(text('intro')).append('\n\n')
+        page.append('<CommandLink command="/ae2ponder">').append(text('start')).append('</CommandLink>\n\n')
+        page.append('## ').append(text('how_to')).append('\n\n').append(text('controls')).append('\n\n').append(text('description')).append('\n\n')
+        lessons.groupBy { it.chapter }.each { chapter, chapterLessons ->
+            page.append('## ').append(escape(strings["ae2ponder.chapter.${chapter}"])).append('\n\n')
+            page.append(escape(strings["ae2ponder.ponder.tag.${chapter}.description"])).append('\n\n')
+            chapterLessons.each { lesson ->
+                page.append('- <CommandLink command="/ae2ponder lesson ').append(lesson.id).append('">')
+                    .append(escape(strings["ae2ponder.ponder.${lesson.id}.header"])).append('</CommandLink> — ')
+                    .append(escape(strings["ae2ponder.lesson.${lesson.id}.summary"])).append('\n')
+            }
+            page.append('\n')
+        }
+        def folder = language == 'en_us' ? '' : "_${language}/"
+        write("assets/ae2ponder/ae2guide/${folder}ponder.md", page.toString())
+    }
+    logger.lifecycle("Generated ${languages.size()} languages with ${expected.size()} strings and localized ME Guide pages; checked source freshness and placeholders")
+}

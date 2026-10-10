@@ -119,7 +119,7 @@ final class GuideUiValidation {
             throw new IllegalStateException("Last lesson lost the GuideME return screen");
     }
 
-    private static void checkTagPages() {
+    static void checkTagPages() {
         var client = Minecraft.getInstance();
         for (var size : List.of(new int[]{320, 240}, new int[]{427, 260}, new int[]{640, 360})) {
             for (var chapter : GuideChapter.values()) {

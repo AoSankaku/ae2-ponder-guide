@@ -35,6 +35,7 @@ neoForge {
             gameDirectory = file('build/validation-run')
             systemProperty 'ae2ponder.validate', 'true'
             systemProperty 'ae2ponder.validationLessons', project.findProperty('validationLessons') ?: ''
+            systemProperty 'ae2ponder.validateLanguages', project.hasProperty('validateLanguages').toString()
             programArguments.addAll '--width', '960', '--height', '640'
         }
         performanceClient {
@@ -73,12 +74,15 @@ processResources {
 }
 
 tasks.named('wrapper', Wrapper).configure { gradleVersion = '8.14.3' }
+apply from: 'gradle/localization.gradle'
 
 // Keep Ponder translation keys synchronized with the same data used by the catalogue.
 def guideResources = tasks.register('generateGuideResources') {
     def lessonsFile = file('src/main/resources/assets/ae2ponder/guide/lessons.json')
     inputs.file(lessonsFile)
     inputs.dir('src/main/templates/lang')
+    inputs.dir('src/main/translations')
+    inputs.file('gradle/localization.gradle')
     def destination = layout.buildDirectory.dir('generated/guideResources')
     outputs.dir(destination)
     doLast {
@@ -122,29 +126,9 @@ def guideResources = tasks.register('generateGuideResources') {
             assert lesson.steps.any { it.callouts } : "Lesson has no item callouts: ${lesson.id}"
             assert revealed == ids : "Unrevealed nodes in ${lesson.id}: ${ids - revealed}"
         }
-        ['ja_jp': 'ja', 'en_us': 'en'].each { language, field ->
-            def translations = new groovy.json.JsonSlurper().parse(file("src/main/templates/lang/${language}.json"), 'UTF-8')
-            lessons.each { lesson ->
-                assert lesson.title[field] && lesson.summary[field] : "Missing ${field} translation in ${lesson.id}"
-                translations["ae2ponder.ponder.${lesson.id}.header".toString()] = lesson.title[field]
-                lesson.steps.eachWithIndex { step, index ->
-                    assert step.text[field] : "Missing ${field} subtitle in ${lesson.id}"
-                    translations["ae2ponder.ponder.shared.${lesson.id}_${index}".toString()] = step.text[field]
-                }
-            }
-            if (field == 'en') {
-                def names = ['Getting started', 'ME networks', 'Storage', 'Automation', 'Advanced systems', 'Troubleshooting']
-                allowedChapters.eachWithIndex { chapter, index ->
-                    translations["ae2ponder.ponder.tag.${chapter}".toString()] = names[index]
-                    translations["ae2ponder.ponder.tag.${chapter}.description".toString()] = names[index]
-                }
-            }
-            def target = destination.get().file("assets/ae2ponder/lang/${language}.json").asFile
-            target.parentFile.mkdirs()
-            target.setText(groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(translations)), 'UTF-8')
-        }
+        generateLocalizedGuideResources(lessons, destination.get().asFile)
         def calloutCount = lessons.sum { lesson -> lesson.steps.sum { step -> (step.callouts ?: []).size() } }
-        logger.lifecycle("Validated ${lessons.size()} lessons and ${calloutCount} item callouts; generated Japanese/English Ponder translations")
+        logger.lifecycle("Validated ${lessons.size()} lessons and ${calloutCount} item callouts")
     }
 }
 sourceSets.main.resources.srcDir(guideResources)

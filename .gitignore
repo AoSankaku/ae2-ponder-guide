@@ -8,3 +8,5 @@ out/
 .local/
 libs/
 *.log
+__pycache__/
+*.pyc

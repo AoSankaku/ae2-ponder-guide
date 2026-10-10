@@ -60,7 +60,10 @@ public final class GuideValidation {
         event.enqueueWork(() -> {
             var client = Minecraft.getInstance();
             GLFW.glfwHideWindow(client.getWindow().getWindow());
-            try { Files.deleteIfExists(client.gameDirectory.toPath().resolve("validation-result.json")); }
+            try {
+                Files.deleteIfExists(client.gameDirectory.toPath().resolve("validation-result.json"));
+                Files.deleteIfExists(client.gameDirectory.toPath().resolve("validation-failure.txt"));
+            }
             catch (Exception exception) { throw new IllegalStateException("Cannot clear old validation result", exception); }
             NeoForge.EVENT_BUS.addListener(GuideValidation::tick);
         });
@@ -135,10 +138,12 @@ public final class GuideValidation {
                     screenshot("callout-" + ui.getActiveScene().getId().getPath() + ".png");
             }
             if (frame >= SCENE_START + SCENES.size() * 12) {
+                if (Boolean.getBoolean("ae2ponder.validateLanguages") && !GuideLanguageValidation.tick()) return;
                 var result = client.gameDirectory.toPath().resolve("validation-result.json");
                 Files.writeString(result, new Gson().toJson(java.util.Map.of("passed", true,
                         "lessons", SCENES.size(), "rendered", SCENES.size(), "callouts", verifiedCallouts,
-                        "tagLayouts", GuideUiValidation.layouts(), "nativeNavigation", true, "guideMeLink", true, "createInstalled", false)));
+                        "tagLayouts", GuideUiValidation.layouts(), "nativeNavigation", true, "guideMeLink", true,
+                        "languages", GuideLanguageValidation.checkedLanguages(), "createInstalled", false)));
                 LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_PASS: {} storyboards compiled, replayed and rendered; {} item callouts verified",
                         SCENES.size(), verifiedCallouts);
                 client.stop();
@@ -189,7 +194,7 @@ public final class GuideValidation {
             for (int stepIndex = 0; stepIndex < lesson.steps().size(); stepIndex++) {
                 var step = lesson.steps().get(stepIndex);
                 if (step.callouts().isEmpty()) continue;
-                int slotDuration = GuideScenes.captionDuration(step) / step.callouts().size();
+                int slotDuration = GuideScenes.captionDuration(lesson, stepIndex) / step.callouts().size();
                 for (int slot = 0; slot < step.callouts().size(); slot++) {
                     int time = scene.getKeyframeTime(stepIndex) + 12 + slot * slotDuration + 15;
                     scene.seekToTime(time);

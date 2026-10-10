@@ -1,0 +1,105 @@
+"""Check the maintenance guards with isolated fixtures, without editing translations."""
+import contextlib
+import io
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+
+import localization
+
+
+class LocalizationChecks(unittest.TestCase):
+    def setUp(self):
+        workspace = Path(__file__).resolve().parents[1]
+        fixtures = workspace / ".local/localization/test-fixtures"
+        fixtures.mkdir(parents=True, exist_ok=True)
+        self.temp = tempfile.TemporaryDirectory(dir=fixtures)
+        self.folder = Path(self.temp.name)
+        assert self.folder.resolve().is_relative_to(workspace.resolve())
+        self.addCleanup(self.temp.cleanup)
+        self.source = {
+            "en_us": {"title": "First ME network", "status": "%1$s / %2$s"},
+            "ja_jp": {"title": "最初のMEネットワーク", "status": "%1$s / %2$s"},
+        }
+        self.update_reviews()
+        self.write("languages.json", dict.fromkeys(sorted(localization.SUPPORTED), "Language"))
+        for locale in localization.SUPPORTED - self.source.keys():
+            self.write(locale + ".json", {"_source_hash": localization.source_hash(self.source),
+                                        "title": "Translated title", "status": "%2$s / %1$s"})
+
+    def write(self, name, value):
+        (self.folder / name).write_text(json.dumps(value, ensure_ascii=False), encoding="utf-8")
+
+    def update_reviews(self):
+        self.write("source-review.json", dict.fromkeys(self.source, localization.source_hash(self.source)))
+
+    def check(self):
+        with patch.object(localization, "TRANSLATIONS", self.folder), \
+             patch.object(localization, "sources", return_value=self.source), \
+             contextlib.redirect_stdout(io.StringIO()):
+            localization.check()
+
+    def change(self, **updates):
+        path = self.folder / "hi_in.json"
+        bundle = localization.read(path)
+        bundle.update(updates)
+        self.write(path.name, bundle)
+
+    def test_complete_languages_allow_reordered_placeholders(self):
+        self.check()
+
+    def test_source_edit_requires_review_in_other_languages(self):
+        self.source["en_us"]["title"] = "New lesson content"
+        self.update_reviews()
+        with self.assertRaisesRegex(AssertionError, "Stale translation"):
+            self.check()
+
+    def test_source_edit_requires_english_and_japanese_review(self):
+        self.source["en_us"]["title"] = "New lesson content"
+        with self.assertRaisesRegex(AssertionError, "Stale source review"):
+            self.check()
+
+    def test_missing_translation_cannot_fall_back(self):
+        path = self.folder / "hi_in.json"
+        bundle = localization.read(path)
+        del bundle["title"]
+        self.write(path.name, bundle)
+        with self.assertRaisesRegex(AssertionError, "Missing/extra keys"):
+            self.check()
+
+    def test_wrong_placeholder_is_rejected(self):
+        self.change(status="%1$s / %1$s")
+        with self.assertRaisesRegex(AssertionError, "Wrong placeholders"):
+            self.check()
+
+    def test_mixed_placeholders_cannot_repeat_first_argument(self):
+        self.source["en_us"]["status"] = "%s / %s"
+        self.source["ja_jp"]["status"] = "%s / %s"
+        self.update_reviews()
+        for locale in localization.SUPPORTED - self.source.keys():
+            self.write(locale + ".json", {"_source_hash": localization.source_hash(self.source),
+                                        "title": "Translated title", "status": "%1$s / %s"})
+        with self.assertRaisesRegex(AssertionError, "Wrong placeholders"):
+            self.check()
+
+    def test_empty_translation_is_rejected(self):
+        self.change(title="   ")
+        with self.assertRaisesRegex(AssertionError, "Empty translation"):
+            self.check()
+
+    def test_removed_language_is_rejected(self):
+        self.write("languages.json", {"en_us": "English", "ja_jp": "日本語"})
+        with self.assertRaisesRegex(AssertionError, "All 15"):
+            self.check()
+
+    def test_duplicate_json_key_is_rejected(self):
+        path = self.folder / "duplicate.json"
+        path.write_text('{"title": "One", "title": "Two"}', encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "Duplicate key"):
+            localization.read(path)
+
+
+if __name__ == "__main__":
+    unittest.main()

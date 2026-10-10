@@ -1,6 +1,5 @@
 package dev.ae2guide.client;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -39,8 +38,12 @@ public final class GuideScreen extends Screen {
         this.parent = parent;
     }
 
-    private static Component localized(GuideBook.Localized text) {
-        return Component.literal(Minecraft.getInstance().getLanguageManager().getSelected().startsWith("ja") ? text.ja() : text.en());
+    private static Component lessonTitle(GuideBook.Lesson lesson) {
+        return Component.translatable("ae2ponder.ponder." + lesson.id() + ".header");
+    }
+
+    private static Component lessonSummary(GuideBook.Lesson lesson) {
+        return Component.translatable("ae2ponder.lesson." + lesson.id() + ".summary");
     }
 
     @Override protected void init() {
@@ -87,7 +90,7 @@ public final class GuideScreen extends Screen {
             int y = LIST_Y + (i % pageSize) * ROW_HEIGHT;
             var row = Button.builder(Component.empty(), button -> GuidePonderScreen.open(lesson))
                     .bounds(LIST_X, y, width - LIST_X - 16, ROW_HEIGHT - 3)
-                    .tooltip(Tooltip.create(localized(lesson.summary()))).build();
+                    .tooltip(Tooltip.create(lessonSummary(lesson))).build();
             rows.add(addRenderableWidget(row));
         }
         previous.active = page > 0;
@@ -96,10 +99,13 @@ public final class GuideScreen extends Screen {
 
     private static boolean matches(GuideBook.Lesson lesson, String term) {
         if (term.isEmpty()) return true;
-        var text = lesson.title().ja() + " " + lesson.title().en() + " " + lesson.summary().ja() + " "
+        var text = lessonTitle(lesson).getString() + " " + lessonSummary(lesson).getString() + " "
+                + lesson.title().ja() + " " + lesson.title().en() + " " + lesson.summary().ja() + " "
                 + lesson.summary().en() + " " + lesson.id() + " " + String.join(" ", lesson.components());
         text += " " + lesson.steps().stream().map(step -> step.text().ja() + " " + step.text().en())
                 .collect(java.util.stream.Collectors.joining(" "));
+        for (int index = 0; index < lesson.steps().size(); index++)
+            text += " " + Component.translatable("ae2ponder.ponder.shared." + lesson.id() + "_" + index).getString();
         return text.toLowerCase(Locale.ROOT).contains(term);
     }
 
@@ -123,9 +129,9 @@ public final class GuideScreen extends Screen {
             graphics.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(lesson.icon()))), LIST_X + 7, y + 8);
             int number = GuideBook.lessons().indexOf(lesson) + 1;
             String prefix = (GuideProgress.completed(lesson.id()) ? "✓ " : "") + String.format(Locale.ROOT, "%02d  ", number);
-            String name = prefix + localized(lesson.title()).getString();
+            String name = prefix + lessonTitle(lesson).getString();
             graphics.drawString(font, font.plainSubstrByWidth(name, width - LIST_X - 56), LIST_X + 30, y + 5, 0xFFFFFF);
-            graphics.drawString(font, font.plainSubstrByWidth(localized(lesson.summary()).getString(), width - LIST_X - 56),
+            graphics.drawString(font, font.plainSubstrByWidth(lessonSummary(lesson).getString(), width - LIST_X - 56),
                     LIST_X + 30, y + 19, 0xBCD0DA);
         }
     }
