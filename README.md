@@ -8,7 +8,7 @@ MEガイドのアイテムからは、利用可能な全レッスンのコース
 
 ## ダウンロード・導入
 
-[GitHub Releases](https://github.com/AoSankaku/ae2-ponder-guide/releases/latest) からJARをダウンロードできます。
+[GitHub Releases](https://github.com/AoSankaku/ae2-ponder-guide/releases) からJARをダウンロードできます。
 Minecraft 1.21.1 / NeoForgeの環境で、下記の「必要なMOD」と一緒に `mods` フォルダへ配置し、
 ゲームを再起動してください。対応アドオンは任意です。Create本体の導入は不要です。
 
@@ -75,7 +75,7 @@ ME Guideのページは翻訳データから生成するため、ページごと
 | GuideME | 21.1.19（AE2の必須依存） |
 | Ponder | 1.0.87+mc1.21.1 |
 | Flywheel | 1.0.4 |
-| AE2 Ponder Guide | 1.0.6 |
+| AE2 Ponder Guide | 0.1.0-beta1 |
 
 AE2が要求するGuideMEは必要ですが、今回のガイドはPonderから利用します。
 Createが既にPonder/Flywheelを同梱している環境では、同じMODを重複導入しないでください。
@@ -106,7 +106,7 @@ Java 21を使用します。
 .\gradlew.bat build
 ```
 
-出力は `build/libs/ae2-ponder-guide-1.0.6.jar` です。
+出力は `build/libs/ae2-ponder-guide-0.1.0-beta1.jar` です。
 `generateGuideResources` が全場面のノード参照・座標・表示順・吹き出し・多言語テキストを検証し、
 Ponder用の翻訳ファイルを生成します。構造NBTを変更する場合は `python tools/generate_structure.py` を使います。
 
