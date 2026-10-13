@@ -82,6 +82,9 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 processResources {
+    from('LICENSE')
+    from('THIRD_PARTY_NOTICES.md')
+    from('LICENSES') { into 'LICENSES' }
     inputs.property 'version', project.version
     filesMatching('META-INF/neoforge.mods.toml') { expand version: project.version }
 }

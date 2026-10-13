@@ -156,4 +156,13 @@ ME Guideのリンクと復帰、Ponder標準の前後移動も確認します。
 - [AE2 Things](https://github.com/Technici4n/AE2Things-Forge)
 - [AE2 MEGA Things](https://github.com/Lapis256/AE2MEGAThings)
 
-このアドオンのライセンスはMITです。各依存MODのライセンスはそれぞれの配布物に従います。
+## 作者・ライセンス
+
+作者・公開者は **aosankaku** です。独自のコードとガイド内容は [MIT](LICENSE) で公開しています。
+Ponder由来のコード・操作文言にはThe Create Teamの著作権表示とMITライセンスを保持します。
+GuideME由来の操作文言とその翻訳は **CC BY 4.0** です。GuideME本体のコードは **LGPLv3** で、
+利用者が別途導入する依存MODとして使用します。
+
+対象ファイル、原作者、出典、変更内容は [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)、
+ライセンス原文は [LICENSES](LICENSES) に記載しています。これらの文書は配布JARにも同梱します。
+Gradle WrapperはApache-2.0です。各依存MOD本体のライセンスはそれぞれの配布物に従います。

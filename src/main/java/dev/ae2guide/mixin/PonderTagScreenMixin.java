@@ -1,3 +1,10 @@
+/*
+ * Portions adapted from Ponder's PonderTagScreen.
+ * Copyright (c) 2022 The Create Team. Licensed under the MIT License.
+ * Source: https://github.com/Creators-of-Create/Ponder/blob/mc1.21.1/dev/common/src/main/java/net/createmod/ponder/foundation/ui/PonderTagScreen.java
+ * Changes: responsive layout and pagination for the AE2 related-item screen.
+ * See LICENSES/MIT-Ponder.txt and THIRD_PARTY_NOTICES.md.
+ */
 package dev.ae2guide.mixin;
 
 import java.util.ArrayList;
