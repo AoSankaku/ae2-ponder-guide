@@ -1,5 +1,6 @@
 package dev.ae2guide.client;
 
+import dev.ae2guide.GuideResources;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -7,7 +8,6 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /** A searchable course catalogue; each row selects the initial Ponder lesson. */
-public final class GuideScreen extends Screen {
+public final class GuideScreen extends GuideScreenPlatformBase {
     private static final int LIST_X = 128;
     private static final int LIST_Y = 84;
     private static final int ROW_HEIGHT = 36;
@@ -81,9 +81,10 @@ public final class GuideScreen extends Screen {
         chapterButtons.forEach((id, button) -> button.active = !id.equals(chapter));
         rows.forEach(this::removeWidget);
         rows.clear();
-        String term = query.strip().toLowerCase(Locale.ROOT);
+        String term = query.strip();
+        Locale language = Locale.forLanguageTag(minecraft.getLanguageManager().getSelected().replace('_', '-'));
         filtered = GuideBook.lessons().stream().filter(lesson -> chapter.isEmpty() || chapter.equals(lesson.chapter()))
-                .filter(lesson -> matches(lesson, term)).toList();
+                .filter(lesson -> matches(lesson, term, language)).toList();
         page = Math.max(0, Math.min(page, Math.max(0, (filtered.size() - 1) / pageSize)));
         for (int i = page * pageSize; i < Math.min(filtered.size(), (page + 1) * pageSize); i++) {
             var lesson = filtered.get(i);
@@ -97,7 +98,7 @@ public final class GuideScreen extends Screen {
         next.active = (page + 1) * pageSize < filtered.size();
     }
 
-    private static boolean matches(GuideBook.Lesson lesson, String term) {
+    private static boolean matches(GuideBook.Lesson lesson, String term, Locale language) {
         if (term.isEmpty()) return true;
         var text = lessonTitle(lesson).getString() + " " + lessonSummary(lesson).getString() + " "
                 + lesson.title().ja() + " " + lesson.title().en() + " " + lesson.summary().ja() + " "
@@ -106,7 +107,9 @@ public final class GuideScreen extends Screen {
                 .collect(java.util.stream.Collectors.joining(" "));
         for (int index = 0; index < lesson.steps().size(); index++)
             text += " " + Component.translatable("ae2ponder.ponder.shared." + lesson.id() + "_" + index).getString();
-        return text.toLowerCase(Locale.ROOT).contains(term);
+        // Preserve English/registry-ID searches while honoring the selected language's case rules (e.g. Turkish I/İ).
+        return text.toLowerCase(Locale.ROOT).contains(term.toLowerCase(Locale.ROOT))
+                || text.toLowerCase(language).contains(term.toLowerCase(language));
     }
 
     @Override public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
@@ -126,7 +129,7 @@ public final class GuideScreen extends Screen {
         for (int row = 0; row < rows.size(); row++) {
             var lesson = filtered.get(page * pageSize + row);
             int y = LIST_Y + row * ROW_HEIGHT;
-            graphics.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(lesson.icon()))), LIST_X + 7, y + 8);
+            graphics.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(GuideResources.parse(lesson.icon()))), LIST_X + 7, y + 8);
             int number = GuideBook.lessons().indexOf(lesson) + 1;
             String prefix = (GuideProgress.completed(lesson.id()) ? "✓ " : "") + String.format(Locale.ROOT, "%02d  ", number);
             String name = prefix + lessonTitle(lesson).getString();
@@ -136,13 +139,13 @@ public final class GuideScreen extends Screen {
         }
     }
 
-    @Override public boolean mouseScrolled(double x, double y, double scrollX, double scrollY) {
+    @Override protected boolean onGuideMouseScrolled(double x, double y, double scrollY) {
         if (x >= LIST_X && scrollY != 0) {
             page += scrollY < 0 ? 1 : -1;
             refresh();
             return true;
         }
-        return super.mouseScrolled(x, y, scrollX, scrollY);
+        return false;
     }
 
     @Override public void onClose() { minecraft.setScreen(parent); }

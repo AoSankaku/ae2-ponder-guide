@@ -3,6 +3,6 @@
   "minVersion": "0.8",
   "package": "dev.ae2guide.mixin",
   "compatibilityLevel": "JAVA_21",
-  "client": ["PonderLevelModelDataMixin", "PonderUIAccessor", "PonderTagScreenMixin", "GuideDefaultExtensionsMixin"],
+  "client": ["PonderLevelModelDataMixin", "PonderUIAccessor", "PonderTagScreenMixin", "PonderTextWindowMixin", "GuideDefaultExtensionsMixin", "GuideArabicTextMixin"],
   "injectors": {"defaultRequire": 1}
 }

@@ -1,6 +1,7 @@
 package dev.ae2guide.client;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import dev.ae2guide.GuideResources;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.PonderPalette;
 import net.createmod.ponder.api.scene.SceneBuilder;
@@ -10,7 +11,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -54,10 +54,10 @@ public final class GuideScenes {
             scene.overlay().showOutline(color, "focus_" + id, util.select().position(lesson.node(id).position()), duration);
         }
         var caption = scene.overlay().showText(duration)
-                .sharedText(ResourceLocation.fromNamespaceAndPath("ae2ponder", lesson.id() + "_" + index))
+                .sharedText(GuideResources.of("ae2ponder", lesson.id() + "_" + index))
                 .colored(color);
         if (step.focus().isEmpty()) caption.independent();
-        else caption.pointAt(Vec3.atCenterOf(lesson.node(step.focus().getFirst()).position())).placeNearTarget();
+        else caption.pointAt(Vec3.atCenterOf(lesson.node(step.focus().get(0)).position())).placeNearTarget();
         // Show one ingredient/tool at a time, keeping each bubble clear of the next one.
         int slots = Math.max(1, step.callouts().size());
         int slotDuration = duration / slots;
@@ -87,7 +87,7 @@ public final class GuideScenes {
         var node = lesson.node(callout.anchor());
         var offset = callout.offset();
         var position = Vec3.atCenterOf(node.position()).add(offset.get(0), 0.5 + offset.get(1), offset.get(2));
-        var id = ResourceLocation.parse(callout.item());
+        var id = GuideResources.parse(callout.item());
         if (!BuiltInRegistries.ITEM.containsKey(id)) throw new IllegalArgumentException("Unknown callout item: " + id);
         // Ponder adds five ticks each for fade-in/out; leave two ticks before the following bubble.
         var bubble = scene.overlay().showControls(position, Pointing.valueOf(callout.pointing().toUpperCase(Locale.ROOT)), duration - 12)
@@ -105,7 +105,7 @@ public final class GuideScenes {
         var from = Vec3.atCenterOf(lesson.node(flow.from()).position()).add(0, 0.65, 0);
         var to = Vec3.atCenterOf(lesson.node(flow.to()).position()).add(0, 0.65, 0);
         scene.overlay().showBigLine(PonderPalette.GREEN, from, to, FLOW_TICKS + 12);
-        var item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(flow.item()));
+        var item = BuiltInRegistries.ITEM.get(GuideResources.parse(flow.item()));
         var link = scene.world().createItemEntity(from, Vec3.ZERO, new ItemStack(item));
         scene.world().modifyEntity(link, entity -> { entity.setNoGravity(true); entity.noPhysics = true; });
         for (int tick = 1; tick <= FLOW_TICKS; tick++) {
@@ -129,7 +129,7 @@ public final class GuideScenes {
     }
 
     public static BlockState state(GuideBook.Node node) {
-        var id = ResourceLocation.parse(node.block());
+        var id = GuideResources.parse(node.block());
         if (!BuiltInRegistries.BLOCK.containsKey(id)) throw new IllegalArgumentException("Unknown guide block: " + id);
         var state = BuiltInRegistries.BLOCK.get(id).defaultBlockState();
         for (var entry : node.state().entrySet()) {

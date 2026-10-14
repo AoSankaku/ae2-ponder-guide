@@ -2,6 +2,8 @@ package dev.ae2guide.validation;
 
 import com.google.gson.Gson;
 import com.mojang.logging.LogUtils;
+import dev.ae2guide.GuideResources;
+import dev.ae2guide.Platform;
 import dev.ae2guide.client.GuideBook;
 import dev.ae2guide.client.GuideChapter;
 import dev.ae2guide.client.GuidePlugin;
@@ -14,40 +16,29 @@ import net.createmod.ponder.foundation.ui.PonderUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
 import net.minecraft.client.gui.screens.TitleScreen;
-import net.minecraft.client.gui.screens.options.OptionsScreen;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.Direction;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.GameType;
-import net.minecraft.world.level.LevelSettings;
-import net.minecraft.world.level.levelgen.WorldOptions;
-import net.minecraft.world.level.levelgen.presets.WorldPresets;
-import net.minecraft.world.level.WorldDataConfiguration;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import org.lwjgl.glfw.GLFW;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /** Opt-in integration harness, excluded from the released mod JAR. */
-@EventBusSubscriber(modid = "ae2ponder", bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class GuideValidation {
     private static boolean opening;
     private static boolean validating;
+    private static boolean waitingScreenLogged;
+    private static boolean renderedSinceLastStep;
+    private static boolean languageReloadWaitingLogged;
+    private static CompletableFuture<Void> initialLanguageReload;
     private static int frame;
     private static final int SCENE_START = 220;
     private static final List<PonderScene> SCENES = new ArrayList<>();
@@ -59,47 +50,63 @@ public final class GuideValidation {
 
     private GuideValidation() {}
 
-    @SubscribeEvent public static void setup(FMLClientSetupEvent event) {
-        if (!Boolean.getBoolean("ae2ponder.validate")) return;
-        event.enqueueWork(() -> {
-            var client = Minecraft.getInstance();
-            GLFW.glfwHideWindow(client.getWindow().getWindow());
-            try {
-                Files.deleteIfExists(client.gameDirectory.toPath().resolve("validation-result.json"));
-                Files.deleteIfExists(client.gameDirectory.toPath().resolve("validation-failure.txt"));
-            }
-            catch (Exception exception) { throw new IllegalStateException("Cannot clear old validation result", exception); }
-            NeoForge.EVENT_BUS.addListener(GuideValidation::tick);
-        });
+    static boolean initialize() {
+        if (!Boolean.getBoolean("ae2ponder.validate")) return false;
+        var client = Minecraft.getInstance();
+        ValidationPlatform.hideWindow(client);
+        var languageManager = client.getLanguageManager();
+        if (!"ja_jp".equals(languageManager.getSelected())) {
+            languageManager.setSelected("ja_jp");
+            client.options.languageCode = "ja_jp";
+            initialLanguageReload = client.reloadResourcePacks();
+        } else {
+            client.options.languageCode = "ja_jp";
+        }
+        try {
+            Files.deleteIfExists(client.gameDirectory.toPath().resolve("validation-result.json"));
+            Files.deleteIfExists(client.gameDirectory.toPath().resolve("validation-failure.txt"));
+        }
+        catch (Exception exception) { throw new IllegalStateException("Cannot clear old validation result", exception); }
+        LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_INITIALIZED: current screen={}, language={}",
+                screenName(client), languageManager.getSelected());
+        return true;
     }
 
-    private static void tick(ClientTickEvent.Post event) {
+    static void tick() {
         var client = Minecraft.getInstance();
+        try {
+            if (!awaitInitialLanguageReload()) return;
+        } catch (Throwable exception) {
+            failValidation(client, exception);
+            return;
+        }
+        if (!opening && client.getOverlay() == null && !(client.screen instanceof TitleScreen)) {
+            if (!waitingScreenLogged) {
+                waitingScreenLogged = true;
+                LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_WAITING: current screen={}", screenName(client));
+            }
+            ValidationPlatform.recoverInitialScreen(client);
+            return;
+        }
         if (!opening && client.screen instanceof TitleScreen && client.getOverlay() == null) {
             opening = true;
-            var rules = new GameRules();
-            rules.getRule(GameRules.RULE_DAYLIGHT).set(false, null);
-            rules.getRule(GameRules.RULE_DOMOBSPAWNING).set(false, null);
-            rules.getRule(GameRules.RULE_SPAWN_CHUNK_RADIUS).set(0, null);
-            client.createWorldOpenFlows().createFreshLevel("guide-validation-" + System.currentTimeMillis(),
-                    new LevelSettings("AE2 Guide Validation", GameType.CREATIVE, false,
-                            Difficulty.PEACEFUL, true, rules, WorldDataConfiguration.DEFAULT),
-                    new WorldOptions(1L, false, false), registries -> registries.registryOrThrow(Registries.WORLD_PRESET)
-                            .getHolderOrThrow(WorldPresets.FLAT).value().createWorldDimensions(), client.screen);
+            ValidationPlatform.createFreshLevel(client);
         }
         if (!opening || client.level == null || client.getOverlay() != null) return;
+        if (!renderedSinceLastStep) return;
+        renderedSinceLastStep = false;
         if (!validating && (client.screen != null || client.player == null)) return;
         try {
             if (!validating) {
                 validating = true;
                 validateScenes();
-                client.setScreen(new OptionsScreen(null, client.options));
+                client.setScreen(ValidationPlatform.createOptionsScreen(client));
                 frame = 0;
             }
             frame++;
             if (frame == 6) screenshot("options-guide-button.png");
             if (frame == 7) {
-                if (!(client.screen instanceof OptionsScreen)) throw new IllegalStateException("Options did not open");
+                if (!ValidationPlatform.isOptionsScreen(client.screen)) throw new IllegalStateException("Options did not open");
                 client.screen.mouseClicked(18, client.screen.height - 18, 0);
                 if (!(client.screen instanceof GuideScreen)) throw new IllegalStateException("Options guide button did not open catalogue");
             }
@@ -110,22 +117,23 @@ public final class GuideValidation {
                 client.screen.mouseClicked(160, 95, 0);
             }
             if (frame == 11) {
-                if (!(client.screen instanceof PonderUI ui)) throw new IllegalStateException("Catalogue row did not open Ponder");
-                GuideUiValidation.requireLesson(GuideBook.lessons().getFirst().id());
+                if (!(client.screen instanceof PonderUI ui))
+                    throw new IllegalStateException("Catalogue row did not open Ponder; screen=" + screenName(client));
+                GuideUiValidation.requireLesson(GuideBook.lessons().get(0).id());
                 ui.seekToTime(Math.min(280, ui.getActiveScene().getTotalTime() - 1));
             }
             // Native controls are hidden during Ponder's opening zoom; wait for that transition.
             if (frame == 31) GuideUiValidation.clickArrow(true);
             if (frame == 32) GuideUiValidation.requireLesson(GuideBook.lessons().get(1).id());
             if (frame == 41) GuideUiValidation.clickArrow(false);
-            if (frame == 42) GuideUiValidation.requireLesson(GuideBook.lessons().getFirst().id());
+            if (frame == 42) GuideUiValidation.requireLesson(GuideBook.lessons().get(0).id());
             if (frame == 47) screenshot("first-lesson.png");
             if (frame == 50) GuideUiValidation.clickBack();
             if (frame == 52 && !(client.screen instanceof GuideScreen)) throw new IllegalStateException("Native back did not restore catalogue");
             GuideUiValidation.tick(frame);
             if (frame >= SCENE_START && frame < SCENE_START + SCENES.size() * 12 && (frame - SCENE_START) % 12 == 0) {
                 int index = (frame - SCENE_START) / 12;
-                client.setScreen(new ValidationPonderScreen(SCENES.get(index), CALLOUT_TIMES.get(index).getFirst()));
+                client.setScreen(new ValidationPonderScreen(SCENES.get(index), CALLOUT_TIMES.get(index).get(0)));
             }
             if (frame >= SCENE_START && frame < SCENE_START + SCENES.size() * 12 && client.screen instanceof PonderUI ui) {
                 int phase = (frame - SCENE_START) % 12;
@@ -149,21 +157,44 @@ public final class GuideValidation {
                         "tagLayouts", GuideUiValidation.layouts(), "nativeNavigation", true, "guideMeLink", true,
                         "languages", GuideLanguageValidation.checkedLanguages(), "createInstalled", false,
                         "loadedAddons", List.of("ae2omnicells", "bigger_ae2", "ae2things", "ae2_mega_things")
-                                .stream().filter(ModList.get()::isLoaded).toList())));
+                                .stream().filter(Platform::isModLoaded).toList())));
                 LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_PASS: {} storyboards compiled, replayed and rendered; {} item callouts verified",
                         SCENES.size(), verifiedCallouts);
                 client.stop();
             }
         } catch (Throwable exception) {
-            LogUtils.getLogger().error("AE2_GUIDE_VALIDATION_FAIL", exception);
-            try { Files.writeString(client.gameDirectory.toPath().resolve("validation-failure.txt"), exception.toString()); }
-            catch (Exception writeFailure) { LogUtils.getLogger().error("Cannot write validation failure", writeFailure); }
-            client.stop();
+            failValidation(client, exception);
         }
     }
 
+    private static boolean awaitInitialLanguageReload() {
+        if (initialLanguageReload == null) return true;
+        if (!initialLanguageReload.isDone()) {
+            if (!languageReloadWaitingLogged) {
+                languageReloadWaitingLogged = true;
+                LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_WAITING: Japanese resource reload is still running");
+            }
+            return false;
+        }
+        try {
+            initialLanguageReload.join();
+            initialLanguageReload = null;
+            LogUtils.getLogger().info("AE2_GUIDE_VALIDATION_LANGUAGE_READY: ja_jp");
+            return true;
+        } catch (CompletionException exception) {
+            throw new IllegalStateException("Could not load the Japanese GuideME page", exception.getCause());
+        }
+    }
+
+    private static void failValidation(Minecraft client, Throwable exception) {
+        LogUtils.getLogger().error("AE2_GUIDE_VALIDATION_FAIL", exception);
+        try { Files.writeString(client.gameDirectory.toPath().resolve("validation-failure.txt"), exception.toString()); }
+        catch (Exception writeFailure) { LogUtils.getLogger().error("Cannot write validation failure", writeFailure); }
+        client.stop();
+    }
+
     private static void validateScenes() {
-        if (net.neoforged.fml.ModList.get().isLoaded("create")) throw new IllegalStateException("Create must be absent during validation");
+        if (Platform.isModLoaded("create")) throw new IllegalStateException("Create must be absent during validation");
         validateOptionalLessons();
         String selection = System.getProperty("ae2ponder.validationLessons", "");
         var selectedIds = selection.isBlank() ? List.<String>of() : List.of(selection.split(","));
@@ -174,12 +205,12 @@ public final class GuideValidation {
             requireItem(lesson.icon());
             lesson.components().forEach(GuideValidation::requireItem);
             for (var component : lesson.components()) {
-                if (!PonderIndex.getSceneAccess().doScenesExistForId(ResourceLocation.parse(component)))
+                if (!PonderIndex.getSceneAccess().doScenesExistForId(GuideResources.parse(component)))
                     throw new IllegalStateException("Item has no tooltip Ponder entry: " + component);
             }
             lesson.steps().stream().filter(step -> step.flow() != null).forEach(step -> requireItem(step.flow().item()));
             lesson.steps().stream().flatMap(step -> step.callouts().stream()).forEach(callout -> requireItem(callout.item()));
-            var scene = PonderIndex.getSceneAccess().compile(List.of(GuidePlugin.entry(lesson.id()))).getFirst();
+            var scene = PonderIndex.getSceneAccess().compile(List.of(GuidePlugin.entry(lesson.id()))).get(0);
             if (scene.getBounds().maxY() != 4 || scene.getBounds().maxX() != 8) throw new IllegalStateException("Incorrect stage bounds");
             scene.seekToTime(scene.getTotalTime());
             checkBlocks(lesson, scene);
@@ -212,7 +243,7 @@ public final class GuideValidation {
             if (!actual.equals(expected)) throw new IllegalStateException("Optional lesson filter failed for add-on mask " + mask);
         }
 
-        var loadedAddons = supportedAddons.stream().filter(ModList.get()::isLoaded).collect(java.util.stream.Collectors.toSet());
+        var loadedAddons = supportedAddons.stream().filter(Platform::isModLoaded).collect(java.util.stream.Collectors.toSet());
         boolean expectAddons = Boolean.getBoolean("ae2ponder.expectAddons");
         if (expectAddons && !loadedAddons.equals(Set.copyOf(supportedAddons)))
             throw new IllegalStateException("All four optional add-ons were expected, found " + loadedAddons);
@@ -230,7 +261,7 @@ public final class GuideValidation {
 
         var addonLessons = expectedAvailable.stream()
                 .filter(lesson -> lesson.chapter().equals(GuideChapter.ADDONS.id())).toList();
-        var addonTagId = ResourceLocation.fromNamespaceAndPath("ae2ponder", GuideChapter.ADDONS.id());
+        var addonTagId = GuideResources.of("ae2ponder", GuideChapter.ADDONS.id());
         var addonTag = PonderIndex.getTagAccess().getRegisteredTag(addonTagId);
         if (addonLessons.isEmpty()) {
             // Ponder returns its not_registered sentinel for an unknown tag, rather than null.
@@ -242,10 +273,10 @@ public final class GuideValidation {
             if (!addonTag.getId().equals(addonTagId))
                 throw new IllegalStateException("The installed add-on chapter was not registered");
             var expectedItems = new java.util.HashSet<ResourceLocation>();
-            expectedItems.add(ResourceLocation.parse(GuideChapter.ADDONS.icon()));
+            expectedItems.add(GuideResources.parse(GuideChapter.ADDONS.icon()));
             addonLessons.forEach(lesson -> {
-                expectedItems.add(ResourceLocation.parse(lesson.icon()));
-                lesson.components().stream().map(ResourceLocation::parse).forEach(expectedItems::add);
+                expectedItems.add(GuideResources.parse(lesson.icon()));
+                lesson.components().stream().map(GuideResources::parse).forEach(expectedItems::add);
             });
             var actualItems = new java.util.HashSet<>(PonderIndex.getTagAccess().getItems(addonTag));
             if (!addonTag.getMainItem().isEmpty())
@@ -293,7 +324,7 @@ public final class GuideValidation {
                     var visible = scene.getElements().stream().filter(InputWindowElement.class::isInstance)
                             .map(InputWindowElement.class::cast).filter(InputWindowElement::isVisible).toList();
                     if (visible.size() != 1) throw new IllegalStateException("Missing or overlapping callouts: " + lesson.id() + "/" + stepIndex);
-                    var bubble = visible.getFirst();
+                    var bubble = visible.get(0);
                     var item = (ItemStack) itemField.get(bubble);
                     if (bubble.getFade(1) < .99f || !BuiltInRegistries.ITEM.getKey(item.getItem()).toString().equals(step.callouts().get(slot).item()))
                         throw new IllegalStateException("Wrong or invisible callout item: " + lesson.id() + "/" + stepIndex + "/" + slot);
@@ -310,7 +341,7 @@ public final class GuideValidation {
 
     private static void checkBlocks(GuideBook.Lesson lesson, PonderScene scene) {
         for (var node : lesson.nodes()) {
-            var expected = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(node.block()));
+            var expected = BuiltInRegistries.BLOCK.get(GuideResources.parse(node.block()));
             if (!scene.getWorld().getBlockState(node.position()).is(expected))
                 throw new IllegalStateException("Missing stage model: " + lesson.id() + "/" + node.id());
             if (!node.nbt().equals("{}") && scene.getWorld().getBlockEntity(node.position()) == null)
@@ -321,7 +352,7 @@ public final class GuideValidation {
                 lesson.steps().forEach(step -> {
                     if (step.nbt().containsKey(node.id())) expectedNbt.merge(GuideScenes.parseNbt(step.nbt().get(node.id())));
                 });
-                var actual = blockEntity.saveWithoutMetadata(scene.getWorld().registryAccess());
+                var actual = ValidationPlatform.saveWithoutMetadata(blockEntity, scene.getWorld().registryAccess());
                 for (var slot : List.of("cable", "up", "down", "north", "south", "east", "west")) {
                     String id = expectedNbt.getCompound(slot).getString("id");
                     if (!id.isEmpty() && !actual.getCompound(slot).getString("id").equals(id))
@@ -329,7 +360,8 @@ public final class GuideValidation {
                 }
                 var state = scene.getWorld().getBlockState(node.position());
                 var model = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
-                var data = model.getModelData(scene.getWorld(), node.position(), state, scene.getWorld().getModelData(node.position()));
+                var data = model.getModelData(scene.getWorld(), node.position(), state,
+                        ValidationPlatform.getModelData(scene.getWorld(), node.position()));
                 int quads = 0;
                 for (var layer : RenderType.chunkBufferLayers()) {
                     quads += model.getQuads(state, null, RandomSource.create(1L), data, layer).size();
@@ -341,12 +373,20 @@ public final class GuideValidation {
     }
 
     private static void requireItem(String id) {
-        if (!BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(id))) throw new IllegalStateException("Unknown guide item: " + id);
+        if (!BuiltInRegistries.ITEM.containsKey(GuideResources.parse(id))) throw new IllegalStateException("Unknown guide item: " + id);
     }
 
     private static void screenshot(String name) {
         var client = Minecraft.getInstance();
         Screenshot.grab(client.gameDirectory, name, client.getMainRenderTarget(), message -> LogUtils.getLogger().info("{}", message.getString()));
+    }
+
+    private static String screenName(Minecraft client) {
+        return client.screen == null ? "<none>" : client.screen.getClass().getSimpleName();
+    }
+
+    static void rendered() {
+        renderedSinceLastStep = true;
     }
 
     private static final class ValidationPonderScreen extends PonderUI {

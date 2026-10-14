@@ -23,7 +23,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.createmod.catnip.gui.ScreenOpener;
 import net.createmod.catnip.gui.UIRenderHelper;
 import net.createmod.catnip.gui.element.BoxElement;
-import net.createmod.catnip.registry.RegisteredObjectsHelper;
 import net.createmod.ponder.Ponder;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.createmod.ponder.foundation.PonderTag;
@@ -34,6 +33,7 @@ import net.createmod.ponder.foundation.ui.PonderUI;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
@@ -79,7 +79,7 @@ public abstract class PonderTagScreenMixin extends AbstractPonderScreen {
 	@Unique
 	private List<FormattedCharSequence> ae2ponder$descriptionLines;
 
-	@Inject(method = "init", at = @At("HEAD"), cancellable = true, remap = false)
+	@Inject(method = "init", at = @At(value = "HEAD", remap = false), cancellable = true, remap = true)
 	private void ae2ponder$initResponsivePages(CallbackInfo ci) {
 		if (!ae2ponder$isGuideTag())
 			return;
@@ -119,7 +119,7 @@ public abstract class PonderTagScreenMixin extends AbstractPonderScreen {
 		Map<ResourceLocation, ItemStack> byId = new LinkedHashMap<>();
 		ItemStack mainItem = tag.getMainItem();
 		if (!mainItem.isEmpty()) {
-			ResourceLocation mainId = RegisteredObjectsHelper.getKeyOrThrow(mainItem.getItem());
+			ResourceLocation mainId = BuiltInRegistries.ITEM.getKey(mainItem.getItem());
 			byId.put(mainId, mainItem.copy());
 		}
 
@@ -128,9 +128,9 @@ public abstract class PonderTagScreenMixin extends AbstractPonderScreen {
 			.forEach(id -> {
 				if (byId.containsKey(id))
 					return;
-				ItemLike item = RegisteredObjectsHelper.getItemOrBlock(id);
-				if (item != null)
-					byId.put(id, new ItemStack(item));
+				ItemLike item = BuiltInRegistries.ITEM.getOptional(id).orElse(null);
+				if (item == null) item = BuiltInRegistries.BLOCK.getOptional(id).orElse(null);
+				if (item != null) byId.put(id, new ItemStack(item));
 			});
 
 		return byId;
@@ -249,7 +249,7 @@ public abstract class PonderTagScreenMixin extends AbstractPonderScreen {
 
 		graphics.pose().pushPose();
 		graphics.pose().translate(0, 0, 200);
-		graphics.drawString(font, Ponder.lang().translate(AbstractPonderScreen.PONDERING_TAG).component(),
+		graphics.drawString(font, Ponder.lang().translate("ui.pondering_tag").component(),
 			58, 12, UIRenderHelper.COLOR_TEXT_DARKER.getFirst().getRGB(), false);
 		List<FormattedCharSequence> titleLines = font.split(Component.literal(tag.getTitle()), Math.max(1, width - 74));
 		int lineCount = Math.min(2, titleLines.size());

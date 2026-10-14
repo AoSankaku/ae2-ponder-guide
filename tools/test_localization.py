@@ -91,7 +91,13 @@ class LocalizationChecks(unittest.TestCase):
 
     def test_removed_language_is_rejected(self):
         self.write("languages.json", {"en_us": "English", "ja_jp": "日本語"})
-        with self.assertRaisesRegex(AssertionError, "All 15"):
+        with self.assertRaisesRegex(AssertionError, "All 22"):
+            self.check()
+
+    def test_previous_language_scope_is_rejected(self):
+        additions = {"fr_fr", "ar_sa", "id_id", "ko_kr", "vi_vn", "tr_tr", "it_it"}
+        self.write("languages.json", dict.fromkeys(sorted(localization.SUPPORTED - additions), "Language"))
+        with self.assertRaisesRegex(AssertionError, "All 22"):
             self.check()
 
     def test_duplicate_json_key_is_rejected(self):

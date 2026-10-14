@@ -2,7 +2,7 @@ package dev.ae2guide.client;
 
 import com.google.gson.Gson;
 import com.mojang.logging.LogUtils;
-import net.neoforged.fml.loading.FMLPaths;
+import dev.ae2guide.Platform;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 final class GuideProgress {
-    private static final java.nio.file.Path FILE = FMLPaths.CONFIGDIR.get().resolve("ae2ponder-progress.json");
+    private static final java.nio.file.Path FILE = Platform.configDirectory().resolve("ae2ponder-progress.json");
     private static final Set<String> COMPLETED = load();
     private GuideProgress() {}
 

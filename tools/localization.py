@@ -8,7 +8,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TRANSLATIONS = ROOT / "src/main/translations"
 SUPPORTED = {"ja_jp", "en_us", "hi_in", "zh_hk", "zh_tw", "zh_cn", "ru_ru", "pt_br",
-             "pt_pt", "es_es", "de_de", "cs_cz", "pl_pl", "ms_my", "ro_ro"}
+             "pt_pt", "es_es", "fr_fr", "de_de", "cs_cz", "pl_pl", "ms_my", "ro_ro",
+             "ar_sa", "id_id", "ko_kr", "vi_vn", "tr_tr", "it_it"}
 
 
 def read(path):
@@ -61,7 +62,7 @@ def check():
     digest = source_hash(source)
     expected = source["en_us"]
     languages = read(TRANSLATIONS / "languages.json")
-    assert languages.keys() == SUPPORTED, "All 15 supported languages are required"
+    assert languages.keys() == SUPPORTED, "All 22 supported languages are required"
     reviews = read(TRANSLATIONS / "source-review.json")
     assert reviews.keys() == source.keys(), "English/Japanese source review records are required"
     for locale in source:

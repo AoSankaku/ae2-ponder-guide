@@ -1,6 +1,7 @@
 package dev.ae2guide.client;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
@@ -8,15 +9,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.chat.Component;
-import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
+import net.minecraft.commands.CommandSourceStack;
 
 /** GuideME CommandLinks execute these locally, before any server command is sent. */
 final class GuideCommands {
     private GuideCommands() {}
 
-    static void register(RegisterClientCommandsEvent event) {
-        event.getDispatcher().register(Commands.literal("ae2ponder")
-                .executes(context -> open(GuideBook.lessons().getFirst().id()))
+    static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(Commands.literal("ae2ponder")
+                .executes(context -> open(GuideBook.lessons().get(0).id()))
                 .then(Commands.literal("lesson").then(Commands.argument("id", StringArgumentType.word())
                         .suggests((context, builder) -> SharedSuggestionProvider.suggest(
                                 GuideBook.lessons().stream().map(GuideBook.Lesson::id), builder))

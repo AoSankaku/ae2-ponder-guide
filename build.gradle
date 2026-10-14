@@ -1,15 +1,27 @@
 plugins {
     id 'java-library'
-    id 'net.neoforged.moddev' version '2.0.148'
+    id 'net.neoforged.moddev' version '2.0.148' apply false
+    id 'net.neoforged.moddev.legacyforge' version '2.0.148' apply false
 }
+
+def platform = providers.gradleProperty('platform').getOrElse('neoforge')
+if (!(platform in ['neoforge', 'forge'])) throw new GradleException("Unknown platform '${platform}': use neoforge or forge")
+def forgeTarget = platform == 'forge'
+apply plugin: forgeTarget ? 'net.neoforged.moddev.legacyforge' : 'net.neoforged.moddev'
+if (forgeTarget) layout.buildDirectory = file('build/forge')
 
 group = 'dev.ae2guide'
 version = mod_version
 base.archivesName = 'ae2-ponder-guide'
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(forgeTarget ? 17 : 21)
 
 sourceSets {
+    main {
+        java.srcDir("src/${platform}/java")
+        resources.srcDir("src/${platform}/resources")
+    }
     validation {
+        java.srcDir("src/${platform}Validation/java")
         compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
         runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
     }
@@ -19,22 +31,35 @@ repositories {
     mavenCentral()
     maven { url = 'https://maven.createmod.net' }
     maven { url = 'https://maven.neoforged.net/releases' }
+    maven { url = 'https://maven.minecraftforge.net' }
     maven { url = 'https://api.modrinth.com/maven'; content { includeGroup 'maven.modrinth' } }
     maven { url = 'https://www.cursemaven.com'; content { includeGroup 'curse.maven' } }
 }
 
-neoForge {
-    version = neo_version
+def loader = forgeTarget ? legacyForge : neoForge
+if (forgeTarget) {
+    legacyForge.enable {
+        forgeVersion = "1.20.1-${forge_version}"
+        disableRecompilation = true
+    }
+} else {
+    neoForge.version = neo_version
+}
+loader.with {
     runs {
-        client { client() }
+        client {
+            client()
+            if (forgeTarget) gameDirectory = file('run/forge')
+        }
         server {
             server()
+            if (forgeTarget) gameDirectory = file('run/forge-server')
             programArgument '--nogui'
         }
         validationClient {
             client()
             sourceSet = sourceSets.validation
-            gameDirectory = file('build/validation-run')
+            gameDirectory = layout.buildDirectory.dir('validation-run').get().asFile
             systemProperty 'ae2ponder.validate', 'true'
             systemProperty 'ae2ponder.validationLessons', project.findProperty('validationLessons') ?: ''
             systemProperty 'ae2ponder.validateLanguages', project.hasProperty('validateLanguages').toString()
@@ -44,7 +69,7 @@ neoForge {
         performanceClient {
             client()
             sourceSet = sourceSets.validation
-            gameDirectory = file('build/performance-run')
+            gameDirectory = layout.buildDirectory.dir('performance-run').get().asFile
             systemProperty 'ae2ponder.profile', 'true'
             jvmArguments.addAll "-Xms${project.findProperty('profileMinHeap') ?: '1G'}",
                     "-Xmx${project.findProperty('profileMaxHeap') ?: '4G'}"
@@ -60,25 +85,55 @@ neoForge {
 }
 
 dependencies {
-    implementation "net.createmod.ponder:ponder-neoforge:${ponder_version}"
-    runtimeOnly "org.appliedenergistics:appliedenergistics2:${ae2_version}"
-    runtimeOnly 'org.appliedenergistics:guideme:21.1.19'
-    compileOnly 'org.appliedenergistics:guideme:21.1.19'
-    validationCompileOnly 'org.appliedenergistics:guideme:21.1.19'
+    if (forgeTarget) {
+        modImplementation "net.createmod.ponder:Ponder-Forge-1.20.1:${forge_ponder_version}"
+        modRuntimeOnly "maven.modrinth:ae2:${forge_ae2_version}"
+        modImplementation "org.appliedenergistics:guideme:${forge_guideme_version}"
+        // Legacy mod configurations are not transitive; Ponder needs Flywheel explicitly.
+        modRuntimeOnly "dev.engine-room.flywheel:flywheel-forge-1.20.1:${forge_flywheel_version}"
+        annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    } else {
+        implementation "net.createmod.ponder:ponder-neoforge:${ponder_version}"
+        runtimeOnly "org.appliedenergistics:appliedenergistics2:${ae2_version}"
+        runtimeOnly 'org.appliedenergistics:guideme:21.1.19'
+        compileOnly 'org.appliedenergistics:guideme:21.1.19'
+        validationCompileOnly 'org.appliedenergistics:guideme:21.1.19'
+    }
     // Development/test launches include every supported add-on. None is bundled or required by our JAR.
     if (!project.hasProperty('withoutAddons')) {
-        runtimeOnly "maven.modrinth:ae2-omni-cells:${omni_version}"
-        runtimeOnly "maven.modrinth:bigger-ae2:${bigger_version}"
-        runtimeOnly 'curse.maven:ae2-things-609977:5637783'
-        runtimeOnly 'curse.maven:ae2-mega-things-1150075:6203833'
-        runtimeOnly "maven.modrinth:mega:${megacells_version}"
-        runtimeOnly "maven.modrinth:kotlin-for-forge:${kotlinforforge_version}"
+        if (forgeTarget) {
+            modRuntimeOnly "maven.modrinth:ae2-omni-cells:${forge_omni_version}"
+            modRuntimeOnly "maven.modrinth:bigger-ae2:${forge_bigger_version}"
+            modRuntimeOnly "curse.maven:ae2-things-609977:${forge_things_file}"
+            modRuntimeOnly "curse.maven:ae2-mega-things-1150075:${forge_mega_things_file}"
+            modRuntimeOnly "maven.modrinth:mega:${forge_megacells_version}"
+            modRuntimeOnly "maven.modrinth:kotlin-for-forge:${forge_kotlinforforge_version}"
+            modRuntimeOnly "maven.modrinth:cloth-config:${forge_cloth_config_version}"
+        } else {
+            runtimeOnly "maven.modrinth:ae2-omni-cells:${omni_version}"
+            runtimeOnly "maven.modrinth:bigger-ae2:${bigger_version}"
+            runtimeOnly 'curse.maven:ae2-things-609977:5637783'
+            runtimeOnly 'curse.maven:ae2-mega-things-1150075:6203833'
+            runtimeOnly "maven.modrinth:mega:${megacells_version}"
+            runtimeOnly "maven.modrinth:kotlin-for-forge:${kotlinforforge_version}"
+        }
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-    options.release = 21
+    options.release = forgeTarget ? 17 : 21
+}
+
+if (forgeTarget) {
+    mixin {
+        add sourceSets.main, 'ae2ponder.refmap.json'
+        config 'ae2ponder.mixins.json'
+    }
+    tasks.named('jar', Jar) {
+        archiveClassifier = 'forge-1.20.1'
+        manifest.attributes('MixinConfigs': 'ae2ponder.mixins.json')
+    }
 }
 
 processResources {
@@ -86,10 +141,48 @@ processResources {
     from('THIRD_PARTY_NOTICES.md')
     from('LICENSES') { into 'LICENSES' }
     inputs.property 'version', project.version
+    inputs.property 'platform', platform
+    if (forgeTarget) {
+        exclude 'META-INF/neoforge.mods.toml'
+        doLast {
+            def configFile = new File(destinationDir, 'ae2ponder.mixins.json')
+            def config = new groovy.json.JsonSlurper().parse(configFile, 'UTF-8')
+            config.compatibilityLevel = 'JAVA_17'
+            config.refmap = 'ae2ponder.refmap.json'
+            // Forge Ponder already reads model data directly from each virtual block entity.
+            config.client.remove('PonderLevelModelDataMixin')
+            configFile.setText(groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(config)) + '\n', 'UTF-8')
+        }
+    }
     filesMatching('META-INF/neoforge.mods.toml') { expand version: project.version }
+    filesMatching('META-INF/mods.toml') { expand version: project.version }
+    filesMatching('pack.mcmeta') {
+        expand packFormat: forgeTarget ? 15 : 34, dataPackFormat: forgeTarget ? 15 : 48
+    }
 }
 
 tasks.named('wrapper', Wrapper).configure { gradleVersion = '8.14.3' }
+
+// Minecraft can exit successfully after the harness records a failure.
+tasks.matching { it.name == 'runValidationClient' }.configureEach {
+    def resultFile = layout.buildDirectory.file('validation-run/validation-result.json')
+    def failureFile = layout.buildDirectory.file('validation-run/validation-failure.txt')
+    doFirst {
+        if (!project.hasProperty('validateGuide'))
+            throw new GradleException('runValidationClient requires -PvalidateGuide')
+        java.nio.file.Files.deleteIfExists(resultFile.get().asFile.toPath())
+        java.nio.file.Files.deleteIfExists(failureFile.get().asFile.toPath())
+    }
+    doLast {
+        def result = resultFile.get().asFile
+        if (!result.isFile() || new groovy.json.JsonSlurper().parse(result, 'UTF-8').passed != true) {
+            def failure = failureFile.get().asFile
+            throw new GradleException(failure.isFile()
+                    ? "Guide validation failed: ${failure.getText('UTF-8')}"
+                    : "Guide validation did not produce a successful result: ${result}")
+        }
+    }
+}
 apply from: 'gradle/localization.gradle'
 
 // Keep Ponder translation keys synchronized with the same data used by the catalogue.

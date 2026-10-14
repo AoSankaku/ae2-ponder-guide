@@ -17,7 +17,7 @@ their own license terms continue to apply.
 - Original project: Ponder, by The Create Team.
 - Copyright (c) 2022 The Create Team.
 - Source: https://github.com/Creators-of-Create/Ponder
-- Version used: 1.0.87+mc1.21.1.
+- Versions used: 1.0.87+mc1.21.1 (NeoForge) and 1.0.87 (Forge).
 - License: MIT; the original notice and full terms are in
   `LICENSES/MIT-Ponder.txt`.
 
@@ -72,6 +72,7 @@ GPL version 3 incorporated by it is provided in `LICENSES/LGPL-3.0.txt` and
 
 Source for the dependency version:
 https://github.com/AppliedEnergistics/GuideME/tree/v21.1.19
+https://github.com/AppliedEnergistics/GuideME/tree/v20.1.15 (Forge 1.20.1)
 
 This mod uses GuideME's interfaces and supplies its own integration Mixins.
 GuideME classes and its embedded libraries are not copied into this JAR. The
@@ -93,7 +94,7 @@ The Wrapper is included in the source repository, not in the distributed mod JAR
 
 ## Other separately installed dependencies
 
-Applied Energistics 2, NeoForge, Flywheel, supported AE2 add-ons and their required
+Applied Energistics 2, NeoForge, Forge, Flywheel, supported AE2 add-ons and their required
 dependencies retain their own licenses. This project refers to their registry
 identifiers and uses their runtime APIs/resources; it does not bundle their MOD
 JARs, textures, models, sounds, or implementations. Runtime use of Minecraft's

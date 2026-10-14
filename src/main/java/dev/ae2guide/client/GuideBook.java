@@ -1,9 +1,9 @@
 package dev.ae2guide.client;
 
 import com.google.gson.Gson;
+import dev.ae2guide.GuideResources;
+import dev.ae2guide.Platform;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.ModList;
 
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -26,8 +26,7 @@ public final class GuideBook {
 
     /** Lessons whose optional dependencies are present in the current client. */
     public static List<Lesson> lessons() {
-        return lessonsForMods(ModList.get().getMods().stream().map(mod -> mod.getModId())
-                .collect(java.util.stream.Collectors.toUnmodifiableSet()));
+        return lessonsForMods(Platform.loadedModIds());
     }
 
     /** Pure filter kept separate from the runtime mod list so every combination is testable. */
@@ -67,7 +66,7 @@ public final class GuideBook {
     public record Node(String id, String block, List<Integer> pos, Map<String, String> state, String nbt) {
         public Node {
             Objects.requireNonNull(id);
-            ResourceLocation.parse(block);
+            GuideResources.parse(block);
             pos = List.copyOf(pos);
             if (pos.size() != 3 || pos.get(0) < 0 || pos.get(0) > 8 || pos.get(1) < 1
                     || pos.get(1) > 4 || pos.get(2) < 0 || pos.get(2) > 8)
@@ -82,7 +81,7 @@ public final class GuideBook {
 
     public record Callout(String item, String anchor, String action, String pointing, List<Double> offset, boolean sneak) {
         public Callout {
-            ResourceLocation.parse(item);
+            GuideResources.parse(item);
             Objects.requireNonNull(anchor);
             action = action == null ? "none" : action;
             if (!List.of("none", "right_click", "left_click", "scroll").contains(action))
@@ -118,7 +117,7 @@ public final class GuideBook {
             Objects.requireNonNull(chapter);
             Objects.requireNonNull(title);
             Objects.requireNonNull(summary);
-            ResourceLocation.parse(icon);
+            GuideResources.parse(icon);
             requiresMods = requiresMods == null ? List.of() : List.copyOf(requiresMods);
             if (requiresMods.stream().anyMatch(mod -> mod == null || !mod.matches("[a-z0-9_.-]+")))
                 throw new IllegalArgumentException("Invalid required mod ID for lesson: " + id);

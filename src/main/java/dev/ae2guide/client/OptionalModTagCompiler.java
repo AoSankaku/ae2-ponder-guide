@@ -9,7 +9,7 @@ import guideme.document.flow.LytFlowParent;
 import guideme.libs.mdast.mdx.model.MdxJsxElementFields;
 import guideme.libs.mdast.mdx.model.MdxJsxFlowElement;
 import guideme.libs.mdast.mdx.model.MdxJsxTextElement;
-import net.neoforged.fml.ModList;
+import dev.ae2guide.Platform;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,8 +48,7 @@ public final class OptionalModTagCompiler implements TagCompiler {
                 : modeAttribute.hasStringValue() ? modeAttribute.getStringValue() : "";
         if (!mode.equals("all") && !mode.equals("any")) return false;
 
-        var modList = ModList.get();
-        return mode.equals("all") ? required.stream().allMatch(modList::isLoaded)
-                : required.stream().anyMatch(modList::isLoaded);
+        return mode.equals("all") ? required.stream().allMatch(Platform::isModLoaded)
+                : required.stream().anyMatch(Platform::isModLoaded);
     }
 }

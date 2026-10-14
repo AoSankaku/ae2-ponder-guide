@@ -9,7 +9,7 @@ version="${version}"
 displayName="AE2 Ponder Guide"
 authors="aosankaku and contributors"
 displayURL="https://github.com/AoSankaku/ae2-ponder-guide"
-description='''A visual, step-by-step Applied Energistics 2 guide with standalone Ponder, 15 languages, and optional add-on lessons.'''
+description='''A visual, step-by-step Applied Energistics 2 guide with standalone Ponder, 22 languages, and optional add-on lessons.'''
 
 [[mixins]]
 config="ae2ponder.mixins.json"

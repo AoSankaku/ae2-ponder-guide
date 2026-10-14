@@ -1,5 +1,8 @@
 package dev.ae2guide.validation;
 
+import com.ibm.icu.text.ArabicShaping;
+import com.ibm.icu.text.ArabicShapingException;
+import dev.ae2guide.GuideResources;
 import dev.ae2guide.client.GuideBook;
 import dev.ae2guide.client.GuideChapter;
 import dev.ae2guide.client.GuidePonderScreen;
@@ -36,8 +39,8 @@ import java.util.Set;
 
 /** Tests actual widgets and GuideME links in the isolated, hidden client. */
 final class GuideUiValidation {
-    private static final ResourceLocation GUIDE = ResourceLocation.parse("ae2:guide");
-    private static final ResourceLocation PAGE = ResourceLocation.parse("ae2ponder:ponder.md");
+    private static final ResourceLocation GUIDE = GuideResources.parse("ae2:guide");
+    private static final ResourceLocation PAGE = GuideResources.parse("ae2ponder:ponder.md");
     private static int layouts;
     private static Screen meGuide;
 
@@ -50,7 +53,7 @@ final class GuideUiValidation {
         var client = Minecraft.getInstance();
         if (frame == 22) checkTagPages();
         if (frame == 23) GLFW.glfwSetWindowSize(client.getWindow().getWindow(), 640, 480);
-        if (frame == 26) client.setScreen(new PonderTagScreen(ResourceLocation.parse("ae2ponder:advanced")));
+        if (frame == 26) client.setScreen(new PonderTagScreen(GuideResources.parse("ae2ponder:advanced")));
         if (frame == 28) {
             requireInside(client.screen.children().stream().filter(AbstractWidget.class::isInstance)
                     .map(AbstractWidget.class::cast).toList(), client.screen.width, client.screen.height);
@@ -59,12 +62,15 @@ final class GuideUiValidation {
         if (frame == 29) pageButton((PonderTagScreen) client.screen, ">").onPress();
         if (frame == 32) screenshot("tags-small-next.png");
         if (frame == 33) GLFW.glfwSetWindowSize(client.getWindow().getWindow(), 960, 640);
-        if (frame == 36) client.setScreen(new PonderTagScreen(ResourceLocation.parse("ae2ponder:advanced")));
+        if (frame == 36) client.setScreen(new PonderTagScreen(GuideResources.parse("ae2ponder:advanced")));
         if (frame == 38) screenshot("tags-advanced.png");
         if (frame == 40) {
             var guide = Guides.getById(GUIDE);
-            if (guide == null || !guide.pageExists(PAGE) || !"ja_jp".equals(guide.getParsedPage(PAGE).getLanguage()))
-                throw new IllegalStateException("Japanese Ponder page missing from ME Guide");
+            boolean pageExists = guide != null && guide.pageExists(PAGE);
+            String pageLanguage = pageExists ? guide.getParsedPage(PAGE).getLanguage() : "<missing>";
+            if (!pageExists || !"ja_jp".equals(pageLanguage))
+                throw new IllegalStateException("Japanese Ponder page missing from ME Guide: guideExists=" + (guide != null)
+                        + ", pageExists=" + pageExists + ", actualLanguage=" + pageLanguage);
             GuidesCommon.openGuide(client.player, GUIDE, PageAnchor.page(PAGE));
             // The hidden window starts with its pointer at the sidebar's auto-open hotspot.
             // Update Minecraft's own mouse state without moving the user's desktop pointer.
@@ -81,13 +87,13 @@ final class GuideUiValidation {
         }
         if (frame == 45) clickFirstGuideLink();
         if (frame == 47) {
-            requireLesson(GuideBook.lessons().getFirst().id());
+            requireLesson(GuideBook.lessons().get(0).id());
             checkCourseOrder((PonderUI) client.screen);
         }
         if (frame == 70) clickArrow(true);
         if (frame == 72) requireLesson(GuideBook.lessons().get(1).id());
         if (frame == 77) clickArrow(false);
-        if (frame == 78) requireLesson(GuideBook.lessons().getFirst().id());
+        if (frame == 78) requireLesson(GuideBook.lessons().get(0).id());
         if (frame == 82) clickBack();
         if (frame == 84 && client.screen != meGuide)
             throw new IllegalStateException("Native back button did not restore ME Guide");
@@ -108,13 +114,13 @@ final class GuideUiValidation {
         if (frame == 124) clickBack();
         if (frame == 126) {
             if (client.screen != meGuide) throw new IllegalStateException("Selected lesson did not return to ME Guide");
-            client.player.connection.sendCommand("ae2ponder lesson " + GuideBook.lessons().getLast().id());
+            client.player.connection.sendCommand("ae2ponder lesson " + GuideBook.lessons().get(GuideBook.lessons().size() - 1).id());
         }
-        if (frame == 128) requireLesson(GuideBook.lessons().getLast().id());
+        if (frame == 128) requireLesson(GuideBook.lessons().get(GuideBook.lessons().size() - 1).id());
         if (frame == 151) {
-            requireLesson(GuideBook.lessons().getLast().id());
+            requireLesson(GuideBook.lessons().get(GuideBook.lessons().size() - 1).id());
             clickArrow(true);
-            requireLesson(GuideBook.lessons().getLast().id());
+            requireLesson(GuideBook.lessons().get(GuideBook.lessons().size() - 1).id());
         }
         if (frame == 152) clickBack();
         if (frame == 154 && client.screen != meGuide)
@@ -125,7 +131,7 @@ final class GuideUiValidation {
         var client = Minecraft.getInstance();
         for (var size : List.of(new int[]{320, 240}, new int[]{427, 260}, new int[]{640, 360})) {
             for (var chapter : GuideChapter.active(GuideBook.lessons())) {
-                var tag = PonderIndex.getTagAccess().getRegisteredTag(ResourceLocation.fromNamespaceAndPath("ae2ponder", chapter.id()));
+                var tag = PonderIndex.getTagAccess().getRegisteredTag(GuideResources.of("ae2ponder", chapter.id()));
                 var screen = new PonderTagScreen(tag);
                 client.setScreen(screen);
                 screen.init(client, size[0], size[1]);
@@ -219,14 +225,30 @@ final class GuideUiValidation {
             throw new IllegalStateException("Compiled ME Guide has " + links[0] + " links; expected " + expectedLinks);
 
         var availableIds = GuideBook.lessons().stream().map(GuideBook.Lesson::id).collect(java.util.stream.Collectors.toSet());
+        String displayText = logicalGuideText(text.toString());
         for (var lesson : GuideBook.allLessons()) {
-            if (availableIds.contains(lesson.id())) continue;
             for (String key : List.of("ae2ponder.ponder." + lesson.id() + ".header",
                     "ae2ponder.lesson." + lesson.id() + ".summary")) {
-                String hiddenText = Component.translatable(key).getString();
-                if (!hiddenText.isBlank() && text.indexOf(hiddenText) >= 0)
+                String localizedText = logicalGuideText(Component.translatable(key).getString());
+                if (availableIds.contains(lesson.id())) {
+                    if (!displayText.contains(localizedText))
+                        throw new IllegalStateException("Compiled ME Guide lost localized text: " + key);
+                } else if (!localizedText.isBlank() && displayText.contains(localizedText)) {
                     throw new IllegalStateException("Unavailable add-on text leaked into compiled ME Guide: " + lesson.id());
+                }
             }
+        }
+    }
+
+    private static String logicalGuideText(String text) {
+        try {
+            // Undo display forms before comparison: NFKC alone adds spaces/tatweel to shaped vowel marks.
+            String logical = new ArabicShaping(ArabicShaping.LETTERS_UNSHAPE).shape(text);
+            return java.text.Normalizer.normalize(logical, java.text.Normalizer.Form.NFC)
+                    // Lam-alef shaping moves fathatan after the ligature; both spellings are equivalent.
+                    .replace("\u064b\u0627", "\u0627\u064b");
+        } catch (ArabicShapingException exception) {
+            throw new IllegalStateException("Cannot decode compiled ME Guide text", exception);
         }
     }
 

@@ -942,8 +942,8 @@
       },
       {
         "text": {
-          "ja": "1.21.1の結晶育成は芽生えたブロック方式です。昔の種・純粋結晶の手順と混同しないようにしてください。",
-          "en": "In 1.21.1, quartz grows from budding blocks. Older seed and pure-crystal guides use a different system."
+          "ja": "1.20.1 / 1.21.1の結晶育成は芽生えたブロック方式です。昔の種・純粋結晶の手順と混同しないようにしてください。",
+          "en": "In 1.20.1 / 1.21.1, quartz grows from budding blocks. Older seed and pure-crystal guides use a different system."
         },
         "show": [],
         "focus": [
@@ -4192,8 +4192,8 @@
       },
       {
         "text": {
-          "ja": "1.21.1の通常液体セルは最大18種類です。同じネットでアイテムと液体を扱えます。",
-          "en": "Normal 1.21.1 fluid cells support up to 18 fluid types. One network can hold both items and fluids."
+          "ja": "1.20.1 / 1.21.1の通常液体セルは最大18種類です。同じネットでアイテムと液体を扱えます。",
+          "en": "Normal 1.20.1 / 1.21.1 fluid cells support up to 18 fluid types. One network can hold both items and fluids."
         },
         "show": [],
         "focus": [

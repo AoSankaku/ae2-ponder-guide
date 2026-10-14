@@ -13,7 +13,8 @@ ext.generateLocalizedGuideResources = { lessons, destination ->
     }
     def languages = readMap('src/main/translations/languages.json')
     assert languages.keySet() == ['ja_jp', 'en_us', 'hi_in', 'zh_hk', 'zh_tw', 'zh_cn', 'ru_ru',
-        'pt_br', 'pt_pt', 'es_es', 'de_de', 'cs_cz', 'pl_pl', 'ms_my', 'ro_ro'].toSet() : 'All 15 supported languages are required'
+        'pt_br', 'pt_pt', 'es_es', 'fr_fr', 'de_de', 'cs_cz', 'pl_pl', 'ms_my', 'ro_ro',
+        'ar_sa', 'id_id', 'ko_kr', 'vi_vn', 'tr_tr', 'it_it'].toSet() : 'All 22 supported languages are required'
     def sources = [:]
     ['en_us': 'en', 'ja_jp': 'ja'].each { language, field ->
         def strings = readMap("src/main/templates/lang/${language}.json")
@@ -74,7 +75,7 @@ ext.generateLocalizedGuideResources = { lessons, destination ->
     }
     // Validate everything before replacing the previous generated resources.
     def targetPath = destination.canonicalFile.toPath()
-    def generatedPath = new File(projectDir, 'build/generated').canonicalFile.toPath()
+    def generatedPath = layout.buildDirectory.dir('generated').get().asFile.canonicalFile.toPath()
     assert generatedPath.startsWith(projectDir.canonicalFile.toPath()) && targetPath.startsWith(generatedPath)
         && targetPath != generatedPath : 'Generated resource directory must stay inside the project build directory'
     delete(destination)

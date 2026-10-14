@@ -1,6 +1,7 @@
 package dev.ae2guide.client;
 
-import dev.ae2guide.AE2PonderGuide;
+import dev.ae2guide.GuideConstants;
+import dev.ae2guide.GuideResources;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.createmod.ponder.foundation.ui.PonderUI;
 import net.minecraft.client.Minecraft;
@@ -8,46 +9,31 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.options.OptionsScreen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.client.event.ScreenEvent;
-import net.neoforged.neoforge.common.NeoForge;
 
-@EventBusSubscriber(modid = AE2PonderGuide.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class GuideClient {
     private GuideClient() {}
 
-    @SubscribeEvent public static void setup(FMLClientSetupEvent event) {
+    static void setup() {
         PonderIndex.addPlugin(new GuidePlugin());
-        event.enqueueWork(() -> {
-            NeoForge.EVENT_BUS.addListener(GuideClient::tick);
-            NeoForge.EVENT_BUS.addListener(GuideClient::screenButtons);
-            NeoForge.EVENT_BUS.addListener(GuideCommands::register);
-        });
     }
 
-    private static void tick(ClientTickEvent.Post event) {
+    static void tick() {
         var client = Minecraft.getInstance();
         if (client.screen instanceof PonderUI ui && ui.getActiveScene().isFinished()
-                && ui.getActiveScene().getId().getNamespace().equals(AE2PonderGuide.MOD_ID)) {
+                && ui.getActiveScene().getId().getNamespace().equals(GuideConstants.MOD_ID)) {
             GuideProgress.complete(ui.getActiveScene().getId().getPath());
         }
     }
 
-    private static void screenButtons(ScreenEvent.Init.Post event) {
-        if (event.getScreen() instanceof OptionsScreen) event.addListener(new GuideButton(event.getScreen()));
+    static Button guideButton(Screen screen) {
+        return GuideClientPlatform.isOptionsScreen(screen) ? new GuideButton(screen) : null;
     }
 
     private static final class GuideButton extends Button {
-        private final ItemStack icon = new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("ae2:fluix_crystal")));
+        private final ItemStack icon = new ItemStack(BuiltInRegistries.ITEM.get(GuideResources.parse("ae2:fluix_crystal")));
 
         private GuideButton(Screen parent) {
             super(8, parent.height - 28, 20, 20, Component.empty(),

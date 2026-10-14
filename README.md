@@ -1,7 +1,7 @@
 # AE2 Ponder Guide
 
-Minecraft 1.21.1 / NeoForge向けの、Applied Energistics 2を立体アニメーションで学ぶガイドです。
-独立版Ponderを使用するため、**Create本体は不要**です。15言語に対応しています。
+Minecraft 1.21.1 / NeoForgeと1.20.1 / Forge向けの、Applied Energistics 2を立体アニメーションで学ぶガイドです。
+独立版Ponderを使用するため、**Create本体は不要**です。22言語に対応しています。
 AE2本体は6章・40レッスン・200ステップで、121種類のAE2アイテムから関連場面を開けます。
 対応アドオンには計15レッスン・75ステップを追加し、導入済みのものを表示します。
 MEガイドのアイテムからは、利用可能な全レッスンのコースを開けます。
@@ -9,8 +9,9 @@ MEガイドのアイテムからは、利用可能な全レッスンのコース
 ## ダウンロード・導入
 
 [GitHub Releases](https://github.com/AoSankaku/ae2-ponder-guide/releases) からJARをダウンロードできます。
-Minecraft 1.21.1 / NeoForgeの環境で、下記の「必要なMOD」と一緒に `mods` フォルダへ配置し、
-ゲームを再起動してください。対応アドオンは任意です。Create本体の導入は不要です。
+使用するMinecraft・ローダーに合うJARを、下記の「必要なMOD」と一緒に `mods` フォルダへ配置し、
+ゲームを再起動してください。1.20.1 / Forge用JARには `forge-1.20.1` が付きます。
+対応アドオンは任意です。Create本体の導入は不要です。
 
 ## 使い方
 
@@ -45,12 +46,13 @@ Minecraft 1.21.1 / NeoForgeの環境で、下記の「必要なMOD」と一緒�
 ## 対応言語と更新
 
 日本語、英語、ヒンディー語、繁体字中国語（香港・台湾）、簡体字中国語（中国）、
-ロシア語、ポルトガル語（ブラジル・ポルトガル）、スペイン語、ドイツ語、
-チェコ語、ポーランド語、マレー語、ルーマニア語に対応しています。
+ロシア語、ポルトガル語（ブラジル・ポルトガル）、スペイン語、フランス語、ドイツ語、
+チェコ語、ポーランド語、マレー語、ルーマニア語、アラビア語、インドネシア語、
+韓国語、ベトナム語、トルコ語、イタリア語に対応しています（第一・第二言語範囲）。
 字幕、全レッスンのタイトルと要約、一覧と検索、章名、Ponder・ME Guideの操作表示、
 ME GuideのページがMinecraftで選択した言語に切り替わります。
 
-今後の追加・変更も全15言語を同時に更新します。欠落したキー、空欄、
+今後の追加・変更も全22言語を同時に更新します。欠落したキー、空欄、
 不正なプレースホルダ、原文が変わった後に未確認の翻訳がある場合はビルドが失敗します。
 日本語の説明はCreateと同じ「です・ます」調に揃え、ほかの言語もCreate/Ponderの呼びかけ方に合わせます。
 見出しや短い操作ラベルは自然な形を保ちます。対応する翻訳がない場合のフォールバックは英語です。
@@ -68,31 +70,32 @@ ME Guideのページは翻訳データから生成するため、ページごと
 
 ## 必要なMOD
 
-| MOD | 検証対象バージョン |
-| --- | --- |
-| NeoForge | 21.1.256（最低21.1.206） |
-| Applied Energistics 2 | 19.2.18 |
-| GuideME | 21.1.19（AE2の必須依存） |
-| Ponder | 1.0.87+mc1.21.1 |
-| Flywheel | 1.0.4 |
-| AE2 Ponder Guide | 0.1.0-beta1 |
+| MOD | 1.21.1 / NeoForge | 1.20.1 / Forge |
+| --- | --- | --- |
+| ローダー | NeoForge 21.1.256（最低21.1.206） | Forge 47.4.27 |
+| Applied Energistics 2 | 19.2.18 | 15.4.11 |
+| GuideME | 21.1.19 | 20.1.15 |
+| Ponder | 1.0.87+mc1.21.1 | 1.0.87 |
+| Flywheel | 1.0.4 | 1.0.0-215 |
+| AE2 Ponder Guide | 0.1.0-beta2 | 0.1.0-beta2 |
 
 AE2が要求するGuideMEは必要ですが、今回のガイドはPonderから利用します。
 Createが既にPonder/Flywheelを同梱している環境では、同じMODを重複導入しないでください。
 
 ## 対応アドオン（任意）
 
-| MOD | 検証対象バージョン | ガイド内容 |
-| --- | --- | --- |
-| AE2 OMNI Cells | 1.1.6 | 混合ストレージ、材料、携帯セル、資源型フィルター、クラフトCPU |
-| Bigger AE2 | 1.21.1-1.4.9 | Quantumアイテム・液体セル、Digital Singularityセル、アクセラレーター |
-| AE2 Things | 1.4.2-beta | DISKの作成、パーティション、退避と再利用 |
-| AE2 MEGA Things | 2.0.4 | MEGAアイテムDISK、液体DISK、設定と再利用 |
+| MOD | 1.21.1 / NeoForge | 1.20.1 / Forge | ガイド内容 |
+| --- | --- | --- | --- |
+| AE2 OMNI Cells | 1.1.6 | 1.1.6 | 混合ストレージ、材料、携帯セル、資源型フィルター、クラフトCPU |
+| Bigger AE2 | 1.21.1-1.4.9 | 20.2.1 | Quantumアイテム・液体セル、Digital Singularityセル、アクセラレーター |
+| AE2 Things | 1.4.2-beta | 1.2.1 | DISKの作成、パーティション、退避と再利用 |
+| AE2 MEGA Things | 2.0.4 | 1.0.8 | MEGAアイテムDISK、液体DISK、設定と再利用 |
 
 この4MODはガイドの必須依存ではありません。未導入のレッスンは一覧、Wキーの候補、
 Ponderコース、ME Guideのページと検索から除外します。1つ以上導入すると「アドオン」章が現れます。
 AE2 MEGA Thingsを導入する場合は、その必須依存のAE2 Things、MEGA Cells、Kotlin for Forgeも必要です。
-検証ではMEGA Cells 4.11.0、Kotlin for Forge 5.12.0を使用します。
+NeoForgeの検証ではMEGA Cells 4.11.0、Kotlin for Forge 5.12.0を使用します。
+ForgeではMEGA Cells 2.4.6、Kotlin for Forge 4.12.0と、MEGA Cellsが要求するCloth Config 11.1.136を使用します。
 
 開発・テストの標準起動構成には4MODと必要な依存をすべて含めています。
 アドオンなしの動作確認は `-PwithoutAddons` を付けて起動してください。
@@ -100,24 +103,32 @@ AE2 MEGA Thingsを導入する場合は、その必須依存のAE2 Things、MEGA
 
 ## ビルド
 
-Java 21を使用します。
+1.21.1 / NeoForgeはJava 21、1.20.1 / ForgeはJava 17を使用します。
+両方をビルドする場合は両JDKをインストールしてください。Gradleの実行にはJava 21も使用できます。
 
 ```powershell
 .\gradlew.bat build
+.\gradlew.bat -Pplatform=forge build
 ```
 
-出力は `build/libs/ae2-ponder-guide-0.1.0-beta1.jar` です。
+NeoForgeの出力は `build/libs/ae2-ponder-guide-0.1.0-beta2.jar`、
+Forgeの出力は `build/forge/libs/ae2-ponder-guide-0.1.0-beta2-forge-1.20.1.jar` です。
+Forge版は配布用にSRGへ再マッピングされ、Mixinのrefmapも含みます。
 `generateGuideResources` が全場面のノード参照・座標・表示順・吹き出し・多言語テキストを検証し、
 Ponder用の翻訳ファイルを生成します。構造NBTを変更する場合は `python tools/generate_structure.py` を使います。
 
 統合検証は `./gradlew -PvalidateGuide runValidationClient` で実行できます。
+Forgeでは `./gradlew -Pplatform=forge -PvalidateGuide runValidationClient` を使用します。
 検証用コードは配布JARに含まれません。別の開発ワールドを自動作成し、ウィンドウを隠して、
 Createなしで全場面のコンパイル・再生・巻き戻し・部品復元・吹き出しのアイテムと表示順・描画、
 全16通りのアドオン導入条件、設定の小ボタンから一覧への移動、関連アイテムのページ送りと画面内配置、
 ME Guideのリンクと復帰、Ponder標準の前後移動も確認します。
-`-PvalidateLanguages` を付けると15言語の読み込み・検索・操作表示を確認し、
-ヒンディー語・香港繁体字・ポルトガル語のガイドページと字幕を描画します。
+`-PvalidateLanguages` を付けると22言語の読み込み・検索・操作表示を確認し、
+ヒンディー語・香港繁体字・ポルトガル語・アラビア語・韓国語・ベトナム語・トルコ語の
+ガイドページと字幕を描画します。
+検索では各言語の大小文字規則も確認し、アラビア語の全字幕は描画後の文字幅と文字の欠落を検証します。
 結果は `build/validation-run/validation-result.json`、画像は同ディレクトリの `screenshots` に保存します。
+Forgeでは `build/forge/validation-run` に保存します。
 
 通常ワールドの性能調査には `./gradlew -PvalidateGuide runPerformanceClient` を利用できます。
 調査対象のワールドの**コピー**を `build/performance-run/saves/profile-world` に配置し、
@@ -126,9 +137,14 @@ ME Guideのリンクと復帰、Ponder標準の前後移動も確認します。
 `performance-result.json`、Java Flight Recorderの記録を `performance.jfr` に保存して自動終了します。
 描画解像度は1280×720です。メモリ割り当ては `-PprofileMinHeap=1G -PprofileMaxHeap=4G` で変更できます。
 この測定用コードも配布JARには含まれません。
+Forgeでは `-Pplatform=forge` を付け、ワールド・設定・結果の保存先を `build/forge/performance-run` にしてください。
+通常のForge開発起動も、既存のNeoForgeワールドを開かないよう `run/forge`（サーバーは `run/forge-server`）に分けています。
 
 ## 設計
 
+- `src/main/java` と教材・翻訳リソース: 両バージョンで共通の実装と内容
+- `src/neoforge/java` / `src/forge/java`: ローダー登録、イベント、画面API、描画データの小さな互換処理
+- `src/validation/java`: 共通の検証。版別APIは `src/neoforgeValidation/java` / `src/forgeValidation/java` に配置
 - `src/main/resources/assets/ae2ponder/guide/lessons.json`: 章・場面・字幕・模型・演出
 - `src/main/resources/assets/ae2ponder/guide/addons.json`: 導入条件付きアドオンの場面・字幕・模型
 - `GuideScenes`: 共通のPonder再生処理。AE2公式のvisual NBTでケーブルと部品を表示
@@ -137,11 +153,13 @@ ME Guideのリンクと復帰、Ponder標準の前後移動も確認します。
 - `GuidePonderScreen`: 選んだ場面から全コースをPonder標準のナビゲーションで再生
 - `GuideCommands` / `assets/ae2ponder/ae2guide`: ME Guideから各場面へのクライアント側リンク
 - `PonderTagScreenMixin`: AE2の関連アイテム画面を、画面サイズに応じてページ分割
+- `PonderTextWindowMixin` / `RightToLeftText`: アラビア語字幕を描画後の文字幅で折り返し、字幕枠の幅と高さを揃える
+- `GuideArabicTextMixin`: ME Guideのアラビア語表示を文字幅計算前に整形し、原文の検索データを保つ
 - `OptionalModTagCompiler` / `GuideDefaultExtensionsMixin`: ME Guideのアドオン節と検索を導入条件で切り替え
-- `PonderLevelModelDataMixin`: 仮想ワールドのブロックエンティティからNeoForgeの描画データを渡す互換処理
+- `PonderLevelModelDataMixin`: NeoForgeで仮想ワールドのブロックエンティティから描画データを渡す互換処理。ForgeではPonder本体が同じ処理を行うため不要
 - `src/main/templates/lang`: 日本語・英語のUI、章、Ponder操作、ガイド導入文
-- `src/main/translations`: その他13言語の全テキストと原文確認のハッシュ
-- `gradle/localization.gradle`: 15言語の翻訳リソースとME Guideページを生成・検証
+- `src/main/translations`: その他20言語の全テキストと原文確認のハッシュ
+- `gradle/localization.gradle`: 22言語の翻訳リソースとME Guideページを生成・検証
 
 サーバー側ではガイドクライアントのクラスをロードしません。
 
